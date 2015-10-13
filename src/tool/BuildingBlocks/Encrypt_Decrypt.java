@@ -1,7 +1,5 @@
 package tool.BuildingBlocks;
 
-
-import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -16,14 +14,17 @@ import tool.Graphics.Arrow;
 import tool.Graphics.Robot;
 
 
+
 /**
  * Created by Phillipa on 10/10/2015.
  */
 public class Encrypt_Decrypt {
+    final static int TEXTWIDTH=300;
 
 
 
     public static void start(BorderPane bp) {
+
         setUpLeft(bp);
         setUpRight(bp);
         setUpBottom(bp);
@@ -43,16 +44,8 @@ public class Encrypt_Decrypt {
     }
 
 
-    public static void textSettings(Text text){
-        text.setStyle("-fx-font-size:16");
-        text.setWrappingWidth(300);
-        text.setTextAlignment(TextAlignment.valueOf("LEFT"));
-        text.setFont(Font.font("Arial"));
-
-    }
-
     public static StackPane encryptInfo(){
-        Robot encrypt =new Robot("tool/Files/encrypt.png",Color.web("#cededa"),0,0,"Hello, I'm Encrypt!","Encrypt Says:");
+        Robot encrypt =new Robot("encrypt",0,0);
         StackPane sp = new StackPane();
         Text speech = new Text("Encryption is my speciality! Encryption is the art of concealing the contents of a message. "+
         "This is achieved by changing each letter in the message to something else using a key. This key tends to be a number"+
@@ -62,7 +55,7 @@ public class Encrypt_Decrypt {
     }
 
     public static StackPane decryptInfo() {
-        Robot decrypt = new Robot("tool/Files/decrypt.png", Color.web("#8aa7cc"), 0, 0, "Hello, I'm Decrypt!", "Decrypt Says:");
+        Robot decrypt =new Robot("decrypt",0,0);
         StackPane sp = new StackPane();
         Text speech = new Text("I know everything about Decryption! Decryption happens when a message has been encrypted. My "+
         "sister transforms the message into gibberish, and it's my job to transform it back into the original message. I "+
@@ -72,21 +65,22 @@ public class Encrypt_Decrypt {
     }
 
     public static StackPane info(StackPane sp, Robot robot, Text information){
-        backgroundSetup(550,400,sp,robot.getColor());
+        backgroundSetup(550,400,sp,robot.getStyle());
 
         robot.setImageWidth(175);
         HBox hb = new HBox();
         VBox vb = new VBox();
-        vb.setSpacing(20);
-        vb.setPadding(new Insets(20,10,10,10));
-        hb.setPadding(new Insets(20,10,10,10));
+        vb.getStyleClass().add("vbox");
+        hb.getStyleClass().add("hbox");
 
 
         hb.getChildren().add(robot.getView());
 
         Text title=robot.getTitle();
-        textSettings(title);
-        textSettings(information);
+        title.getStyleClass().add("text-title");
+        title.setWrappingWidth(TEXTWIDTH);
+        information.getStyleClass().add("text-main");
+        information.setWrappingWidth(TEXTWIDTH);
 
         vb.getChildren().addAll(title,information);
         hb.getChildren().add(vb);
@@ -94,20 +88,18 @@ public class Encrypt_Decrypt {
         return sp;
     }
 
-    public static void backgroundSetup(int width, int height, StackPane sp,Color c){
+    public static void backgroundSetup(int width, int height, StackPane sp,String style){
         Rectangle rectangle = new Rectangle();
         rectangle.setHeight(height);
         rectangle.setWidth(width);
-        rectangle.setFill(c);
-        rectangle.setArcHeight(height/3);
-        rectangle.setArcWidth(width/3);
+        rectangle.getStyleClass().add(style);
 
         sp.getChildren().add(rectangle);
     }
 
     public static void setUpBottom(BorderPane bp){
         StackPane sp = new StackPane();
-        backgroundSetup(1100,250,sp,Color.web("#c7afc7"));
+        backgroundSetup(1100,250,sp,"rectangle-neither");
 
         HBox textFields= new HBox();
         encryptToDecrypt(textFields);

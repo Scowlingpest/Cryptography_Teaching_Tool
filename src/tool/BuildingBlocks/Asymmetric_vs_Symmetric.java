@@ -21,6 +21,7 @@ import tool.Graphics.Robot;
  * Created by Phillipa on 10/10/2015.
  */
 public class Asymmetric_vs_Symmetric{
+    final static int TEXTWIDTH=350;
 
 
 
@@ -33,21 +34,20 @@ public class Asymmetric_vs_Symmetric{
     public static void setUpLeft(BorderPane bp) {
 
         VBox vb = new VBox();
-        Robot decrypt =new Robot("tool/Files/decrypt.png",Color.web("#8aa7cc"),0,0,"Hello, I'm Decrypt!","Decrypt Says:");
+        Robot decrypt =new Robot("decrypt",0,0);
         Text information = new Text("Asymmetric methods are cryptography methods in which the key for "+
                 "encryption and decryption are different. This is normally achieved by having a public key and "+
                 "a secret key. One will be used to encrypt the information and the other will be used to decrypt "+
                 "it. ");
         vb.getChildren().add(setUpSpeechBubble(decrypt, information));
 
-        Robot encrypt =new Robot("tool/Files/encrypt.png",Color.web("#cededa"),0,0,"Hello, I'm Encrypt!","Encrypt Says:");
+        Robot encrypt =new Robot("encrypt",0,0);
         Text symmetric = new Text("Symmetric methods are cryptography methods in which the key for encryption "+
         "and decryption are the same. This is achieved by using the public key and/or the secret key for both "+
         "encryption and decryption. Normally it is a secret key that is used which is shared amongst all users. ");
 
         vb.getChildren().add(setUpSpeechBubble(encrypt,symmetric));
-        vb.setSpacing(30);
-        vb.setPadding(new Insets(20,20,20,20));
+        vb.getStyleClass().add("vbox");
 
         bp.setLeft(vb);
 
@@ -57,17 +57,23 @@ public class Asymmetric_vs_Symmetric{
 
     public static StackPane setUpSpeechBubble(Robot robot,Text text){
         StackPane sp =new StackPane();
-        backgroundSetup(600,275,sp,robot.getColor());
+        backgroundSetup(600,275,sp,robot.getStyle());
         robot.setImageWidth(175);
 
         HBox hb = new HBox();
         hb.getChildren().add(robot.getView());
-        robot.getTitle().setStyle("-fx-font-size:26");
+        robot.getTitle().getStyleClass().add("text-title");
 
-        textSettings(text);
+
+        text.getStyleClass().add("text-main");
+        text.setWrappingWidth(TEXTWIDTH);
+
+
         VBox vBox = new VBox();
         vBox.getChildren().addAll(robot.getTitle(),text);
-        vBox.setSpacing(30);
+        vBox.getStyleClass().add("vbox");
+        hb.getStyleClass().add("hbox");
+
         hb.getChildren().add(vBox);
         sp.getChildren().add(hb);
         return sp;
@@ -76,8 +82,8 @@ public class Asymmetric_vs_Symmetric{
     public static void setUpRight(BorderPane bp) {
         StackPane sp = new StackPane();
         VBox finished = new VBox();
-        finished.setSpacing(20);
-        backgroundSetup(500, 600, sp, Color.web("#c7afc7"));
+        finished.getStyleClass().add("vbox");
+        backgroundSetup(500, 600, sp, "rectangle-neither");
 
         VBox vbEncrypt = new VBox();
         final ToggleGroup first=setUpVBox("Encrypt's key",vbEncrypt);
@@ -118,21 +124,12 @@ public class Asymmetric_vs_Symmetric{
 
     }
 
-    public static void textSettings(Text text) {
-        text.setStyle("-fx-font-size:18");
-        text.setWrappingWidth(400);
-        text.setTextAlignment(TextAlignment.valueOf("LEFT"));
-        text.setFont(Font.font("Arial"));
 
-    }
-
-    public static void backgroundSetup(int width, int height, StackPane sp,Color c){
+    public static void backgroundSetup(int width, int height, StackPane sp,String style){
         Rectangle rectangle = new Rectangle();
         rectangle.setHeight(height);
         rectangle.setWidth(width);
-        rectangle.setFill(c);
-        rectangle.setArcHeight(height/4);
-        rectangle.setArcWidth(width/4);
+        rectangle.getStyleClass().add(style);
 
         sp.getChildren().add(rectangle);
     }

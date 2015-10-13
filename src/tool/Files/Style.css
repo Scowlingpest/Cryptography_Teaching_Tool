@@ -1,0 +1,66 @@
+.vbox{
+    -fx-padding: 20;
+    -fx-spacing: 20;
+}
+
+.hbox{
+    -fx-padding: 20;
+    -fx-spacing: 20;
+    }
+
+.text-main{
+    -fx-font: 16px Arial;
+    -fx-text-alignment: justify;
+
+}
+
+.text-title {
+    -fx-font:25px Arial;
+    -fx-text-alignment: left;
+    -fx-font-weight:bold;
+}
+
+.rectangle-encrypt{
+    -fx-fill:#cededa;
+    -fx-effect: innershadow( gaussian, rgba( 0, 0, 0, 0.5 ), 5, 0, 5, 5 );
+    -fx-smooth:true;
+    -fx-arc-width:30;
+    -fx-arc-height:30;
+
+}
+
+.rectangle-decrypt{
+    -fx-fill:#9ac2d9;
+    -fx-effect: innershadow( gaussian, rgba( 0, 0, 0, 0.5 ), 10, 0, 5, 5 );
+    -fx-smooth:true;
+    -fx-arc-width:30;
+    -fx-arc-height:30;
+}
+
+.rectangle-neither{
+    -fx-fill:#c7afc7;
+    -fx-effect: innershadow( gaussian, rgba( 0, 0, 0, 0.5 ), 10, 0, 5, 5 );
+    -fx-smooth:true;
+    -fx-arc-width:30;
+    -fx-arc-height:30;
+}
+
+.box-base{
+    -fx-fill:WHITE;
+    -fx-smooth:true;
+    -fx-stroke:#57464e;
+    -fx-arc-width:20;
+    -fx-arc-height:20;
+    -fx-stroke-width:10;
+}
+
+.box-prime{
+    -fx-fill:#b3ddbf;
+    -fx-stroke:GREEN;
+
+}
+
+.box-not-prime{
+    -fx-stroke:RED;
+    -fx-fill:LIGHTPINK;
+}

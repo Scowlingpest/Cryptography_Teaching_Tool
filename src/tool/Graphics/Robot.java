@@ -15,30 +15,40 @@ public class Robot {
 
     Image image;
     ImageView view = new ImageView();
-    Color color;
+    String style;
     int X;
     int Y;
     toolTipSpecial toolTip;
     Text title;
 
-    public Robot(String robot,Color c,int x, int y, String tool, String hello) {
+    public Robot(String name, int x, int y) {
+        String robot,tool;
+        if(name.equals("encrypt")){
+            robot="tool/Files/encrypt.png";
+            style="rectangle-encrypt";
+            tool="Hello, I'm Encrypt!";
+            title = new Text("Encrypt Says:");
+        }
+        else{
+            robot="tool/Files/decrypt.png";
+            style="rectangle-decrypt";
+            tool="Hello, I'm Decrypt!";
+            title = new Text("Decrypt Says:");
+        }
         image=new Image(robot);
         view.setImage(image);
         view.setPreserveRatio(true);
         view.setSmooth(true);
         view.setCache(true);
 
-
-
-        color= c;
         X=x;
         Y=y;
         toolTip=new toolTipSpecial(tool,"","");
         Tooltip.install(view,toolTip.getTooltip());
-        title= new Text(hello);
 
 
     }
+
 
     public Text getTitle() {
         return title;
@@ -64,8 +74,12 @@ public class Robot {
         return view;
     }
 
-    public Color getColor() {
-        return color;
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
     }
 
     public int getX() {
@@ -84,9 +98,7 @@ public class Robot {
         Y = y;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
+
 
 
 

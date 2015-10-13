@@ -31,7 +31,8 @@ public class Box {
     }
 
     public void drawBox(int x, int y, String tool, String a, String b){
-        setUpBox(x,y);
+        box = new Rectangle(x,y,90,90);
+        box.getStyleClass().add("box-base");
         
         tip = new toolTipSpecial(tool,a,b);
 
@@ -55,14 +56,8 @@ public class Box {
         return sp;
     }
 
-    public void setUpBox(int x, int y){
-        box=new Rectangle(x,y,90,90);
-        box.setFill(Color.web("#c7b691"));
-        box.setStroke(Color.web("#57464e"));
-        box.setStrokeWidth(10);
-        box.setArcHeight(20);
-        box.setArcWidth(20);
-    }
+
+
 
     public Rectangle getBox() {
         return box;
@@ -81,14 +76,12 @@ public class Box {
             @Override
             public void handle(MouseEvent event) {
                 if(prime){
-                    box.setStroke(Color.GREEN);
-                    box.setFill(Color.LIGHTGREEN);
+                    box.getStyleClass().add("box-prime");
                     tip.useTextA();
 
                 }
                 else{
-                    box.setStroke(Color.RED);
-                    box.setFill(Color.LIGHTPINK);
+                    box.getStyleClass().add("box-not-prime");
                     tip.useTextB();
                 }
             }

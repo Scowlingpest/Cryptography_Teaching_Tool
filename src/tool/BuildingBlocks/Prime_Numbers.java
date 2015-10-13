@@ -16,18 +16,25 @@ import tool.Graphics.Robot;
  * Created by Phillipa on 08/10/2015.
  */
 public class Prime_Numbers {
+    final static int TEXTWIDTH=250;
 
 
     public static void start(BorderPane bp) {
         GridPane gridPane = new GridPane();
+        VBox vb=new VBox();
+        vb.getStyleClass().add("vbox");
 
 
         setUpLeft(bp);
         setUpRight(bp);
 
+        StackPane sp = new StackPane();
+        drawBackground(600,650,sp,"rectangle-neither");
+
         Text title =new Text("Prime Numbers");
-        title.setStyle("-fx-font-size:20");
-        gridPane.add(title,2,0);
+        title.getStyleClass().add("text-title");
+
+
 
 
         ColumnConstraints cc = new ColumnConstraints();
@@ -55,7 +62,9 @@ public class Prime_Numbers {
             }
         }
         gridPane.setAlignment(Pos.CENTER);
-        bp.setCenter(gridPane);
+        vb.getChildren().addAll(title,gridPane);
+        sp.getChildren().add(vb);
+        bp.setCenter(sp);
 
     }
 
@@ -80,14 +89,16 @@ public class Prime_Numbers {
 
 
         VBox vb = new VBox();
+        vb.getStyleClass().add("vbox");
 
-        Robot encrypt =new Robot("tool/Files/encrypt.png",Color.web("#cededa"),0,0,"Hello, I'm Encrypt!","Encrypt Says:");
+        Robot encrypt =new Robot("encrypt",0,0);
         encrypt.setImageWidth(175);
         vb.getChildren().add(0, encrypt.getView());
 
         organiseText(left,encrypt.getTitle(),Color.GREEN,vb);
         StackPane sp = new StackPane();
-        drawBackground(sp,encrypt.getColor());
+        drawBackground(275,650,sp,encrypt.getStyle());
+
         sp.getChildren().add(vb);
         bp.setLeft(sp);
     }
@@ -99,57 +110,49 @@ public class Prime_Numbers {
                             "If the box turns green then you've clicked a prime number. Hover your mouse"+
                             "over the boxes to get a small explanation of why they are/aren't prime.");
 
-        Robot decrypt =new Robot("tool/Files/decrypt.png",Color.web("#dbccd0"),0,0,"Hello, I'm Decrypt!","Decrypt Says:");
+        Robot decrypt =new Robot("decrypt",0,0);
         decrypt.setImageWidth(175);
 
 
         VBox vb =new VBox();
+        vb.getStyleClass().add("vbox");
         organiseText(right, decrypt.getTitle(), Color.RED,vb);
 
 
         vb.getChildren().add(2, decrypt.getView());
 
         StackPane sp = new StackPane();
-        drawBackground(sp,decrypt.getColor());
+        drawBackground(275,650,sp,decrypt.getStyle());
         sp.getChildren().add(vb);
 
         bp.setRight(sp);
     }
 
-    public static void textSettings(Text text){
-        text.setStyle("-fx-font-size:18");
-        text.setWrappingWidth(250);
-        text.setTextAlignment(TextAlignment.valueOf("CENTER"));
-        text.setFont(Font.font("Arial"));
-
-    }
 
     public static void organiseText(Text s,Text title, Color c, VBox vb){
+        s.getStyleClass().add("text-main");
+        s.setWrappingWidth(TEXTWIDTH);
 
-        vb.setPadding(new Insets(10,10,10,10));
 
-        textSettings(s);
-
-        textSettings(title);
-        title.setStyle("-fx-font-size:22");
+        title.getStyleClass().add("text-title");
+        title.setWrappingWidth(TEXTWIDTH);
         title.setFill(c);
+
         vb.getChildren().add(title);
         vb.getChildren().add(s);
 
-        vb.setSpacing(30);
+        vb.getStyleClass().add("vbox");
 
 
 
     }
 
-    public static void drawBackground(StackPane sp, Color c){
+    public static void drawBackground(int x, int y,StackPane sp, String style){
         Rectangle r=new Rectangle();
         r.setY(10);
-        r.setWidth(250);
-        r.setHeight(650);
-        r.setArcWidth(40);
-        r.setArcHeight(40);
-        r.setFill(c);
+        r.setWidth(x);
+        r.setHeight(y);
+        r.getStyleClass().add(style);
         sp.getChildren().add(r);
 
     }

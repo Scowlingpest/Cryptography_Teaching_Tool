@@ -25,6 +25,8 @@ public class Main extends Application {
         BorderPane borderPane =setupMenu();
         borderPane.setBackground(new Background(new BackgroundFill(Color.web("#ebebeb"),CornerRadii.EMPTY,Insets.EMPTY)));
         Scene scene = new Scene(borderPane, 1200, 700);
+        scene.getStylesheets().add("tool/Files/Style.css");
+
 
         primaryStage.setScene(scene);
         primaryStage.show();
