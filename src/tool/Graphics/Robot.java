@@ -1,8 +1,10 @@
 package tool.Graphics;
 
+import javafx.event.EventHandler;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
@@ -16,7 +18,7 @@ public class Robot {
     Color color;
     int X;
     int Y;
-    toolTipSpecial toolTip = new toolTipSpecial("","","");
+    toolTipSpecial toolTip;
     Text title;
 
     public Robot(String robot,Color c,int x, int y, String tool, String hello) {
@@ -26,12 +28,15 @@ public class Robot {
         view.setSmooth(true);
         view.setCache(true);
 
+
+
         color= c;
         X=x;
         Y=y;
-        toolTip.setTooltipText(tool);
+        toolTip=new toolTipSpecial(tool,"","");
         Tooltip.install(view,toolTip.getTooltip());
         title= new Text(hello);
+
 
     }
 
@@ -82,6 +87,7 @@ public class Robot {
     public void setColor(Color color) {
         this.color = color;
     }
+
 
 
 }

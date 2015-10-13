@@ -2,14 +2,14 @@ package tool.BuildingBlocks;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -33,7 +33,7 @@ public class Asymmetric_vs_Symmetric{
     public static void setUpLeft(BorderPane bp) {
 
         VBox vb = new VBox();
-        Robot decrypt =new Robot("tool/Files/decrypt.png",Color.web("#dbccd0"),0,0,"Hello, I'm Decrypt!","Decrypt Says:");
+        Robot decrypt =new Robot("tool/Files/decrypt.png",Color.web("#8aa7cc"),0,0,"Hello, I'm Decrypt!","Decrypt Says:");
         Text information = new Text("Asymmetric methods are cryptography methods in which the key for "+
                 "encryption and decryption are different. This is normally achieved by having a public key and "+
                 "a secret key. One will be used to encrypt the information and the other will be used to decrypt "+
@@ -75,15 +75,42 @@ public class Asymmetric_vs_Symmetric{
 
     public static void setUpRight(BorderPane bp) {
         StackPane sp = new StackPane();
-        backgroundSetup(500,600,sp,Color.web("#c7afc7"));
+        VBox finished = new VBox();
+        finished.setSpacing(20);
+        backgroundSetup(500, 600, sp, Color.web("#c7afc7"));
 
-        VBox vb = new VBox();
-        vb.setPadding(new Insets(60,20,20,20));
-        vb.setSpacing(20);
-        final ToggleGroup radioBtns=radioButtonSetup(vb,"Select a combination");
+        VBox vbEncrypt = new VBox();
+        final ToggleGroup first=setUpVBox("Encrypt's key",vbEncrypt);
+        VBox vbDecrypt = new VBox();
+        final ToggleGroup second =setUpVBox("Decrypt's key",vbDecrypt);
 
-        sp.getChildren().add(vb);
+
+        HBox hb = new HBox();
+        hb.getChildren().addAll(vbEncrypt,vbDecrypt);
+
+
+        Button button = new Button("Click here");
+
+
+        final Text type =new Text("Symmetric");
+        final Text description = new Text("When both users have the same key, whether it is secret or not, then the method type is symmetric ");
+        description.setWrappingWidth(400);
+
+
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String expected1 =(String)first.getSelectedToggle().getUserData();
+                String expected2 =(String)second.getSelectedToggle().getUserData();
+                changeBottom(expected1.equals(expected2),type,description);
+
+            }
+        });
+
+        finished.getChildren().addAll(hb,button,type,description);
+        sp.getChildren().add(finished);
         sp.setPadding(new Insets(10,10,10,10));
+
         bp.setRight(sp);
 
 
@@ -110,23 +137,44 @@ public class Asymmetric_vs_Symmetric{
         sp.getChildren().add(rectangle);
     }
 
+    public static ToggleGroup setUpVBox(String title, VBox vb){
+
+        vb.setPadding(new Insets(60,20,20,20));
+        vb.setSpacing(20);
+        ToggleGroup radioBtns=radioButtonSetup(vb,title);
+        return radioBtns;
+    }
     public static ToggleGroup radioButtonSetup(VBox radio, String title){
         ToggleGroup group = new ToggleGroup();
 
-        RadioButton rb1 = new RadioButton("Public Key & Public Key");
+        RadioButton rb1 = new RadioButton("Public Key");
         rb1.setToggleGroup(group);
-        rb1.setUserData("PP");
-        rb1.isSelected();
+        rb1.setUserData("P");
+        rb1.setSelected(true);
 
-        RadioButton rb2 = new RadioButton("Public Key & Secret Key");
+        RadioButton rb2 = new RadioButton("Secret Key");
         rb2.setToggleGroup(group);
-        rb2.setUserData("PS");
+        rb2.setUserData("S");
 
-        RadioButton rb3 = new RadioButton("Secret Key & Secret Key");
-        rb3.setToggleGroup(group);
-        rb3.setUserData("SS");
 
-        radio.getChildren().addAll(new Text(title),rb1, rb2, rb3);
+
+        radio.getChildren().addAll(new Text(title), rb1, rb2);
         return group;
     }
-}
+
+    public static void changeBottom(Boolean b, Text type, Text desc){
+        if (b){
+
+                type.setText("Symmetric");
+                desc.setText("When both users have the same key, whether it is secret or not, then the method type is symmetric ");
+            }
+            else{
+                type.setText("Asymmetric");
+                desc.setText("When the users have different keys for decryption and encryption then the method is asymmetric ");
+            }
+        }
+
+    }
+
+
+
