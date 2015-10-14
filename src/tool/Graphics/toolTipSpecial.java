@@ -10,11 +10,11 @@ public class toolTipSpecial {
     String textA;
     String textB;
 
-    public toolTipSpecial(String tool, String a, String b) {
+    public toolTipSpecial(String[] tool) {
         this.tooltip = new Tooltip();
-        setTooltipText(tool);
-        this.textA=a;
-        this.textB=b;
+        setTooltipText(tool[0]);
+        this.textA=tool[1];
+        this.textB=tool[2];
 
     }
 

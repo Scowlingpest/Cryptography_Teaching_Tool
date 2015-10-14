@@ -13,7 +13,7 @@ public class Arrow {
     Canvas c;
 
     public Arrow(int x,int y, int z, int a) {
-        this.c=new Canvas(z-x,a-y);
+        this.c=new Canvas(z,2*a);
         drawArrow(x,y,z,a);
 
 
@@ -22,15 +22,34 @@ public class Arrow {
     public void drawArrow(int x,int y, int z, int a){
         GraphicsContext gc = c.getGraphicsContext2D();
         gc.strokeLine(x,y,z,a);
-        double angle =Math.toDegrees(Math.atan2(a-y,z-a));
-        int topX= (int) (z+((z-x)/4)*Math.sin(angle+45));
-        int topY=(int) (a+((a-y)/4)*Math.cos(angle+45));
 
-        int bottomX= (int) (z+((z-x)/4)*Math.sin(angle-45));
-        int bottomY=(int) (a+((a-y)/4)*Math.cos(angle-45));
+        //following code altered from :http://stackoverflow.com/questions/3010803/draw-arrow-on-line-algorithm
+        int arrowLength=25;
+        int dx = z - x;
+        int dy = a - y;
 
-        gc.strokeLine(z,a,topX,topY);
-        gc.strokeLine(z,a,bottomX,bottomY);
+        double theta = Math.atan2(dy, dx);
+
+        double rad = Math.toRadians(35); //35 angle, can be adjusted
+        double endX = z - arrowLength * Math.cos(theta + rad);
+        double endY = a - arrowLength * Math.sin(theta + rad);
+
+        double phi2 = Math.toRadians(-35);//-35 angle, can be adjusted
+        double x2 = z - arrowLength * Math.cos(theta + phi2);
+        double y2 = a - arrowLength * Math.sin(theta + phi2);
+
+        double[] arrowYs = new double[3];
+        arrowYs[0] = a;
+        arrowYs[1] = endY;
+        arrowYs[2] = y2;
+
+        double[] arrowXs = new double[3];
+        arrowXs[0] = z;
+        arrowXs[1] = endX;
+        arrowXs[2] = x2;
+
+        gc.fillPolygon(arrowXs, arrowYs, 3);
+
 
     }
 

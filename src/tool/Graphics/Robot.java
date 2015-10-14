@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import tool.Models.Header;
 
 /**
  * Created by Phillipa on 11/10/2015.
@@ -19,43 +20,37 @@ public class Robot {
     int X;
     int Y;
     toolTipSpecial toolTip;
-    Text title;
+    Header title;
 
-    public Robot(String name, int x, int y) {
-        String robot,tool;
-        if(name.equals("encrypt")){
-            robot="tool/Files/encrypt.png";
-            style="rectangle-encrypt";
-            tool="Hello, I'm Encrypt!";
-            title = new Text("Encrypt Says:");
-        }
-        else{
-            robot="tool/Files/decrypt.png";
-            style="rectangle-decrypt";
-            tool="Hello, I'm Decrypt!";
-            title = new Text("Decrypt Says:");
-        }
-        image=new Image(robot);
+    public Robot(String file,String s,String[] tool,Header h, int x, int y) {
+
+        this.image=new Image(file);
+        this.style=s;
+        this.toolTip=new toolTipSpecial(tool);
+        this.title = h;
+
+
         view.setImage(image);
         view.setPreserveRatio(true);
         view.setSmooth(true);
         view.setCache(true);
 
+        this.setImageWidth(175);
+
         X=x;
         Y=y;
-        toolTip=new toolTipSpecial(tool,"","");
-        Tooltip.install(view,toolTip.getTooltip());
+
+
 
 
     }
 
+    public toolTipSpecial getToolTip() {
+        return toolTip;
+    }
 
-    public Text getTitle() {
+    public Header getTitle() {
         return title;
-    }
-
-    public void setTitle(Text title) {
-        this.title = title;
     }
 
     public Image getImage() {

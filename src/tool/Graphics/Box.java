@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
+import tool.Models.Prime_Num;
 
 import javax.tools.Tool;
 
@@ -23,18 +24,18 @@ public class Box {
     private StackPane sp;
     private toolTipSpecial tip;
 
-    public Box(String n, Boolean b){
-        number = new Text(n);
+    public Box(Prime_Num n){
+        number = new Text(n.getNumber());
         number.setStyle("-fx-font-size:32");
-        prime=b;
+        prime=n.getPrime();
         sp = new StackPane();
     }
 
-    public void drawBox(int x, int y, String tool, String a, String b){
+    public void drawBox(int x, int y, String[] tool){
         box = new Rectangle(x,y,90,90);
         box.getStyleClass().add("box-base");
         
-        tip = new toolTipSpecial(tool,a,b);
+        tip = new toolTipSpecial(tool);
 
         this.number.setBoundsType(TextBoundsType.VISUAL);
         sp.getChildren().addAll(this.box,this.number);

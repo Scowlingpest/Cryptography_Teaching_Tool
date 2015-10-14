@@ -10,9 +10,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import tool.BuildingBlocks.Asymmetric_vs_Symmetric;
-import tool.BuildingBlocks.Encrypt_Decrypt;
-import tool.BuildingBlocks.Prime_Numbers;
+import tool.BuildingBlocks.Views.Asymmetric_vs_Symmetric;
+import tool.BuildingBlocks.Views.Encrypt_Decrypt;
+import tool.BuildingBlocks.Views.Prime_Numbers;
 
 
 public class Main extends Application {

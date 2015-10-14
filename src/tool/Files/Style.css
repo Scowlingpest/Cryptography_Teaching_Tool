@@ -14,6 +14,7 @@
 
 }
 
+
 .text-title {
     -fx-font:25px Arial;
     -fx-text-alignment: left;
@@ -27,6 +28,7 @@
     -fx-arc-width:30;
     -fx-arc-height:30;
 
+
 }
 
 .rectangle-decrypt{
@@ -35,6 +37,7 @@
     -fx-smooth:true;
     -fx-arc-width:30;
     -fx-arc-height:30;
+
 }
 
 .rectangle-neither{
@@ -43,6 +46,7 @@
     -fx-smooth:true;
     -fx-arc-width:30;
     -fx-arc-height:30;
+
 }
 
 .box-base{
@@ -63,4 +67,18 @@
 .box-not-prime{
     -fx-stroke:RED;
     -fx-fill:LIGHTPINK;
+}
+
+.radio-button .radio {
+    -fx-border-width: 3px;
+    -fx-border-color: #000;
+    -fx-background-color: white;
+    -fx-background-image: null;
+    -fx-border-radius: 15px;
+    -fx-padding: 4px;
+}
+
+.radio-button .dot {
+    -fx-background-radius: 15px;
+    -fx-padding: 8px;
 }
