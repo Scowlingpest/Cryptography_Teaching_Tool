@@ -7,14 +7,12 @@ import javafx.scene.text.Text;
 import tool.BuildingBlocks.Controllers.PrimeNumbersController;
 import tool.Graphics.Box;
 import tool.Graphics.Robot;
-import tool.Graphics.Titled_Information;
-import tool.Models.Header;
-import tool.Models.Paragraph;
 
 
-/**
- * Created by Phillipa on 08/10/2015.
+/** Author : Phillipa Russell
+ *  Created: 08/10/2015
  */
+
 public class Prime_Numbers {
 
 
@@ -66,16 +64,11 @@ public class Prime_Numbers {
 
     }
 
-    public static VBox organiseText(Header h,Paragraph p, int width){
-        return new Titled_Information(h,p,width).getVb();
-
-
-    }
 
     public static void setUpLeft(BorderPane bp){
         Robot encrypt=PrimeNumbersController.getEncrypt();
 
-        VBox vb=organiseText(encrypt.getTitle(), PrimeNumbersController.getLeftPara(), PrimeNumbersController.getTextWidth());
+        VBox vb = PrimeNumbersController.organiseText(encrypt.getTitle(), PrimeNumbersController.getLeftPara(), PrimeNumbersController.getTextWidth());
         vb.getChildren().add(encrypt.getView());
 
         StackPane sp = new StackPane();
@@ -89,7 +82,7 @@ public class Prime_Numbers {
 
         Robot decrypt= PrimeNumbersController.getDecrypt();
 
-        VBox vb = organiseText(decrypt.getTitle(), PrimeNumbersController.getRightPara(), PrimeNumbersController.getTextWidth());
+        VBox vb = PrimeNumbersController.organiseText(decrypt.getTitle(), PrimeNumbersController.getRightPara(), PrimeNumbersController.getTextWidth());
         vb.getChildren().add(decrypt.getView());
 
         StackPane sp = new StackPane();

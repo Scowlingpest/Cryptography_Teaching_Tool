@@ -11,21 +11,18 @@ import tool.Models.Paragraph;
  */
 public class Titled_Information {
     VBox vb;
-    Text header;
-    Text paragraph;
+    Title header;
+    Para_Text paragraph;
 
     public Titled_Information(Header_Paragraph hp, int n) {
         this.vb=new VBox();
         this.vb.getStyleClass().add("vbox");
 
-        this.header=new Text(hp.getHeader().getTitle());
-        this.header.getStyleClass().add("text-title");
+        this.header=new Title(hp.getHeader());
 
-        this.paragraph=new Text(hp.getParagraph().getText());
-        this.paragraph.getStyleClass().add("text-main");
-        this.paragraph.setWrappingWidth(n);
+        this.paragraph=new Para_Text(hp.getParagraph(),n);
 
-        this.vb.getChildren().addAll(this.header,this.paragraph);
+        this.vb.getChildren().addAll(this.header.getTitle(),this.paragraph.getPara());
 
     }
 
@@ -39,11 +36,11 @@ public class Titled_Information {
 
 
     public Text getHeader() {
-        return header;
+        return header.getTitle();
     }
 
     public Text getParagraph() {
-        return paragraph;
+        return paragraph.getPara();
     }
 
 

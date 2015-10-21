@@ -13,7 +13,7 @@ public class Arrow {
     Canvas c;
 
     public Arrow(int x,int y, int z, int a) {
-        this.c=new Canvas(z,2*a);
+        this.c=canvasSetUp(c,x,y,z,a);
         drawArrow(x,y,z,a);
 
 
@@ -21,6 +21,7 @@ public class Arrow {
 
     public void drawArrow(int x,int y, int z, int a){
         GraphicsContext gc = c.getGraphicsContext2D();
+        gc.setLineWidth(3);
         gc.strokeLine(x,y,z,a);
 
         //following code altered from :http://stackoverflow.com/questions/3010803/draw-arrow-on-line-algorithm
@@ -30,11 +31,11 @@ public class Arrow {
 
         double theta = Math.atan2(dy, dx);
 
-        double rad = Math.toRadians(35); //35 angle, can be adjusted
+        double rad = Math.toRadians(40);
         double endX = z - arrowLength * Math.cos(theta + rad);
         double endY = a - arrowLength * Math.sin(theta + rad);
 
-        double phi2 = Math.toRadians(-35);//-35 angle, can be adjusted
+        double phi2 = Math.toRadians(-40);
         double x2 = z - arrowLength * Math.cos(theta + phi2);
         double y2 = a - arrowLength * Math.sin(theta + phi2);
 
@@ -56,4 +57,18 @@ public class Arrow {
     public Canvas getC() {
         return c;
     }
+
+    public Canvas canvasSetUp(Canvas c, int x,int y,int z,int a){
+        if (z==x){
+            return new Canvas(z*2,a);
+        }
+            else if(y==a) {
+            return new Canvas(z,2*a);
+
+        }
+        return new Canvas(1.25*z,1.25*a);
+
+    }
+
+
 }

@@ -12,12 +12,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import tool.BuildingBlocks.Controllers.Asymmetric_vs_Symmetric_Controller;
 import tool.Graphics.Robot;
-import tool.Graphics.Titled_Information;
 import tool.Models.Header;
 import tool.Models.Paragraph;
 
-/**
- * Created by Phillipa on 10/10/2015.
+/** Author : Phillipa Russell
+ *  Created: 10/10/2015
  */
 public class Asymmetric_vs_Symmetric{
 
@@ -47,12 +46,6 @@ public class Asymmetric_vs_Symmetric{
 
     }
 
-    public static VBox organiseText(Header h,Paragraph p, int width){
-        return new Titled_Information(h,p,width).getVb();
-
-
-
-    }
 
     public static StackPane setUpSpeechBubble(Robot robot,Paragraph text){
         StackPane sp =new StackPane();
@@ -61,7 +54,7 @@ public class Asymmetric_vs_Symmetric{
         HBox hb = new HBox();
         hb.getChildren().add(robot.getView());
 
-        VBox vb = organiseText(robot.getTitle(),
+        VBox vb = Asymmetric_vs_Symmetric_Controller.organiseText(robot.getTitle(),
                 text, Asymmetric_vs_Symmetric_Controller.getTEXTWIDTH());
 
         hb.getStyleClass().add("hbox");
@@ -90,23 +83,18 @@ public class Asymmetric_vs_Symmetric{
         Button button = new Button(Asymmetric_vs_Symmetric_Controller.getButtonText());
 
 
-        final VBox vb = organiseText(
+        VBox vb = Asymmetric_vs_Symmetric_Controller.organiseText(
                 Asymmetric_vs_Symmetric_Controller.getTryItOut().getHeader(),
                 Asymmetric_vs_Symmetric_Controller.getTryItOut().getParagraph(),
                 Asymmetric_vs_Symmetric_Controller.getTEXTWIDTH());
 
+        finished.getChildren().addAll(hb,button, vb);
 
-        button.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                String expected1 =(String)first.getSelectedToggle().getUserData();
-                String expected2 =(String)second.getSelectedToggle().getUserData();
-                changeBottom(expected1.equals(expected2),vb);
-
-            }
+        button.setOnAction((ActionEvent event) -> {
+            changeVB(first,second,finished);
         });
 
-        finished.getChildren().addAll(hb,button,vb);
+
         sp.getChildren().add(finished);
         sp.setPadding(new Insets(10,10,10,10));
 
@@ -114,6 +102,14 @@ public class Asymmetric_vs_Symmetric{
 
 
 
+
+    }
+
+    public static void changeVB(ToggleGroup first, ToggleGroup second, VBox vb){
+        String expected1 =(String)first.getSelectedToggle().getUserData();
+        String expected2 =(String)second.getSelectedToggle().getUserData();
+        vb.getChildren().remove(2);
+        vb.getChildren().add(changeBottom(expected1.equals(expected2)));
 
     }
 
@@ -130,9 +126,9 @@ public class Asymmetric_vs_Symmetric{
     public static ToggleGroup setUpVBox(Header title, VBox vb){
 
         vb.getStyleClass().add("vbox");
-        ToggleGroup radioBtns=radioButtonSetup(vb,title.getTitle());
-        return radioBtns;
+        return radioButtonSetup(vb,title.getTitle());
     }
+
     public static ToggleGroup radioButtonSetup(VBox radio, String title){
         ToggleGroup group = new ToggleGroup();
 
@@ -152,19 +148,20 @@ public class Asymmetric_vs_Symmetric{
         return group;
     }
 
-    public static void changeBottom(Boolean b,VBox vb){
-        if (b){
+    public static VBox changeBottom(Boolean b) {
+        if (b) {
 
-                vb =organiseText(Asymmetric_vs_Symmetric_Controller.getSymmetric().getHeader(),
-                        Asymmetric_vs_Symmetric_Controller.getSymmetric().getParagraph(),
-                        Asymmetric_vs_Symmetric_Controller.getTEXTWIDTH());
-            }
-            else{
-            vb =organiseText(Asymmetric_vs_Symmetric_Controller.getAsymmetric().getHeader(),
+            return(Asymmetric_vs_Symmetric_Controller.organiseText(
+                    Asymmetric_vs_Symmetric_Controller.getSymmetric().getHeader(),
+                    Asymmetric_vs_Symmetric_Controller.getSymmetric().getParagraph(),
+                    Asymmetric_vs_Symmetric_Controller.getTEXTWIDTH()));
+        }
+            return Asymmetric_vs_Symmetric_Controller.organiseText(
+                    Asymmetric_vs_Symmetric_Controller.getAsymmetric().getHeader(),
                     Asymmetric_vs_Symmetric_Controller.getAsymmetric().getParagraph(),
                     Asymmetric_vs_Symmetric_Controller.getTEXTWIDTH());
-            }
-        }
+
+    }
 
     }
 
