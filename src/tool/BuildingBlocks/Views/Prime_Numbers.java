@@ -67,20 +67,26 @@ public class Prime_Numbers {
 
     public static void setUpLeft(BorderPane bp){
         Robot encrypt=PrimeNumbersController.getEncrypt();
+        encrypt.animate();
+        encrypt.getTl().play();
 
         VBox vb = PrimeNumbersController.organiseText(encrypt.getTitle(), PrimeNumbersController.getLeftPara(), PrimeNumbersController.getTextWidth());
         vb.getChildren().add(encrypt.getView());
+
 
         StackPane sp = new StackPane();
         drawBackground(275,650,sp,encrypt.getStyle());
 
         sp.getChildren().add(vb);
         bp.setLeft(sp);
+
     }
 
     public static void setUpRight(BorderPane bp){
 
         Robot decrypt= PrimeNumbersController.getDecrypt();
+        decrypt.animate();
+        decrypt.getTl().play();
 
         VBox vb = PrimeNumbersController.organiseText(decrypt.getTitle(), PrimeNumbersController.getRightPara(), PrimeNumbersController.getTextWidth());
         vb.getChildren().add(decrypt.getView());
@@ -90,6 +96,7 @@ public class Prime_Numbers {
         sp.getChildren().add(vb);
 
         bp.setRight(sp);
+
     }
 
 

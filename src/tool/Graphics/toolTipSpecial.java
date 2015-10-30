@@ -9,12 +9,14 @@ public class toolTipSpecial {
     Tooltip tooltip;
     String textA;
     String textB;
+    String baseText;
 
     public toolTipSpecial(String[] tool) {
         this.tooltip = new Tooltip();
         setTooltipText(tool[0]);
         this.textA=tool[1];
         this.textB=tool[2];
+        this.baseText=tool[0];
 
     }
 
@@ -33,6 +35,8 @@ public class toolTipSpecial {
     public void useTextB(){
         setTooltipText(this.textB);
     }
+
+    public void useBaseText(){ setTooltipText(this.baseText);}
 
     public void setTextA(String textA) {
         this.textA = textA;
