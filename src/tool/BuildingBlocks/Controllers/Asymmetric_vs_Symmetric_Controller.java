@@ -4,8 +4,8 @@ import tool.Models.Header;
 import tool.Models.Header_Paragraph;
 import tool.Models.Paragraph;
 
-/**
- * Created by Phillipa on 14/10/2015.
+/** Author : Phillipa Russell
+ *  Created: 14/10/2015
  */
 public class Asymmetric_vs_Symmetric_Controller extends BuildingBlockController {
 

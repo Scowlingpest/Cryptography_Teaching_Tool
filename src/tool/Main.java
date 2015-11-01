@@ -13,8 +13,11 @@ import javafx.stage.Stage;
 import tool.BuildingBlocks.Views.Asymmetric_vs_Symmetric;
 import tool.BuildingBlocks.Views.Encrypt_Decrypt;
 import tool.BuildingBlocks.Views.Prime_Numbers;
+import tool.CryptoMethods.Views.RSA;
 
-
+/** Author : Phillipa Russell
+ *  Created: 06/10/2015
+ */
 public class Main extends Application {
 
     @Override
@@ -62,6 +65,7 @@ public class Main extends Application {
 
 
         Menu menuMethods = new Menu("Cryptography methods");
+        setUpCryptographyMenu(menuMethods,root);
 
         menuBar.getMenus().addAll(menuFile,menuBuildingBlocks,menuMethods);
 
@@ -103,6 +107,18 @@ public class Main extends Application {
         });
 
         blocks.getItems().addAll(primeNo,asymmetricVsSymmetric,encryptDecrypt);
+    }
+
+    public void setUpCryptographyMenu(Menu methods, final BorderPane root){
+        MenuItem rsa = new MenuItem("RSA");
+        rsa.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                clearBorderPane(root);
+                RSA.start(root);
+            }
+        });
+
+        methods.getItems().addAll(rsa);
     }
 
     public static void main(String[] args) {

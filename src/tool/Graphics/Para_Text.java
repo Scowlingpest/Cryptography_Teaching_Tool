@@ -3,8 +3,8 @@ package tool.Graphics;
 import javafx.scene.text.Text;
 import tool.Models.Paragraph;
 
-/**
- * Created by Phillipa on 15/10/2015.
+/** Author : Phillipa Russell
+ *  Created: 15/10/2015
  */
 public class Para_Text {
 

@@ -4,8 +4,8 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-/**
- * Created by Phillipa on 30/10/2015.
+/** Author : Phillipa Russell
+ *  Created: 30/10/2015
  */
 public class Paper {
 

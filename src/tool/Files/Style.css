@@ -21,6 +21,11 @@
     -fx-text-alignment: left;
     -fx-font-weight:bold;
 }
+.text-animate{
+    -fx-font:30px Arial;
+    -fx-text-alignment: left;
+    -fx-font-weight:bold;
+}
 
 .rectangle-encrypt{
     -fx-fill:#cededa;
@@ -115,3 +120,7 @@
     -fx-vgap:25;
     -fx-hgap:15;
     }
+
+.tooltip{
+    -fx-font: 14px Arial;
+}

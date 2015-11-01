@@ -14,9 +14,11 @@ import tool.Models.Header;
 
 import java.sql.Time;
 
-/**
- * Created by Phillipa on 11/10/2015.
+
+/** Author : Phillipa Russell
+ *  Created: 11/10/2015
  */
+
 public class Robot {
 
     Image image;
@@ -53,7 +55,7 @@ public class Robot {
         this.X=x;
         this.Y=y;
 
-
+        animate();
 
 
 
@@ -120,7 +122,7 @@ public class Robot {
             @Override
             public void handle(ActionEvent t) {
                 getView().setImage(getImage1());
-                
+
             }
         },
                 new KeyValue[0]);
