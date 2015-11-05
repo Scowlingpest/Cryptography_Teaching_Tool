@@ -15,7 +15,7 @@ public class Paper {
     ImageView view = new ImageView();
     toolTipSpecial ttS;
 
-    public Paper(String s){
+    public Paper(String s, int size, int x, int y){
         this.imageA=new Image("tool/Files/Images/paper.png");
         this.imageEncrypt = new Image("tool/Files/Images/encryptedPaper.png");
         this.imageDecrypt = new Image("tool/Files/Images/decryptedPaper.png");
@@ -23,10 +23,10 @@ public class Paper {
         this.ttS=new toolTipSpecial(new String[]{"Message before encryption","Message after Encryption","Message once it's been decrypted"});
         Tooltip.install(this.view,this.ttS.getTooltip());
 
-        viewSetup(s);
+        viewSetup(s,size, x ,y);
     }
 
-    private void viewSetup(String s){
+    private void viewSetup(String s,int size, int x, int y){
         if(s.equals("encrypt")){
             changeToEncrypt();
         }
@@ -39,6 +39,14 @@ public class Paper {
         view.setPreserveRatio(true);
         view.setSmooth(true);
         view.setCache(true);
+        view.setFitWidth(size);
+        view.setX(x);
+        view.setY(y);
+        view.setOpacity(0);
+    }
+
+    public ImageView getView() {
+        return view;
     }
 
     public void changeToEncrypt(){

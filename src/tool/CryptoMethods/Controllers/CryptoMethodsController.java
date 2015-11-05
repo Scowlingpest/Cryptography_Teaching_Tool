@@ -1,6 +1,10 @@
 package tool.CryptoMethods.Controllers;
 
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import tool.Graphics.Robot;
+import tool.Graphics.Speechbubble;
 import tool.Models.Header;
 
 /** Author : Phillipa Russell
@@ -24,4 +28,15 @@ public class CryptoMethodsController {
         return decrypt;
     }
 
+    public static final String bbUsed = "Building Blocks Used:";
+
+    public static final String primeNumber = "Prime Numbers";
+
+    public static String getBbUsed() {
+        return bbUsed;
+    }
+
+    public static String getPrimeNumber() {
+        return primeNumber;
+    }
 }

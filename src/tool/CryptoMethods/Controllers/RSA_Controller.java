@@ -9,23 +9,24 @@ import tool.Models.Paragraph;
  */
 public class RSA_Controller extends CryptoMethodsController {
 
-    static final String primeP =          "p = 7";
+    //step 1 strings
+    static final String primeP =          "p = 11";
     static final String primeQ =          "q = 3";
-    static final String equationN =       "n = p*q = 3 * 7";
-    static final String modulusN =        "n = 21";
-    static final String totientEquation = "z = (p-1) * (q-1) = (2 * 6)";
-    static final String totientZ =        "z = 12";
-    static final String primeK =          "k = 11";
+    static final String equationN =       "n = p*q = 3 * 11";
+    static final String modulusN =        "n = 33";
+    static final String totientEquation = "z = (p-1) * (q-1) = (2 * 10)";
+    static final String totientZ =        "z = 20";
+    static final String primeK =          "k = 7";
     static final String secretJEq =       "k * j = 1(mod z)";
-    static final String secretJNo =       "11 * j = 1(mod 12)";
-    static final String secretJ =         "j = 11";
+    static final String secretJNo =       "7 * j = 1(mod 20)";
+    static final String secretJ =         "j = 3";
 
     static final String welcome =      "Welcome to RSA! This is an Asymmetric method of encryption. To start off with we need a lot of numbers that I will be calculating. Click play and we'll begin";
-    static final String eInfo =        "RSA encryption is a one way system where the user who wants to information calculates everything. 2 keys are generated, a public and secret. Decrypt will keep the secret key and I will receive the public key in the next step.";
+    static final String eInfo =        "RSA encryption uses 2 keys, a public key and a secret key. Decrypt will keep the secret key and I will receive the public key in the next step.";
     static final String pqExpn =       "Firstly I select two prime numbers p and q. We'll keep them relatively small in this case. ";
     static final String nExp =         "Then I calculate n, an important number which is p and q multiplied together.";
-    static final String totientExp =   "Next is the totient, which we're caling z for simplicity, often is it written as φ(n) for reasons we won't go into here.";
-    static final String kExp =         "We need another prime number which z cannot be divided by called k, we'll use 11 to keep things small";
+    static final String totientExp =   "Next is the totient, which we're calling z for simplicity, often is it written as φ(n) for reasons we won't go into here.";
+    static final String kExp =         "We need another prime number which z cannot be divided by called k, we'll use 7 to keep things small";
     static final String jExp =         "To finish off our calculations, we need j. J is calculated as k*j=1(mod z) so in other words, (k*j)/z gives us something with a remainder of 1. We don't care about the something, just the fact that it gives us the remainder of 1.";
     static final String calculations = "And thats the initial calculations finished! I have to keep all these numbers safe and secret, except for n and k which are the public key. I can now send this to people so they can encrypt messages for me!";
     static final String step1next =    "Click on 2 to see the next step!";
@@ -155,5 +156,170 @@ public class RSA_Controller extends CryptoMethodsController {
 
     public static String getTooltipJ() {
         return tooltipJ;
+    }
+
+    //step 2 strings
+    static final String publicKey = "(n,k)";
+    static final String encryptEq = "m^k mod n";
+    static final String noPublicKey = "(33,7)";
+    static final String noEncryptEq ="m^7 mod 33";
+
+    static final String step2Welcome =  "Now we have calculated everything we need, so I will send the public key to Encrypt. As this is a public key, I can send it to as many people as I like and it does not change.";
+    static final String step2KeyReceived = "Now that I have the public key, I can use this to encrypt my message that i'm sending to Decrypt.";
+    static final String step2Equation = "For each letter in our message, we will transform the letter into a number, which we'll call m. The encrypted letter is calculated by m^k mod n";
+    static final String reminder = "To remind you, n=33 and k=7. These were calculated in Step 1. We'll change our public key to show this and then combine it with the equation.";
+    static final String hereEquation ="Here's the equation with n and k replaced with their values. For each letter in the message, the letter is converted to a number and put in the equation in the place of m.";
+    static final String encryption ="Now they are going to apply the equation to their message. Their message is the pile of paper. When the paper is encrypted it will have a lock on it, to show it is encrypted.";
+    static final String nextStep2 = "Click Step 3 to see how I decrypt the message";
+
+    static final String tooltipPK = "The public key calculated previously, in case you've forgotten n=33 and k=7";
+    static final String tooltipEq = "The equation used for encryption, m^k mod n, with m being the letter as a number";
+    static final String tooltipnoPK = "The public key with n and k replaced with the numbers calculated in the previous step.";
+    static final String tooltipnoEq= "The encryption algorithm with the letters replaced with numbers";
+
+
+
+    public static String getPublicKey() {
+        return publicKey;
+    }
+
+    public static String getEncryptEq() {
+        return encryptEq;
+    }
+
+    public static String getNoPublicKey() {
+        return noPublicKey;
+    }
+
+    public static String getNoEncryptEq() {
+        return noEncryptEq;
+    }
+
+    public static String getStep2Welcome() {
+        return step2Welcome;
+    }
+
+    public static String getStep2KeyReceived() {
+        return step2KeyReceived;
+    }
+
+    public static String getStep2Equation() {
+        return step2Equation;
+    }
+
+    public static String getReminder() {
+        return reminder;
+    }
+
+    public static String getHereEquation() {
+        return hereEquation;
+    }
+
+    public static String getEncryption() {
+        return encryption;
+    }
+
+    public static String getNextStep2() {
+        return nextStep2;
+    }
+
+    public static String getTooltipPK() {
+        return tooltipPK;
+    }
+
+    public static String getTooltipEq() {
+        return tooltipEq;
+    }
+
+    public static String getTooltipnoPK() {
+        return tooltipnoPK;
+    }
+
+    public static String getTooltipnoEq() {
+        return tooltipnoEq;
+    }
+
+    //step 3 strings
+    static final String equationStep3 = "c^j mod n";
+    static final String secretKey = "(j,n)";
+    static final String secretKeyNo ="(3,33)";
+    static final String equationStep3No = "c^3 mod 33";
+    static final String unknownEqStep3 = "c^? mod ?";
+
+    static final String welcomeStep3 = "Welcome to step 3. Here we'll be sending our encrypted messages to Decrypt and showing you how they get decrypted.";
+    static final String firstStep3 = "First we need to send the encrypted messages to Decrypt. You can see how we encrypted them in Step 2.";
+    static final String transferStep3 ="The two of us are going to send our encrypted message to Decrypt. If someone else gets our message then they won't be able to read our message because it is encrypted";
+    static final String interceptionStep3 ="We've both sent our messages off. The first one arrived safely but my message has been intercepted by someone before it reached Decrypt.";
+    static final String secretKeyStep3 = "In Step 1 we calculated some numbers. K and n became the public key, but we also calculated (j,n) which make up the secret key";
+    static final String decryptStep3 = "The equation c^j mod n is applied to each letter of the encrypted message. We should end up with a decrypted file, which will be identical to the original message";
+    static final String unknownStep3 = "The person who intercepted my message is trying to decrypt it. However she does not have the secret key, so she cannot decrypt it, meaning the message is meaningless.";
+    static final String resendStep3 = "It doesn't matter that they have my message, because they can't read it. When I manage to send my message to Decrypt, he will be able to decrypt it the same as the other message";
+    static final String nextStep3 = "That is the basic of RSA, but click on Step 4 if you would like to learn how I can encrypt information with my key.";
+
+    static final String tooltipStep3SK = "The secret key used by Decrypt. To remind you, j=3, and n=33.";
+    static final String tooltipStep3Eq = "Decryption equation, c^j mod n with c being the encrypted letter as a number";
+
+    public static String getEquationStep3() {
+        return equationStep3;
+    }
+
+    public static String getSecretKey() {
+        return secretKey;
+    }
+
+    public static String getSecretKeyNo() {
+        return secretKeyNo;
+    }
+
+    public static String getEquationStep3No() {
+        return equationStep3No;
+    }
+
+    public static String getUnknownEqStep3() {
+        return unknownEqStep3;
+    }
+
+    public static String getUnknownStep3() {
+        return unknownStep3;
+    }
+
+    public static String getResendStep3() {
+        return resendStep3;
+    }
+
+    public static String getNextStep3() {
+        return nextStep3;
+    }
+
+    public static String getWelcomeStep3() {
+        return welcomeStep3;
+    }
+
+    public static String getFirstStep3() {
+        return firstStep3;
+    }
+
+    public static String getTransferStep3() {
+        return transferStep3;
+    }
+
+    public static String getInterceptionStep3() {
+        return interceptionStep3;
+    }
+
+    public static String getSecretKeyStep3() {
+        return secretKeyStep3;
+    }
+
+    public static String getDecryptStep3() {
+        return decryptStep3;
+    }
+
+    public static String getTooltipStep3SK() {
+        return tooltipStep3SK;
+    }
+
+    public static String getTooltipStep3Eq() {
+        return tooltipStep3Eq;
     }
 }

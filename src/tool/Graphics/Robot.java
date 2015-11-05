@@ -117,7 +117,7 @@ public class Robot {
         KeyValue kv2 = new KeyValue(view.imageProperty(),this.getImage2());
 
 
-        KeyFrame kf1 = new KeyFrame(Duration.millis(200),new EventHandler<ActionEvent>() {
+        KeyFrame kf1 = new KeyFrame(Duration.millis(400),new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent t) {
@@ -126,7 +126,7 @@ public class Robot {
             }
         },
                 new KeyValue[0]);
-        KeyFrame kf2 = new KeyFrame(Duration.millis(400),new EventHandler<ActionEvent>() {
+        KeyFrame kf2 = new KeyFrame(Duration.millis(800),new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent t) {
@@ -134,7 +134,7 @@ public class Robot {
             }
         },
                 new KeyValue[0]);
-        KeyFrame kf3 = new KeyFrame(Duration.millis(600),new EventHandler<ActionEvent>() {
+        KeyFrame kf3 = new KeyFrame(Duration.millis(1200),new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent t) {
@@ -143,7 +143,7 @@ public class Robot {
         },
                 new KeyValue[0]);
 
-        KeyFrame kf4 = new KeyFrame(Duration.millis(800),new EventHandler<ActionEvent>() {
+        KeyFrame kf4 = new KeyFrame(Duration.millis(1600),new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent t) {

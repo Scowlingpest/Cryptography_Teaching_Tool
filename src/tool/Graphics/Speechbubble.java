@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 
 /**
@@ -14,27 +15,45 @@ public class Speechbubble {
     ImageView bubble;
     Text speech;
     StackPane sp = new StackPane();
+    int width;
+    String type;
 
 
     public Speechbubble(String type, String input, int width) {
         this.bubble=new ImageView(new Image("tool/Files/Images/speechbubbles/speechbubble_"+type+".png"));
-        this.bubble.setFitWidth(width);
 
+        this.bubble.setFitWidth(width);
+        this.bubble.setPreserveRatio(true);
+        this.width=width;
+        this.type=type;
 
         this.speech = new Text(input);
-        this.speech.setWrappingWidth(width-50);
+        speechSettings();
+
+        sp.getChildren().addAll(this.bubble, this.speech);
+
+    }
+
+    public Speechbubble (String type, String input, int width, int x, int y){
+        this(type,input,width);
+        this.getSp().setLayoutX(x);
+        this.getSp().setLayoutY(y);
+
+    }
+
+    public void speechSettings(){
+        this.speech.setWrappingWidth(width-40);
+        this.speech.setTextAlignment(TextAlignment.JUSTIFY);
 
         if(type.charAt(0)=='t'){
 
-            StackPane.setMargin(this.speech,new Insets(90,25,25,25));
+            StackPane.setMargin(this.speech,new Insets(75,25,15,15));
         }
         else{
-            StackPane.setMargin(this.speech, new Insets(25, 25, 25, 25));
+            StackPane.setMargin(this.speech, new Insets(15,25,75,15));
         }
-
-        sp.getChildren().addAll(this.bubble,this.speech);
-
     }
+
 
     public ImageView getBubble() {
         return bubble;
@@ -48,8 +67,12 @@ public class Speechbubble {
         return speech;
     }
 
-    public void setSpeech(Text speech) {
-        this.speech = speech;
+    public void setSpeech(String speech) {
+        this.speech = new Text(speech);
+        speechSettings();
+        sp.getChildren().remove(1);
+        sp.getChildren().add(this.speech);
+        sp.setOpacity(0);
     }
 
     public StackPane getSp() {

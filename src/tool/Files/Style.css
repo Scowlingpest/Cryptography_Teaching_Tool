@@ -22,7 +22,7 @@
     -fx-font-weight:bold;
 }
 .text-animate{
-    -fx-font:30px Arial;
+    -fx-font:28px Arial;
     -fx-text-alignment: left;
     -fx-font-weight:bold;
 }
@@ -122,5 +122,5 @@
     }
 
 .tooltip{
-    -fx-font: 14px Arial;
+    -fx-font: 12px Arial;
 }
