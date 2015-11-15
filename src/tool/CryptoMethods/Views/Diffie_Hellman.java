@@ -1,27 +1,22 @@
 package tool.CryptoMethods.Views;
 
 import javafx.animation.SequentialTransition;
-import javafx.animation.Timeline;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import tool.CryptoMethods.Controllers.DH_Controller;
 import tool.CryptoMethods.Controllers.RSA_Controller;
+import tool.CryptoMethods.Views.Diffie_HellmanScenes.DH_Step_1;
 import tool.CryptoMethods.Views.RSAScenes.RSA_Step_1;
-import tool.CryptoMethods.Views.RSAScenes.RSA_Step_2;
-import tool.CryptoMethods.Views.RSAScenes.RSA_Step_3;
-import tool.CryptoMethods.Views.RSAScenes.RSA_Step_4;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-
-/** Author : Phillipa Russell
- *  Created: 21/10/2015
+/**
+ * Created by Phillipa on 09/11/2015.
  */
-public class RSA {
+public class Diffie_Hellman {
+
     static Duration paused=Duration.seconds(0);
     static Pane p = new Pane();
     static SequentialTransition st =new SequentialTransition();
@@ -34,8 +29,6 @@ public class RSA {
 
 
     }
-
-
 
     public static void bottomControls(BorderPane bp){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
@@ -50,47 +43,18 @@ public class RSA {
             st.pause();
             paused= st.getCurrentTime();
         });
-
-
         Button first = new Button("Step 1");
         first.setOnAction((javafx.event.ActionEvent event) -> {
             p.getChildren().clear();
             st.getChildren().clear();
-            RSA_Step_1.createPane(p);
-            st =RSA_Step_1.createTimeLine(p);
+            DH_Step_1.createPane(p);
+            st =DH_Step_1.createTimeLine(p);
             paused=Duration.seconds(0);
-            AnimationMethods.buildingBlockButton(RSA_Controller.getStep1Used(),bbUsed);
+            //AnimationMethods.buildingBlockButton(DH_Controller.getStep1Used(),bbUsed);
         });
-
         Button second = new Button("Step 2");
-        second.setOnAction((javafx.event.ActionEvent event) -> {
-            p.getChildren().clear();
-            st.getChildren().clear();
-            RSA_Step_2.createPane(p);
-            st =RSA_Step_2.createTimeLine(p);
-            paused=Duration.seconds(0);
-            AnimationMethods.buildingBlockButton(RSA_Controller.getStep2Used(),bbUsed);
-        });
         Button third = new Button("Step 3");
-        third.setOnAction((javafx.event.ActionEvent event) -> {
-            p.getChildren().clear();
-            st.getChildren().clear();
-            RSA_Step_3.createPane(p);
-            st =RSA_Step_3.createTimeLine(p);
-            paused=Duration.seconds(0);
-            AnimationMethods.buildingBlockButton(RSA_Controller.getStep3Used(),bbUsed);
-        });
-
         Button fourth = new Button("Step 4");
-        fourth.setOnAction((javafx.event.ActionEvent event) -> {
-            p.getChildren().clear();
-            st.getChildren().clear();
-            RSA_Step_4.createPane(p);
-            st =RSA_Step_4.createTimeLine(p);
-            paused=Duration.seconds(0);
-            AnimationMethods.buildingBlockButton(RSA_Controller.getStep4Used(),bbUsed);
-        });
-
 
         HBox hb = new HBox();
         hb.getChildren().addAll(first,second,third,fourth,play,pause);
@@ -101,10 +65,4 @@ public class RSA {
         bp.setBottom(hb);
         bp.setCenter(p);
     }
-
-
-
-
-
-
 }

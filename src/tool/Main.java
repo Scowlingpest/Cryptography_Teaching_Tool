@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import tool.BuildingBlocks.Views.Asymmetric_vs_Symmetric;
 import tool.BuildingBlocks.Views.Encrypt_Decrypt;
 import tool.BuildingBlocks.Views.Prime_Numbers;
+import tool.BuildingBlocks.Views.Stream_vs_Block;
+import tool.CryptoMethods.Views.Diffie_Hellman;
 import tool.CryptoMethods.Views.RSA;
 
 /** Author : Phillipa Russell
@@ -106,7 +108,16 @@ public class Main extends Application {
             }
         });
 
-        blocks.getItems().addAll(primeNo,asymmetricVsSymmetric,encryptDecrypt);
+        MenuItem streamBlock = new MenuItem("Stream vs Block");
+        streamBlock.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                clearBorderPane(root);
+                Stream_vs_Block.start(root);
+            }
+        });
+
+        blocks.getItems().addAll(primeNo,asymmetricVsSymmetric,encryptDecrypt,streamBlock);
     }
 
     public void setUpCryptographyMenu(Menu methods, final BorderPane root){
@@ -117,8 +128,16 @@ public class Main extends Application {
                 RSA.start(root);
             }
         });
+        MenuItem dh = new MenuItem("Diffie Hellman");
+        dh.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                clearBorderPane(root);
+                Diffie_Hellman.start(root);
+            }
+        });
 
-        methods.getItems().addAll(rsa);
+        methods.getItems().addAll(rsa,dh);
     }
 
     public static void main(String[] args) {

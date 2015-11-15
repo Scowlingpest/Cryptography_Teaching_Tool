@@ -6,7 +6,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import tool.CryptoMethods.Controllers.RSA_Controller;
 import tool.CryptoMethods.Views.AnimationMethods;
-import tool.CryptoMethods.Views.RSA;
 import tool.Graphics.Monitor;
 import tool.Graphics.Paper;
 import tool.Graphics.Robot;
@@ -71,26 +70,26 @@ public class RSA_Step_3 {
         return st;
     }
 
-    public static void createPaper(Pane p, Speechbubble sb, SequentialTransition st, Paper p1, Paper p2){
+    private static void createPaper(Pane p, Speechbubble sb, SequentialTransition st, Paper p1, Paper p2){
         p1.getView().setOpacity(0);
         p2.getView().setOpacity(0);
 
         p.getChildren().addAll(p1.getView(),p2.getView());
 
-        FadeTransition bubbleDisappear = AnimationMethods.fadeAway(sb.getSp(),3);
+        FadeTransition bubbleDisappear = AnimationMethods.fadeAway(sb.getSp());
         bubbleDisappear.setOnFinished(event->
         sb.setSpeech(RSA_Controller.getFirstStep3()));
 
-        FadeTransition paper1Appear = AnimationMethods.fadeInto(p1.getView(),3);
-        FadeTransition paper2Appear = AnimationMethods.fadeInto(p2.getView(),3);
+        FadeTransition paper1Appear = AnimationMethods.fadeInto(p1.getView());
+        FadeTransition paper2Appear = AnimationMethods.fadeInto(p2.getView());
 
         ParallelTransition pt1 = AnimationMethods.createParallel(new Transition[]{bubbleDisappear,paper1Appear,paper2Appear});
 
-        FadeTransition bubbleAppear = AnimationMethods.fadeInto(sb.getSp(),3);
+        FadeTransition bubbleAppear = AnimationMethods.fadeInto(sb.getSp());
         st.getChildren().addAll(pt1, AnimationMethods.pauseSeconds(2),bubbleAppear);
     }
 
-    public static void movePaper(Pane p, SequentialTransition st, Speechbubble sb,Paper p1, Paper p2){
+    private static void movePaper(Pane p, SequentialTransition st, Speechbubble sb,Paper p1, Paper p2){
         createPaper(p, sb, st, p1, p2);
         successfulSend(st,sb,p1);
         unsuccessfulSend(st,sb,p2);
@@ -98,13 +97,13 @@ public class RSA_Step_3 {
     }
 
 
-    public static void successfulSend(SequentialTransition st, Speechbubble sb, Paper p1){
-        FadeTransition bubbleDisappear= AnimationMethods.fadeAway(sb.getSp(),3);
+    private static void successfulSend(SequentialTransition st, Speechbubble sb, Paper p1){
+        FadeTransition bubbleDisappear= AnimationMethods.fadeAway(sb.getSp());
         bubbleDisappear.setOnFinished(event->{
             sb.setSpeech(RSA_Controller.getTransferStep3());
         });
 
-        FadeTransition bubbleAppear =AnimationMethods.fadeInto(sb.getSp(),3);
+        FadeTransition bubbleAppear =AnimationMethods.fadeInto(sb.getSp());
 
         TranslateTransition p1Move=AnimationMethods.moveNode(p1.getView(),575,90,6);
         ScaleTransition p1Resize = AnimationMethods.changeSize(p1.getView(),2,6);
@@ -117,17 +116,17 @@ public class RSA_Step_3 {
         st.getChildren().addAll(AnimationMethods.pauseSeconds(5),bubbleDisappear, bubbleAppear, pt1);
     }
 
-    public static void unsuccessfulSend(SequentialTransition st, Speechbubble sb,Paper p2){
-        FadeTransition m4Appear = AnimationMethods.fadeInto(m4.getImage(),3);
+    private static void unsuccessfulSend(SequentialTransition st, Speechbubble sb,Paper p2){
+        FadeTransition m4Appear = AnimationMethods.fadeInto(m4.getImage());
 
         TranslateTransition p2Move=AnimationMethods.moveNode(p2.getView(),375,-90,6);
         ScaleTransition p2Resize = AnimationMethods.changeSize(p2.getView(),2,6);
 
-        FadeTransition bubbleDisappear = AnimationMethods.fadeAway(sb.getSp(),3);
+        FadeTransition bubbleDisappear = AnimationMethods.fadeAway(sb.getSp());
         bubbleDisappear.setOnFinished(event->{
             sb.setSpeech(RSA_Controller.getInterceptionStep3());
         });
-        FadeTransition bubbleAppear = AnimationMethods.fadeInto(sb.getSp(),3);
+        FadeTransition bubbleAppear = AnimationMethods.fadeInto(sb.getSp());
 
         ParallelTransition pt1 = AnimationMethods.createParallel(new Transition[]{m4Appear,p2Move,p2Resize});
 
@@ -136,7 +135,7 @@ public class RSA_Step_3 {
 
     }
 
-    public static void decryption(Pane p, Speechbubble sb, SequentialTransition st, Paper p1, Paper p2){
+    private static void decryption(Pane p, Speechbubble sb, SequentialTransition st, Paper p1, Paper p2){
         Text equation =AnimationMethods.textSetup(RSA_Controller.getEquationStep3(),500,200,RSA_Controller.getTooltipStep3Eq());
         Text secretKey = AnimationMethods.textSetup(RSA_Controller.getSecretKey(),975,125,RSA_Controller.getTooltipStep3SK());
         p.getChildren().addAll(secretKey, equation);
@@ -148,41 +147,35 @@ public class RSA_Step_3 {
         emptyKey(sb,st,equation,p2);
         finishStep3(p,st,sb);
 
-        AnimationMethods.buildingBlocksUsed(st,p,new String[]{"Prime Numbers","Encryption & Decryption"});
 
 
 
     }
 
-    public static void secretKeyAdded(Speechbubble sb,SequentialTransition st,Text sk){
-        FadeTransition bubbleDisappear= AnimationMethods.fadeAway(sb.getSp(),3);
-        bubbleDisappear.setOnFinished(event->{
-            sb.setSpeech(RSA_Controller.getSecretKeyStep3());
-        });
-
-        FadeTransition bubbleAppear =AnimationMethods.fadeInto(sb.getSp(),3);
-        FadeTransition keyAppear = AnimationMethods.fadeInto(sk,3);
-        FadeTransition keyReplace = AnimationMethods.fadeAway(sk,3);
+    private static void secretKeyAdded(Speechbubble sb,SequentialTransition st,Text sk){
+        AnimationMethods.changeBubble(st,sb,RSA_Controller.getSecretKeyStep3());
+        FadeTransition keyAppear = AnimationMethods.fadeInto(sk);
+        FadeTransition keyReplace = AnimationMethods.fadeAway(sk);
         keyReplace.setOnFinished(event->{
             sk.setText(RSA_Controller.getSecretKeyNo());
         });
-        FadeTransition keyReappear = AnimationMethods.fadeInto(sk,3);
+        FadeTransition keyReappear = AnimationMethods.fadeInto(sk);
 
         SequentialTransition key = AnimationMethods.createSequential(new Transition[]{keyAppear,
         AnimationMethods.pauseSeconds(5),keyReplace,keyReappear});
 
-        st.getChildren().addAll(bubbleDisappear,bubbleAppear,key);
+        st.getChildren().add(key);
     }
 
-    public static void equationAdd( Speechbubble sb, SequentialTransition st, Text eq){
-        FadeTransition bubbleDisappear= AnimationMethods.fadeAway(sb.getSp(),3);
+    private static void equationAdd( Speechbubble sb, SequentialTransition st, Text eq){
+        FadeTransition bubbleDisappear= AnimationMethods.fadeAway(sb.getSp());
         bubbleDisappear.setOnFinished(event->{
             sb.setSpeech(RSA_Controller.getDecryptStep3());
         });
 
-        FadeTransition bubbleAppear =AnimationMethods.fadeInto(sb.getSp(),3);
+        FadeTransition bubbleAppear =AnimationMethods.fadeInto(sb.getSp());
 
-        FadeTransition eqAppear = AnimationMethods.fadeInto(eq,3);
+        FadeTransition eqAppear = AnimationMethods.fadeInto(eq);
 
         st.getChildren().addAll(bubbleDisappear,bubbleAppear,
                 AnimationMethods.pauseSeconds(5),eqAppear,
@@ -190,35 +183,35 @@ public class RSA_Step_3 {
 
     }
 
-    public static void moveKey( SequentialTransition st,Text key,Text eq){
+    private static void moveKey( SequentialTransition st,Text key,Text eq){
         TranslateTransition keyMove = AnimationMethods.moveNode(key,-450,75,5);
-        FadeTransition keyDisappear = AnimationMethods.fadeAway(key,3);
+        FadeTransition keyDisappear = AnimationMethods.fadeAway(key);
 
-        FadeTransition eqDisappear = AnimationMethods.fadeAway(eq,3);
+        FadeTransition eqDisappear = AnimationMethods.fadeAway(eq);
         eqDisappear.setOnFinished(event->{
             eq.setText(RSA_Controller.getEquationStep3No());
         });
-        FadeTransition eqAppear = AnimationMethods.fadeInto(eq,3);
+        FadeTransition eqAppear = AnimationMethods.fadeInto(eq);
 
         ParallelTransition pt1 = AnimationMethods.createParallel(new Transition[]{keyDisappear});
 
         st.getChildren().addAll(keyMove,pt1,eqDisappear,eqAppear);
     }
 
-    public static void applyKey(SequentialTransition st,Text eq, Paper p1){
+    private static void applyKey(SequentialTransition st,Text eq, Paper p1){
         TranslateTransition moveEq = AnimationMethods.moveNode(eq,225,50,4);
-        FadeTransition paperFade =AnimationMethods.fadeAway(p1.getView(),3);
+        FadeTransition paperFade =AnimationMethods.fadeAway(p1.getView());
         paperFade.setOnFinished(event->{
             p1.changeToDecrypt();
         });
-        FadeTransition p1Appear = AnimationMethods.fadeInto(p1.getView(),3);
+        FadeTransition p1Appear = AnimationMethods.fadeInto(p1.getView());
 
         st.getChildren().addAll(moveEq,paperFade,p1Appear);
     }
 
-    public static void emptyKey(Speechbubble sb,SequentialTransition st,Text eq,Paper p2){
-        FadeTransition equationChange = AnimationMethods.fadeAway(eq,3);
-        FadeTransition bubbleFade =AnimationMethods.fadeAway(sb.getSp(),3);
+    private static void emptyKey(Speechbubble sb,SequentialTransition st,Text eq,Paper p2){
+        FadeTransition equationChange = AnimationMethods.fadeAway(eq);
+        FadeTransition bubbleFade =AnimationMethods.fadeAway(sb.getSp());
 
         bubbleFade.setOnFinished(event->{
             sb.setSpeech(RSA_Controller.getUnknownStep3());
@@ -229,31 +222,31 @@ public class RSA_Step_3 {
 
         ParallelTransition pt1 = AnimationMethods.createParallel(new Transition[]{bubbleFade,equationChange});
 
-        FadeTransition bubbleAppear = AnimationMethods.fadeInto(sb.getSp(),3);
+        FadeTransition bubbleAppear = AnimationMethods.fadeInto(sb.getSp());
         TranslateTransition moveEq = AnimationMethods.moveNode(eq,25,175,3);
 
         ParallelTransition pt2 = AnimationMethods.createParallel(new Transition[]{bubbleAppear,moveEq});
 
-        FadeTransition eqAppear = AnimationMethods.fadeInto(eq,3);
-        FadeTransition p2Disappear = AnimationMethods.fadeAway(p2.getView(),3);
+        FadeTransition eqAppear = AnimationMethods.fadeInto(eq);
+        FadeTransition p2Disappear = AnimationMethods.fadeAway(p2.getView());
 
-        FadeTransition p2Appear = AnimationMethods.fadeInto(p2.getView(),3);
+        FadeTransition p2Appear = AnimationMethods.fadeInto(p2.getView());
 
         st.getChildren().addAll(pt1,pt2,eqAppear,p2Disappear,AnimationMethods.pauseSeconds(4),p2Appear,equationChange);
 
     }
 
-    public static void finishStep3(Pane p, SequentialTransition st, Speechbubble sb){
-        FadeTransition bubbleChange = AnimationMethods.fadeAway(sb.getSp(),3);
+    private static void finishStep3(Pane p, SequentialTransition st, Speechbubble sb){
+        FadeTransition bubbleChange = AnimationMethods.fadeAway(sb.getSp());
         bubbleChange.setOnFinished(event->{
             sb.setSpeech(RSA_Controller.getResendStep3());
         });
-        FadeTransition bubbleAppear = AnimationMethods.fadeInto(sb.getSp(),3);
+        FadeTransition bubbleAppear = AnimationMethods.fadeInto(sb.getSp());
 
         Speechbubble next = AnimationMethods.invisSpeechbubble(RSA_Controller.getNextStep3(),900,275,"tc",250);
         p.getChildren().add(next.getSp());
 
-        FadeTransition nextAppear=AnimationMethods.fadeInto(next.getSp(),3);
+        FadeTransition nextAppear=AnimationMethods.fadeInto(next.getSp());
         ParallelTransition pt1 =AnimationMethods.createParallel(new Transition[]{bubbleAppear,nextAppear});
 
         st.getChildren().addAll(bubbleChange,pt1, AnimationMethods.pauseSeconds(4));

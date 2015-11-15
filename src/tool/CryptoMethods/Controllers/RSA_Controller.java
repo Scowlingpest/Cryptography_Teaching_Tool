@@ -164,6 +164,7 @@ public class RSA_Controller extends CryptoMethodsController {
     static final String noPublicKey = "(33,7)";
     static final String noEncryptEq ="m^7 mod 33";
 
+    static final String heyStep2 = "Hey welcome to Step 2. Click play to see how to encrypt using RSA";
     static final String step2Welcome =  "Now we have calculated everything we need, so I will send the public key to Encrypt. As this is a public key, I can send it to as many people as I like and it does not change.";
     static final String step2KeyReceived = "Now that I have the public key, I can use this to encrypt my message that i'm sending to Decrypt.";
     static final String step2Equation = "For each letter in our message, we will transform the letter into a number, which we'll call m. The encrypted letter is calculated by m^k mod n";
@@ -178,6 +179,9 @@ public class RSA_Controller extends CryptoMethodsController {
     static final String tooltipnoEq= "The encryption algorithm with the letters replaced with numbers";
 
 
+    public static String getHeyStep2() {
+        return heyStep2;
+    }
 
     public static String getPublicKey() {
         return publicKey;
@@ -321,5 +325,86 @@ public class RSA_Controller extends CryptoMethodsController {
 
     public static String getTooltipStep3Eq() {
         return tooltipStep3Eq;
+    }
+
+    //Step 4 strings
+    static final String encryptStep4 = "m^j mod n";
+    static final String encryptNoStep4 = "m^3 mod 33";
+    static final String decryptStep4 = "c^k mod n";
+    static final String decryptNoStep4 ="c^7 mod 33";
+
+    static final String welcomeStep4 = "Welcome to Step 4. We will show you how RSA can be used for authentication. Click play to see!";
+    static final String firstStep4 = "First Decrypt uses his secret key to encrypt his message. He does this using the decrypt algorithm from Step 3 with the secret key values.";
+    static final String sendEncryptStep4 = "Now the message is encrypted, Decrypt will send it to me. Once it arrives I can decrypt it using the public key I received in Step 2. If I can decrypt it then I knows it's from Decrypt.";
+    static final String wrongStep4 = "I know the message was safe, because I could successful decrypt it. If someone else sends me a message, I won't be able to decrypt it because they won't have encrypted it with the secret key.";
+    static final String finishStep4 = "And that's RSA finished. Feel free to go back over the other steps or move onto one of the other Cryptography methods. Any areas your unsure about can be double checked in the Building Blocks";
+
+    static final String tooltipStep4Eq = "Equation for encryption, it's the same as the decryption equation from step 3 with the secret key only with m instead of c";
+    static final String tooltipStep4decrypt = "Equation for decryption, it's the same as the encryption equation from step 2 with the public key only with c instead of m";
+
+
+    public static String getEncryptStep4() {
+        return encryptStep4;
+    }
+
+    public static String getEncryptNoStep4() {
+        return encryptNoStep4;
+    }
+
+    public static String getDecryptStep4() {
+        return decryptStep4;
+    }
+
+    public static String getDecryptNoStep4() {
+        return decryptNoStep4;
+    }
+
+
+    public static String getWelcomeStep4() {
+        return welcomeStep4;
+    }
+
+    public static String getFirstStep4() {
+        return firstStep4;
+    }
+    public static String getSendEncryptStep4() {
+        return sendEncryptStep4;
+    }
+
+    public static String getWrongStep4() {
+        return wrongStep4;
+    }
+
+    public static String getFinishStep4() {
+        return finishStep4;
+    }
+
+    public static String getTooltipStep4Eq() {
+        return tooltipStep4Eq;
+    }
+
+    public static String getTooltipStep4decrypt() {
+        return tooltipStep4decrypt;
+    }
+
+    private static final String[] step1Used = new String[]{"Prime Numbers","Keys"};
+    private static final String[] step2Used = new String[]{"Prime Numbers","Keys","Encryption & Decryption"};
+    private static final String[] step3Used = new String[]{"Prime Numbers","Keys","Encryption & Decryption"};
+    private static final String[] step4Used = new String[]{"Prime Numbers","Keys","Encryption & Decryption"};
+
+    public static String[] getStep1Used() {
+        return step1Used;
+    }
+
+    public static String[] getStep2Used() {
+        return step2Used;
+    }
+
+    public static String[] getStep3Used() {
+        return step3Used;
+    }
+
+    public static String[] getStep4Used() {
+        return step4Used;
     }
 }

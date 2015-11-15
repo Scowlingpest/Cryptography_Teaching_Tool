@@ -3,6 +3,7 @@ package tool.CryptoMethods.Controllers;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import tool.Graphics.Robot;
 import tool.Graphics.Speechbubble;
 import tool.Models.Header;
@@ -39,4 +40,5 @@ public class CryptoMethodsController {
     public static String getPrimeNumber() {
         return primeNumber;
     }
+
 }
