@@ -1,20 +1,17 @@
 package tool.Graphics;
 
-import javafx.event.EventHandler;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 import tool.Models.Prime_Num;
 
-import javax.tools.Tool;
-
 
 /**
- * Created by Phillipa on 07/10/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 07/10/2015.
  */
 public class Box {
 
@@ -43,50 +40,21 @@ public class Box {
 
     }
 
-    protected void changeText(String newText){
-        this.number.setText(newText);
-    }
+    public void setUpForPrime(){
+        sp.setOnMouseClicked(event -> {
+            if(prime){
+                box.getStyleClass().add("box-prime");
+                tip.useTextA();
 
-    protected void moveBox(int x, int y){
-        this.box.setX(x);
-        this.box.setY(y);
+            }
+            else{
+                box.getStyleClass().add("box-not-prime");
+                tip.useTextB();
+            }
+        });
     }
-
 
     public StackPane getSp() {
         return sp;
-    }
-
-
-
-
-    public Rectangle getBox() {
-        return box;
-    }
-
-    public toolTipSpecial getTip() {
-        return tip;
-    }
-
-    public Boolean getPrime() {
-        return prime;
-    }
-
-    public void setUpForPrime(){
-        sp.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if(prime){
-                    box.getStyleClass().add("box-prime");
-                    tip.useTextA();
-
-                }
-                else{
-                    box.getStyleClass().add("box-not-prime");
-                    tip.useTextB();
-                }
-            }
-
-        });
     }
 }

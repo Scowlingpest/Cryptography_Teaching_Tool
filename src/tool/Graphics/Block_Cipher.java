@@ -1,16 +1,20 @@
 package tool.Graphics;
 
-import javafx.animation.*;
+import javafx.animation.ParallelTransition;
+import javafx.animation.SequentialTransition;
+import javafx.animation.StrokeTransition;
+import javafx.animation.Transition;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import org.w3c.dom.css.Rect;
 import tool.CryptoMethods.Views.AnimationMethods;
 
 /**
- * Created by Phillipa on 13/11/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 13/11/2015
  */
 public class Block_Cipher {
     Pane block = new Pane();
@@ -62,14 +66,12 @@ public class Block_Cipher {
         for (int i =0;i<16;i++){
             StrokeTransition fill1 = new StrokeTransition(Duration.seconds(3),this.boxes[i],Color.BLACK,c);
             final int finalI = i;
-            fill1.setOnFinished(event -> {
-                changeText(value,finalI);
-            });
+            fill1.setOnFinished(event -> changeText(value,finalI));
             StrokeTransition fill2 = new StrokeTransition(Duration.seconds(3),this.boxes[i],c,Color.BLACK);
 
             SequentialTransition st = AnimationMethods.createSequential(new Transition[]{fill1, AnimationMethods.pauseSeconds(4),fill2});
             p.getChildren().add(st);
-        };
+        }
     }
 
     public void changeText(int value, int i){

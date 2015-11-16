@@ -13,10 +13,11 @@ import tool.Graphics.Robot;
 import tool.Graphics.Speechbubble;
 
 /**
- * Created by Phillipa on 01/11/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 01/11/2015.
  */
 public class RSA_Step_2 {
-    static Interpolator ip = Interpolator.DISCRETE;
     static Monitor m1;
     static Monitor m2;
     static Monitor m3;
@@ -152,9 +153,7 @@ public class RSA_Step_2 {
         FadeTransition aAppear = AnimationMethods.fadeInto(a);
         FadeTransition bAppear = AnimationMethods.fadeInto(b);
 
-        bAppear.setOnFinished(event->{
-            sb.setSpeech(RSA_Controller.getReminder());
-        });
+        bAppear.setOnFinished(event-> sb.setSpeech(RSA_Controller.getReminder()));
 
         ParallelTransition pt1 = AnimationMethods.createParallel(new Transition[]{aAppear,bAppear});
         st.getChildren().addAll(pt1);

@@ -7,20 +7,18 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import tool.CryptoMethods.Controllers.DH_Controller;
-import tool.CryptoMethods.Controllers.RSA_Controller;
 import tool.CryptoMethods.Views.Diffie_HellmanScenes.DH_Step_1;
-import tool.CryptoMethods.Views.RSAScenes.RSA_Step_1;
 
 /**
- * Created by Phillipa on 09/11/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 09/11/2015.
  */
 public class Diffie_Hellman {
 
     static Duration paused=Duration.seconds(0);
     static Pane p = new Pane();
     static SequentialTransition st =new SequentialTransition();
-    static String[] used =new String[]{};
 
     public static void start(BorderPane bp){
 
@@ -56,13 +54,30 @@ public class Diffie_Hellman {
         Button third = new Button("Step 3");
         Button fourth = new Button("Step 4");
 
+
+        Button speed1 = new Button("Play speed 1x");
+        speed1.setOnAction(event -> st.setRate(1));
+
+        Button speed2 = new Button("Play speed 2x");
+        speed2.setOnAction(event-> st.setRate(2));
+
+        Button speed3 = new Button("Play speed 3x");
+        speed3.setOnAction(event -> st.setRate(3));
+
+        Button speed6 = new Button("Play Speed 6x");
+        speed6.setOnAction(event -> st.setRate(6));
+
+        Button speed10=new Button("Play speed 10x");
+        speed10.setOnAction(event -> st.setRate(10));
+
         HBox hb = new HBox();
         hb.getChildren().addAll(first,second,third,fourth,play,pause);
+        hb.getChildren().addAll(speed1, speed2, speed3,speed6,speed10);
 
-        AnimationMethods.speedButtons(hb, st);
         hb.getChildren().add(bbUsed);
 
         bp.setBottom(hb);
         bp.setCenter(p);
     }
+
 }

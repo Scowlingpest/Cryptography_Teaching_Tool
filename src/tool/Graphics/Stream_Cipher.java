@@ -8,13 +8,14 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 /**
- * Created by Phillipa on 12/11/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 12/11/2015.
  */
 public class Stream_Cipher {
     Pane stream = new Pane();
     Rectangle[] boxes = new Rectangle[9];
     Text[] numbers = new Text[9];
-    SequentialTransition animation;
     int size;
     int gap ;
 
@@ -43,13 +44,6 @@ public class Stream_Cipher {
         return stream;
     }
 
-    public Rectangle[] getBoxes() {
-        return boxes;
-    }
-
-    public Text[] getNumbers() {
-        return numbers;
-    }
 
     public SequentialTransition animateStream(){
         SequentialTransition stream = new SequentialTransition();
@@ -59,9 +53,8 @@ public class Stream_Cipher {
             for (int i = 0; i < 9; i++) {
                 StrokeTransition colour = new StrokeTransition(Duration.seconds(2), this.boxes[i], Color.BLACK, temp);
                 final int finalI = i;
-                colour.setOnFinished(event -> {
-                    numbers[finalI].setText((numbers[finalI].getText().equals("1")) ? "0" : "1");
-                });
+                colour.setOnFinished(event -> numbers[finalI].setText((numbers[finalI].getText().equals("1")) ? "0" : "1"));
+
                 StrokeTransition black = new StrokeTransition(Duration.seconds(3), this.boxes[i], temp, Color.BLACK);
                 PauseTransition pause = new PauseTransition(Duration.seconds(2));
                 stream.getChildren().addAll(colour, black, pause);

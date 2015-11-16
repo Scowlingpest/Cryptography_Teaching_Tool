@@ -5,7 +5,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- * Created by Phillipa on 02/11/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 02/11/2015.
  */
 public class Monitor {
     ImageView image = new ImageView();
@@ -24,7 +26,4 @@ public class Monitor {
         return image;
     }
 
-    public void changeWidth(int w){
-        this.image.setFitWidth(w);
-    }
 }

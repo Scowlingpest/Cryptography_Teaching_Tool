@@ -6,7 +6,9 @@ import tool.Models.Header;
 import tool.Models.Paragraph;
 
 /**
- * Created by Phillipa on 14/10/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 14/10/2015.
  */
 public class Encrypt_Decrypt_Controller extends BuildingBlockController{
     final static Paragraph encryptPara = new Paragraph("Encryption is my speciality! Encryption is the art of concealing the contents of a message. "+
@@ -111,7 +113,7 @@ public class Encrypt_Decrypt_Controller extends BuildingBlockController{
     }
 
     public static String encryptText(String input, int n){
-        int m =0;
+        int m;
         String encrypted="";
         for(char c:input.toCharArray()){
             if(Character.isLowerCase(c)){
@@ -132,7 +134,7 @@ public class Encrypt_Decrypt_Controller extends BuildingBlockController{
     }
 
     public static String decryptText(String input, int n){
-        int m= 0;
+        int m;
         String decrypted ="";
         for(char c:input.toCharArray()){
             if(Character.isLowerCase(c)){

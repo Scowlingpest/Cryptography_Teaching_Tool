@@ -19,8 +19,6 @@ import tool.Graphics.Robot;
 import tool.Graphics.Title;
 import tool.Models.Paragraph;
 
-import java.util.Stack;
-
 
 /** Author : Phillipa Russell
  *  Created: 10/10/2015

@@ -2,15 +2,11 @@ package tool.CryptoMethods.Views.RSAScenes;
 
 import javafx.animation.*;
 import javafx.geometry.Insets;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 import tool.CryptoMethods.Controllers.RSA_Controller;
 import tool.CryptoMethods.Views.AnimationMethods;
-import tool.CryptoMethods.Views.RSA;
 import tool.Graphics.Robot;
 import tool.Graphics.Speechbubble;
 
@@ -19,7 +15,6 @@ import tool.Graphics.Speechbubble;
  */
 public class RSA_Step_1 {
     static Speechbubble welcome;
-    static Interpolator ip = Interpolator.DISCRETE;
 
     public static void createPane(Pane root){
         Robot encrypt = RSA_Controller.getEncrypt();
@@ -81,7 +76,7 @@ public class RSA_Step_1 {
         Text k = AnimationMethods.textSetup(RSA_Controller.getPrimeK(), x, (y += 35), RSA_Controller.getTooltipK());
         Text jSecret = AnimationMethods.textSetup(RSA_Controller.getSecretJEq(), x, (y += 35), RSA_Controller.getTooltipSecretJ());
         Text jNo = AnimationMethods.textSetup(RSA_Controller.getSecretJNo(), x, (y += 35), RSA_Controller.getTooltipJNo());
-        Text j = AnimationMethods.textSetup(RSA_Controller.getSecretJ(), x, (y += 35), RSA_Controller.getTooltipJ());
+        Text j = AnimationMethods.textSetup(RSA_Controller.getSecretJ(), x, y+=35, RSA_Controller.getTooltipJ());
 
         Speechbubble encrypts = AnimationMethods.invisSpeechbubble(RSA_Controller.geteInfo(), 100, 180, "tl", 200);
         root.getChildren().add(encrypts.getSp());

@@ -9,7 +9,9 @@ import javafx.scene.text.TextAlignment;
 
 
 /**
- * Created by Phillipa on 31/10/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 31/10/2015.
  */
 public class Speechbubble {
     ImageView bubble;
@@ -55,17 +57,6 @@ public class Speechbubble {
     }
 
 
-    public ImageView getBubble() {
-        return bubble;
-    }
-
-    public void setBubble(ImageView bubble) {
-        this.bubble = bubble;
-    }
-
-    public Text getSpeech() {
-        return speech;
-    }
 
     public void setSpeech(String speech) {
         this.speech = new Text(speech);
@@ -79,7 +70,4 @@ public class Speechbubble {
         return sp;
     }
 
-    public void setSp(StackPane sp) {
-        this.sp = sp;
-    }
 }

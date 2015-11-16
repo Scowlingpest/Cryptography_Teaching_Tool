@@ -20,7 +20,4 @@ public class Para_Text {
         return para;
     }
 
-    public void setPara(Text para) {
-        this.para = para;
-    }
 }

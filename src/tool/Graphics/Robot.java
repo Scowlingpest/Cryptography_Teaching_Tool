@@ -111,46 +111,24 @@ public class Robot {
 
     public void animate() {
 
+        KeyFrame kf1 = new KeyFrame(Duration.millis(400), event -> {
+            getView().setImage(getImage1());
 
+        }
+        );
+        KeyFrame kf2 = new KeyFrame(Duration.millis(800), event -> {
+            getView().setImage(getImage2());
+        }
+        );
+        KeyFrame kf3 = new KeyFrame(Duration.millis(1200), event -> {
+            getView().setImage(getImage1());
+        }
+        );
 
-        KeyValue kv1 = new KeyValue(view.imageProperty(),this.getImage1());
-        KeyValue kv2 = new KeyValue(view.imageProperty(),this.getImage2());
-
-
-        KeyFrame kf1 = new KeyFrame(Duration.millis(400),new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent t) {
-                getView().setImage(getImage1());
-
-            }
-        },
-                new KeyValue[0]);
-        KeyFrame kf2 = new KeyFrame(Duration.millis(800),new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent t) {
-                getView().setImage(getImage2());
-            }
-        },
-                new KeyValue[0]);
-        KeyFrame kf3 = new KeyFrame(Duration.millis(1200),new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent t) {
-                getView().setImage(getImage1());
-            }
-        },
-                new KeyValue[0]);
-
-        KeyFrame kf4 = new KeyFrame(Duration.millis(1600),new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent t) {
-                getView().setImage(getImage());
-            }
-        },
-                new KeyValue[0]);
+        KeyFrame kf4 = new KeyFrame(Duration.millis(1600), event -> {
+            getView().setImage(getImage());
+        }
+        );
 
         this.tl = new Timeline();
         this.getTl().getKeyFrames().addAll(kf1,kf2,kf3,kf4);

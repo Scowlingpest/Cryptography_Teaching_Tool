@@ -2,12 +2,14 @@ package tool.BuildingBlocks.Views;
 
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import tool.BuildingBlocks.Controllers.Asymmetric_vs_Symmetric_Controller;
@@ -33,12 +35,12 @@ public class Asymmetric_vs_Symmetric{
         vb.getStyleClass().add("vbox");
         Robot decrypt = Asymmetric_vs_Symmetric_Controller.getDecrypt();
 
-        vb.getChildren().add(setUpSpeechBubble(decrypt, Asymmetric_vs_Symmetric_Controller.getDecryptPara()));
+        vb.getChildren().add(setUpInformation(decrypt, Asymmetric_vs_Symmetric_Controller.getDecryptPara()));
 
         Robot encrypt =Asymmetric_vs_Symmetric_Controller.getEncrypt();
 
 
-        vb.getChildren().add(setUpSpeechBubble(encrypt,Asymmetric_vs_Symmetric_Controller.getEncryptPara()));
+        vb.getChildren().add(setUpInformation(encrypt, Asymmetric_vs_Symmetric_Controller.getEncryptPara()));
 
 
         bp.setLeft(vb);
@@ -47,7 +49,7 @@ public class Asymmetric_vs_Symmetric{
     }
 
 
-    public static StackPane setUpSpeechBubble(Robot robot,Paragraph text){
+    public static StackPane setUpInformation(Robot robot, Paragraph text){
         StackPane sp =new StackPane();
         backgroundSetup(600,275,sp,robot.getStyle());
 
@@ -90,9 +92,7 @@ public class Asymmetric_vs_Symmetric{
 
         finished.getChildren().addAll(hb,button, vb);
 
-        button.setOnAction((ActionEvent event) -> {
-            changeVB(first,second,finished);
-        });
+        button.setOnAction((ActionEvent event) -> changeVB(first,second,finished));
 
 
         sp.getChildren().add(finished);

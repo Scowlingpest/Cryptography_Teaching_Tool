@@ -1,7 +1,5 @@
 package tool.BuildingBlocks.Controllers;
 
-import javafx.scene.Node;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import tool.Graphics.Robot;
 import tool.Graphics.Titled_Information;
@@ -30,15 +28,4 @@ public abstract class BuildingBlockController {
         return new Titled_Information(h,p,width).getVb();
     }
 
-    public static Node getGridPaneCell(GridPane gridPane, String id) {
-
-        for (Node node : gridPane.getChildren()) {
-
-                if (node.getId().equals(id)) {
-                    return node;
-                }
-
-        }
-        return null;
-    }
 }

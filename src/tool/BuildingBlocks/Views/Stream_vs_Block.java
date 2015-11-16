@@ -14,7 +14,9 @@ import tool.Models.Paragraph;
 
 
 /**
- * Created by Phillipa on 12/11/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 12/11/2015.
  */
 public class Stream_vs_Block {
 
@@ -31,9 +33,7 @@ public class Stream_vs_Block {
         stream_cipher.getStream().setLayoutY(300);
 
         Button playStream = new Button("Play Stream animation");
-        playStream.setOnAction(event->{
-            stream_cipher.getStreamAnimation().playFromStart();
-        });
+        playStream.setOnAction(event-> stream_cipher.getStreamAnimation().playFromStart());
         playStream.setLayoutX(300);playStream.setLayoutY(575);
 
         Robot encrypt= PrimeNumbersController.getEncrypt();
@@ -53,9 +53,7 @@ public class Stream_vs_Block {
         block_cipher.getBlock().setLayoutY(275);
 
         Button playBlock = new Button("Play Block animation");
-        playBlock.setOnAction(event-> {
-            block_cipher.getAnimation().playFromStart();
-        });
+        playBlock.setOnAction(event-> block_cipher.getAnimation().playFromStart());
         playBlock.setLayoutX(300);playBlock.setLayoutY(575);
 
 

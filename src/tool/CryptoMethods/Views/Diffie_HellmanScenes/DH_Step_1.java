@@ -11,7 +11,9 @@ import tool.Graphics.Robot;
 import tool.Graphics.Speechbubble;
 
 /**
- * Created by Phillipa on 09/11/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 09/11/2015.
  */
 public class DH_Step_1 {
 

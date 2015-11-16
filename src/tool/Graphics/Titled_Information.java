@@ -7,7 +7,9 @@ import tool.Models.Header_Paragraph;
 import tool.Models.Paragraph;
 
 /**
- * Created by Phillipa on 13/10/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 13/10/2015.
  */
 public class Titled_Information {
     VBox vb;

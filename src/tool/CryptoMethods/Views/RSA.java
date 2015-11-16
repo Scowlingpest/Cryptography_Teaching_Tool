@@ -1,7 +1,6 @@
 package tool.CryptoMethods.Views;
 
 import javafx.animation.SequentialTransition;
-import javafx.animation.Timeline;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.BorderPane;
@@ -14,9 +13,6 @@ import tool.CryptoMethods.Views.RSAScenes.RSA_Step_2;
 import tool.CryptoMethods.Views.RSAScenes.RSA_Step_3;
 import tool.CryptoMethods.Views.RSAScenes.RSA_Step_4;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 
 /** Author : Phillipa Russell
  *  Created: 21/10/2015
@@ -25,7 +21,6 @@ public class RSA {
     static Duration paused=Duration.seconds(0);
     static Pane p = new Pane();
     static SequentialTransition st =new SequentialTransition();
-    static String[] used =new String[]{};
 
     public static void start(BorderPane bp){
 
@@ -39,6 +34,7 @@ public class RSA {
 
     public static void bottomControls(BorderPane bp){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
+
         Button play = new Button("Play");
         play.setOnAction((javafx.event.ActionEvent event) -> {
             st.playFrom(paused);
@@ -52,12 +48,18 @@ public class RSA {
         });
 
 
+        //step buttons, repetitive but essential
         Button first = new Button("Step 1");
         first.setOnAction((javafx.event.ActionEvent event) -> {
+            //clear screen of old animation
             p.getChildren().clear();
             st.getChildren().clear();
+
+            //draw new stuff
             RSA_Step_1.createPane(p);
             st =RSA_Step_1.createTimeLine(p);
+
+            //set time to 0 and get used building blocks for the step
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(RSA_Controller.getStep1Used(),bbUsed);
         });
@@ -71,6 +73,7 @@ public class RSA {
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(RSA_Controller.getStep2Used(),bbUsed);
         });
+
         Button third = new Button("Step 3");
         third.setOnAction((javafx.event.ActionEvent event) -> {
             p.getChildren().clear();
@@ -91,16 +94,34 @@ public class RSA {
             AnimationMethods.buildingBlockButton(RSA_Controller.getStep4Used(),bbUsed);
         });
 
+        Button speed1 = new Button("Play speed 1x");
+        speed1.setOnAction(event -> st.setRate(1));
+
+        Button speed2 = new Button("Play speed 2x");
+        speed2.setOnAction(event-> st.setRate(2));
+
+        Button speed3 = new Button("Play speed 3x");
+        speed3.setOnAction(event -> st.setRate(3));
+
+        Button speed6 = new Button("Play Speed 6x");
+        speed6.setOnAction(event -> st.setRate(6));
+
+        Button speed10=new Button("Play speed 10x");
+        speed10.setOnAction(event -> st.setRate(10));
+
+
+
 
         HBox hb = new HBox();
         hb.getChildren().addAll(first,second,third,fourth,play,pause);
+        hb.getChildren().addAll(speed1, speed2, speed3,speed6,speed10);
 
-        AnimationMethods.speedButtons(hb, st);
         hb.getChildren().add(bbUsed);
 
         bp.setBottom(hb);
         bp.setCenter(p);
     }
+
 
 
 

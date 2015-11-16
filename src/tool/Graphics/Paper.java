@@ -27,14 +27,16 @@ public class Paper {
     }
 
     private void viewSetup(String s,int size, int x, int y){
-        if(s.equals("encrypt")){
-            changeToEncrypt();
-        }
-        else if (s.equals("decrypt")){
-            changeToDecrypt();
-        }
-        else{
-            changeToBase();
+        switch (s) {
+            case "encrypt":
+                changeToEncrypt();
+                break;
+            case "decrypt":
+                changeToDecrypt();
+                break;
+            default:
+                changeToBase();
+                break;
         }
         view.setPreserveRatio(true);
         view.setSmooth(true);

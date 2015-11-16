@@ -3,7 +3,9 @@ package tool.Graphics;
 import javafx.scene.control.Tooltip;
 
 /**
- * Created by Phillipa on 10/10/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 10/10/2015.
  */
 public class toolTipSpecial {
     Tooltip tooltip;
@@ -38,11 +40,4 @@ public class toolTipSpecial {
 
     public void useBaseText(){ setTooltipText(this.baseText);}
 
-    public void setTextA(String textA) {
-        this.textA = textA;
-    }
-
-    public void setTextB(String textB) {
-        this.textB = textB;
-    }
 }

@@ -4,7 +4,9 @@ import tool.Models.Paragraph;
 import tool.Models.Prime_Num;
 
 /**
- * Created by Phillipa on 13/10/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 13/10/2015.
  */
 public class PrimeNumbersController extends BuildingBlockController {
 
@@ -37,10 +39,6 @@ public class PrimeNumbersController extends BuildingBlockController {
             temp[k-2]=new Prime_Num(k);
         }
         return temp;
-    }
-
-    public static Prime_Num[] getPrimes() {
-        return primes;
     }
 
     public static Prime_Num getPrime(int index){

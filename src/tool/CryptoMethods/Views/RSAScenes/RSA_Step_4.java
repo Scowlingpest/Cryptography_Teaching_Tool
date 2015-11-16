@@ -12,7 +12,9 @@ import tool.Graphics.Robot;
 import tool.Graphics.Speechbubble;
 
 /**
- * Created by Phillipa on 06/11/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 06/11/2015.
  */
 public class RSA_Step_4 {
     static Monitor m1 = new Monitor(200,750,200);
@@ -86,16 +88,14 @@ public class RSA_Step_4 {
 
         FadeTransition equationAppear = AnimationMethods.fadeInto(equation,3);
         FadeTransition equationChange=AnimationMethods.fadeAway(equation,3);
-        equationChange.setOnFinished(event->{
-            equation.setText(RSA_Controller.getEncryptNoStep4());
-        });
+        equationChange.setOnFinished(event-> equation.setText(RSA_Controller.getEncryptNoStep4()));
+
         FadeTransition equationReappear =AnimationMethods.fadeInto(equation,3);
         TranslateTransition moveEquation = AnimationMethods.moveNode(equation,0,-135,5);
 
         FadeTransition paperChange = AnimationMethods.fadeAway(p1.getView(),3);
-        paperChange.setOnFinished(event->{
-            p1.changeToEncrypt();
-        });
+        paperChange.setOnFinished(event-> p1.changeToEncrypt());
+
         FadeTransition paperAppear = AnimationMethods.fadeInto(p1.getView(),3);
 
         st.getChildren().addAll(equationAppear,AnimationMethods.pauseSeconds(4),equationChange,equationReappear,
@@ -115,15 +115,12 @@ public class RSA_Step_4 {
 
         FadeTransition eqAppear = AnimationMethods.fadeInto(decryptEquation,3);
         FadeTransition eqChange = AnimationMethods.fadeAway(decryptEquation,3);
-        eqChange.setOnFinished(event->{
-            decryptEquation.setText(RSA_Controller.getDecryptNoStep4());
-        });
+        eqChange.setOnFinished(event-> decryptEquation.setText(RSA_Controller.getDecryptNoStep4()));
+
         FadeTransition eqReappear = AnimationMethods.fadeInto(decryptEquation,3);
 
         FadeTransition paperChange =AnimationMethods.fadeAway(p1.getView(),3);
-        paperChange.setOnFinished(event->{
-            p1.changeToDecrypt();
-        });
+        paperChange.setOnFinished(event-> p1.changeToDecrypt());
         FadeTransition paperAppear =AnimationMethods.fadeInto(p1.getView(),3);
 
 
@@ -152,10 +149,10 @@ public class RSA_Step_4 {
 
         st.getChildren().addAll(pt1, paperStuff);
 
-        finishStep4(p,st, bubble);
+        finishStep4(st, bubble);
     }
 
-    private static void finishStep4(Pane p,SequentialTransition st, Speechbubble bubble){
+    private static void finishStep4(SequentialTransition st, Speechbubble bubble){
         AnimationMethods.changeBubble(st,bubble,RSA_Controller.getFinishStep4());
     }
 }

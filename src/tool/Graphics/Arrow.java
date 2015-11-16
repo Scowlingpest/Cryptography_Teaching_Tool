@@ -2,18 +2,17 @@ package tool.Graphics;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.shape.Line;
 
 /**
- * Created by Phillipa on 13/10/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 13/10/2015.
  */
 public class Arrow {
-    int startX,endX;
-    int startY,endY;
     Canvas c;
 
     public Arrow(int x,int y, int z, int a) {
-        this.c=canvasSetUp(c,x,y,z,a);
+        this.c=canvasSetUp(x,y,z,a);
         drawArrow(x,y,z,a);
 
 
@@ -58,7 +57,7 @@ public class Arrow {
         return c;
     }
 
-    public Canvas canvasSetUp(Canvas c, int x,int y,int z,int a){
+    public Canvas canvasSetUp(int x,int y,int z,int a){
         if (z==x){
             return new Canvas(z*2,a);
         }

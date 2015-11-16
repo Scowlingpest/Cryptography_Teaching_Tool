@@ -3,7 +3,9 @@ package tool.BuildingBlocks.Controllers;
 import tool.Models.Paragraph;
 
 /**
- * Created by Phillipa on 12/11/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 12/11/2015.
  */
 public class Stream_vs_Block_Controller extends BuildingBlockController {
 

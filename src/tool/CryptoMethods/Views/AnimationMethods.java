@@ -1,27 +1,21 @@
 package tool.CryptoMethods.Views;
 
 import javafx.animation.*;
-import javafx.geometry.NodeOrientation;
 import javafx.geometry.Side;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Scale;
 import javafx.util.Duration;
-import tool.CryptoMethods.Controllers.RSA_Controller;
 import tool.Graphics.Robot;
 import tool.Graphics.Speechbubble;
 
-import java.lang.reflect.Array;
-
 /**
- * Created by Phillipa on 02/11/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 02/11/2015.
  */
 public class AnimationMethods {
 
@@ -31,31 +25,6 @@ public class AnimationMethods {
         r.setImageWidth(135);
 
         p.getChildren().add(r.getView());
-    }
-    public static void speedButtons(HBox hb, SequentialTransition st){
-
-        Button speed1 = new Button("Play speed 1x");
-        speed1.setOnAction((javafx.event.ActionEvent event)->{
-            st.setRate(1);
-        });
-        Button speed2 = new Button("Play speed 2x");
-        speed2.setOnAction((javafx.event.ActionEvent event)->{
-            st.setRate(2);
-        });
-        Button speed3 = new Button("Play speed 3x");
-        speed3.setOnAction((javafx.event.ActionEvent event)->{
-            st.setRate(3);
-        });
-        Button speed6 = new Button("Play Speed 6x");
-        speed6.setOnAction((javafx.event.ActionEvent event)->{
-            st.setRate(6);
-        });
-        Button speed10=new Button("Play speed 10x");
-        speed10.setOnAction((javafx.event.ActionEvent event) -> {
-            st.setRate(10);
-        });
-
-        hb.getChildren().addAll(speed1,speed2,speed3,speed6,speed10);
     }
 
     public static void buildingBlockButton(String[] used, MenuButton mb){

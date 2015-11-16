@@ -42,8 +42,6 @@ public class Prime_Numbers {
         gridPane.setHgap(15);
 
         int k = 0;
-        int x = 30;
-        int y = 30;
         for (int i = 1; i < 6; i++) {
             for (int j = 0; j < 5; j++) {
 
