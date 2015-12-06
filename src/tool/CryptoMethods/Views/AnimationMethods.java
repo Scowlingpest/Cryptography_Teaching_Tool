@@ -3,6 +3,7 @@ package tool.CryptoMethods.Views;
 import javafx.animation.*;
 import javafx.geometry.Side;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
@@ -18,6 +19,15 @@ import tool.Graphics.Speechbubble;
  * Creation: 02/11/2015.
  */
 public class AnimationMethods {
+
+    public static void changeSpeedButton(Button b, double speed){
+        b.setText("Current speed:"+speed);
+    }
+
+    public static void speedChanged(SequentialTransition st, int i,Button b){
+        st.setRate(i);
+        changeSpeedButton(b,st.getRate());
+    }
 
     public static void placeRobots(Robot r, Pane p,int x, int y){
         r.getView().setLayoutX(x);
@@ -43,8 +53,15 @@ public class AnimationMethods {
     }
 
     public static Text textSetup(String text, int x, int y, String tool){
+        return textSmallSetup(text,x,y,tool,"text-animate");
+    }
+
+    public static Text equationSetup(String text, int x, int y, String tool){
+        return textSmallSetup(text,x,y,tool,"text-title");
+    }
+    public static Text textSmallSetup(String text,int x,int y,String tool, String size){
         Text t = new Text(text);
-        t.getStyleClass().add("text-animate");
+        t.getStyleClass().add(size);
         t.setLayoutX(x);
         t.setLayoutY(y);
         t.setOpacity(0);

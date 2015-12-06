@@ -26,8 +26,8 @@ public class Vigenère_Cipher_Controller extends BuildingBlockController {
     }
 
     static Paragraph information = new Paragraph("The Vigenère Cipher is another way of encryption and decryption. "+
-            "This method uses a graph like the one on screen now. The X and Y axis are both the alphabet. Looking at the X axis you can see that each line starts at the letter specified, "+
-    "the alphabet has been shifted. So for the third line, C, the alphabet has been shifted twice and now starts at C, with A & B being moved to the end. "+
+            "This method uses a graph like the one on screen now. The X and Y axis are both the alphabet. Looking at the X axis you can see that each line is the alphabet starting at that letter. "+
+    " So for the third line, C, the alphabet has been shifted twice and now starts at C, with A & B being moved to the end. "+
     "The way this cipher method works is that there is a keyword and a message. ");
 
     static Paragraph howItWorks = new Paragraph("The keyword is a word that will be used as the key. In this example we will use the word 'cookie'."+
@@ -36,6 +36,8 @@ public class Vigenère_Cipher_Controller extends BuildingBlockController {
     "To encrypt we compare the letters to the graph. The letter of the keyword is the X axis, the letter of the message is the Y axis, so "+
     "for the first letter we look at square (c,c), meaning we replace it with E (the letter at square (c,c)). We do this for the entire message to get the encrypted message. "+
     "For decrypting we look at the X axis for the letter (c in this case) and move along until we reach the letter from the encrypted message, then we get the y axis value to get the original letter.");
+
+    static Paragraph notice = new Paragraph("Math whizzes will notice something here. If A=0, then C+C =2+2=4(mod 26) = E for encryption, and E-C=4-2=2(mod 26)=C for decryption. Try this out for the above example.");
 
     static Header graph =new Header("Vigenère Graph");
 
@@ -87,5 +89,9 @@ public class Vigenère_Cipher_Controller extends BuildingBlockController {
             j = ++j % key.length();
         }
         return res;
+    }
+
+    public static Paragraph getNotice() {
+        return notice;
     }
 }

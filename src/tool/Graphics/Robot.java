@@ -1,18 +1,12 @@
 package tool.Graphics;
 
-import javafx.animation.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 import tool.Models.Header;
-
-import java.sql.Time;
 
 
 /** Author : Phillipa Russell
@@ -34,9 +28,9 @@ public class Robot {
 
     public Robot(String file,String s,String[] tool,Header h, int x, int y) {
 
-        this.image=new Image(file+"1.png");
-        this.image1=new Image(file+"2.png");
-        this.image2=new Image(file+"3.png");
+        this.image=new Image("tool/Files/Images/robots/"+file+"1.png");
+        this.image1=new Image("tool/Files/Images/robots/"+file+"2.png");
+        this.image2=new Image("tool/Files/Images/robots/"+file+"3.png");
 
         this.style=s;
         this.toolTip=new toolTipSpecial(tool);

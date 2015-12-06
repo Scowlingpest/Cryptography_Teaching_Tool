@@ -107,7 +107,14 @@ public class Main extends Application {
             Vigenère_Cipher.start(root);
         });
 
-        blocks.getItems().addAll(primeNo,asymmetricVsSymmetric,encryptDecrypt,streamBlock,vigenèreCipher);
+        MenuItem generator = new MenuItem("Generator");
+        generator.setOnAction(event -> {
+            clearBorderPane(root);
+            Generator.start(root);
+        });
+
+        blocks.getItems().addAll(primeNo,asymmetricVsSymmetric,encryptDecrypt,streamBlock,vigenèreCipher,
+                generator);
     }
 
     public void setUpCryptographyMenu(Menu methods, final BorderPane root){

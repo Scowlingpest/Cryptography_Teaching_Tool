@@ -9,6 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import tool.BuildingBlocks.Controllers.Vigenère_Cipher_Controller;
+import tool.Graphics.Para_Text;
 import tool.Graphics.Robot;
 import tool.Graphics.Title;
 import tool.Models.Header;
@@ -103,7 +104,9 @@ public class Vigenère_Cipher {
         Title noSpaces = new Title(new Header("No spaces:\t"+Vigenère_Cipher_Controller.getNoSpaces()));
         Title keyword = new Title(new Header("Keyword:\t"+Vigenère_Cipher_Controller.getKeyword()));
         Title encrypted = new Title(new Header("Encrypted:\t"+Vigenère_Cipher_Controller.getEncrypted()));
+        Para_Text tryThisOut=new Para_Text(Vigenère_Cipher_Controller.getNotice(),450);
 
-        vb.getChildren().addAll(key.getTitle(),message.getTitle(),noSpaces.getTitle(),keyword.getTitle(),encrypted.getTitle());
+        vb.getChildren().addAll(key.getTitle(),message.getTitle(),noSpaces.getTitle(),keyword.getTitle(),encrypted.getTitle(),
+                tryThisOut.getPara());
     }
 }

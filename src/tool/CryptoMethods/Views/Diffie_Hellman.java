@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import tool.CryptoMethods.Views.Diffie_HellmanScenes.DH_Step_1;
+import tool.CryptoMethods.Views.Diffie_HellmanScenes.DH_Step;
 
 /**
  * Author: Phillipa Russell
@@ -19,6 +19,7 @@ public class Diffie_Hellman {
     static Duration paused=Duration.seconds(0);
     static Pane p = new Pane();
     static SequentialTransition st =new SequentialTransition();
+    static int step =1;
 
     public static void start(BorderPane bp){
 
@@ -30,10 +31,18 @@ public class Diffie_Hellman {
 
     public static void bottomControls(BorderPane bp){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
+        Button currentSpeed = new Button("Current speed:1");
+
         Button play = new Button("Play");
         play.setOnAction((javafx.event.ActionEvent event) -> {
+            if(step==2 && paused==Duration.seconds(0)) {
+                DH_Step.getValues();
+                buttonStep(2);
+                DH_Step.clearCombos(p);
+            }
             st.playFrom(paused);
             st.setRate(1);
+            AnimationMethods.changeSpeedButton(currentSpeed, st.getRate());
         });
 
         Button pause = new Button("Pause");
@@ -43,41 +52,52 @@ public class Diffie_Hellman {
         });
         Button first = new Button("Step 1");
         first.setOnAction((javafx.event.ActionEvent event) -> {
-            p.getChildren().clear();
-            st.getChildren().clear();
-            DH_Step_1.createPane(p);
-            st =DH_Step_1.createTimeLine(p);
-            paused=Duration.seconds(0);
+            buttonStep(1);
             //AnimationMethods.buildingBlockButton(DH_Controller.getStep1Used(),bbUsed);
         });
         Button second = new Button("Step 2");
-        Button third = new Button("Step 3");
-        Button fourth = new Button("Step 4");
+        second.setOnAction((javafx.event.ActionEvent event) -> {
+            buttonStep(2);
+            //AnimationMethods.buildingBlockButton(DH_Controller.getStep1Used(),bbUsed);
+        });
 
 
         Button speed1 = new Button("Play speed 1x");
-        speed1.setOnAction(event -> st.setRate(1));
+        speed1.setOnAction(event -> AnimationMethods.speedChanged(st,1,currentSpeed));
 
         Button speed2 = new Button("Play speed 2x");
-        speed2.setOnAction(event-> st.setRate(2));
+        speed2.setOnAction(event-> AnimationMethods.speedChanged(st, 2, currentSpeed));
 
         Button speed3 = new Button("Play speed 3x");
-        speed3.setOnAction(event -> st.setRate(3));
+        speed3.setOnAction(event ->AnimationMethods.speedChanged(st, 3, currentSpeed));
 
         Button speed6 = new Button("Play Speed 6x");
-        speed6.setOnAction(event -> st.setRate(6));
+        speed6.setOnAction(event ->AnimationMethods.speedChanged(st, 6, currentSpeed));
 
         Button speed10=new Button("Play speed 10x");
-        speed10.setOnAction(event -> st.setRate(10));
+        speed10.setOnAction(event -> AnimationMethods.speedChanged(st, 10, currentSpeed));
+
+
 
         HBox hb = new HBox();
-        hb.getChildren().addAll(first,second,third,fourth,play,pause);
+        hb.getChildren().addAll(first,second,play,pause);
         hb.getChildren().addAll(speed1, speed2, speed3,speed6,speed10);
 
-        hb.getChildren().add(bbUsed);
+        hb.getChildren().addAll(bbUsed, currentSpeed);
 
         bp.setBottom(hb);
         bp.setCenter(p);
     }
+
+    private static void buttonStep(int i){
+        step=i;
+        p.getChildren().clear();
+        st.getChildren().clear();
+        DH_Step.createPane(p);
+        st = DH_Step.createTimeLine(p,step);
+        paused=Duration.seconds(0);
+    }
+
+
 
 }

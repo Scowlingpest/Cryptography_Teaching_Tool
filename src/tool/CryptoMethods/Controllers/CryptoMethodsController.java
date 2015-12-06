@@ -1,11 +1,9 @@
 package tool.CryptoMethods.Controllers;
 
-import javafx.scene.control.Tooltip;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
-import javafx.util.Duration;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 import tool.Graphics.Robot;
-import tool.Graphics.Speechbubble;
+import tool.Models.DataRow;
 import tool.Models.Header;
 
 /** Author : Phillipa Russell
@@ -13,11 +11,11 @@ import tool.Models.Header;
  */
 public class CryptoMethodsController {
 
-    final static Robot encrypt = new Robot("tool/Files/Images/Robots/encrypt", "rectangle-encrypt", new String[]{"Hello! I'm Encrypt.", "", ""}, new Header("Encrypt Says:"), 0, 0);
+    final static Robot encrypt = new Robot("encrypt", "rectangle-encrypt", new String[]{"Hello! I'm Encrypt.", "", ""}, new Header("Encrypt Says:"), 0, 0);
 
-    final static Robot encrypt2 = new Robot("tool/Files/Images/Robots/encrypt", "rectangle-encrypt", new String[]{"Hello! I'm another Encrypt.", "", ""}, new Header("Encrypt Says:"), 0, 0);
+    final static Robot encrypt2 = new Robot("encrypt", "rectangle-encrypt", new String[]{"Hello! I'm another Encrypt.", "", ""}, new Header("Encrypt Says:"), 0, 0);
 
-    final static Robot decrypt = new Robot("tool/Files/Images/Robots/decrypt", "rectangle-decrypt", new String[]{"Hello! I'm Decrypt.", "", ""}, new Header("Decrypt Says:"), 0, 0);
+    final static Robot decrypt = new Robot("decrypt", "rectangle-decrypt", new String[]{"Hello! I'm Decrypt.", "", ""}, new Header("Decrypt Says:"), 0, 0);
 
     public static Robot getEncrypt() {
         return encrypt;
@@ -39,6 +37,11 @@ public class CryptoMethodsController {
 
     public static String getPrimeNumber() {
         return primeNumber;
+    }
+
+    public static void addToTable(String n,double v,TableView tableView,ObservableList<DataRow> data){
+        data.add(new DataRow(n,String.valueOf(v)));
+
     }
 
 }

@@ -55,8 +55,9 @@ public class Stream_Cipher {
                 final int finalI = i;
                 colour.setOnFinished(event -> numbers[finalI].setText((numbers[finalI].getText().equals("1")) ? "0" : "1"));
 
-                StrokeTransition black = new StrokeTransition(Duration.seconds(3), this.boxes[i], temp, Color.BLACK);
-                PauseTransition pause = new PauseTransition(Duration.seconds(2));
+                StrokeTransition black = new StrokeTransition(Duration.seconds(1), this.boxes[i], temp, Color.BLACK);
+                PauseTransition pause = new PauseTransition(Duration.seconds(1
+                ));
                 stream.getChildren().addAll(colour, black, pause);
 
             }

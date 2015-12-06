@@ -1,8 +1,6 @@
 package tool.BuildingBlocks.Views;
 
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -45,11 +43,6 @@ public class Encrypt_Decrypt {
         bp.setLeft(hb);
 
 
-    }
-
-    //sets up the right hand side of the screen/borderpane
-    public static void setUpRight(BorderPane bp) {
-        bp.setRight(decryptInfo());
     }
 
     //organises Encrypts paragraph speech on the left side of screen
@@ -178,20 +171,18 @@ public class Encrypt_Decrypt {
     //setups the final row of the gridpane with the button and combobox
     public static void organiseFinalRow(GridPane gp){
         int f = Encrypt_Decrypt_Controller.getFinalRow();
-        ComboBox comboBox =new ComboBox(Encrypt_Decrypt_Controller.getOptions());
+        ComboBox<Integer> comboBox = new ComboBox<>(Encrypt_Decrypt_Controller.getOptions());
         gp.add(comboBox,1,f);
 
         Button clicky = new Button(Encrypt_Decrypt_Controller.getClicky());
-        clicky.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
+        clicky.setOnAction(e -> {
 
-                String entry =name.getText();
-                if(!entry.equals(Encrypt_Decrypt_Controller.getEnterName())){
-                    clickyPressed(entry,gp, (Integer) comboBox.getValue());
-                }
-
-
+            String entry =name.getText();
+            if(!entry.equals(Encrypt_Decrypt_Controller.getEnterName())){
+                clickyPressed(entry, comboBox.getValue());
             }
+
+
         });
         gp.add(clicky,3,f);
 
@@ -207,7 +198,7 @@ public class Encrypt_Decrypt {
         gp.add(pt.getPara(),0,g);
     }
 
-    public static void clickyPressed(String text, GridPane gp, int n){
+    public static void clickyPressed(String text, int n){
         String crypted = Encrypt_Decrypt_Controller.encryptText(text,n);
         encrypted.setText(crypted);
 

@@ -34,11 +34,13 @@ public class RSA {
 
     public static void bottomControls(BorderPane bp){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
+        Button currentSpeed = new Button("Current speed:1");
 
         Button play = new Button("Play");
         play.setOnAction((javafx.event.ActionEvent event) -> {
             st.playFrom(paused);
             st.setRate(1);
+            AnimationMethods.changeSpeedButton(currentSpeed, st.getRate());
         });
 
         Button pause = new Button("Pause");
@@ -95,19 +97,19 @@ public class RSA {
         });
 
         Button speed1 = new Button("Play speed 1x");
-        speed1.setOnAction(event -> st.setRate(1));
+        speed1.setOnAction(event -> AnimationMethods.speedChanged(st,1,currentSpeed));
 
         Button speed2 = new Button("Play speed 2x");
-        speed2.setOnAction(event-> st.setRate(2));
+        speed2.setOnAction(event-> AnimationMethods.speedChanged(st, 2, currentSpeed));
 
         Button speed3 = new Button("Play speed 3x");
-        speed3.setOnAction(event -> st.setRate(3));
+        speed3.setOnAction(event ->AnimationMethods.speedChanged(st, 3, currentSpeed));
 
         Button speed6 = new Button("Play Speed 6x");
-        speed6.setOnAction(event -> st.setRate(6));
+        speed6.setOnAction(event ->AnimationMethods.speedChanged(st, 6, currentSpeed));
 
         Button speed10=new Button("Play speed 10x");
-        speed10.setOnAction(event -> st.setRate(10));
+        speed10.setOnAction(event -> AnimationMethods.speedChanged(st, 10, currentSpeed));
 
 
 
@@ -116,7 +118,7 @@ public class RSA {
         hb.getChildren().addAll(first,second,third,fourth,play,pause);
         hb.getChildren().addAll(speed1, speed2, speed3,speed6,speed10);
 
-        hb.getChildren().add(bbUsed);
+        hb.getChildren().addAll(bbUsed, currentSpeed);
 
         bp.setBottom(hb);
         bp.setCenter(p);
