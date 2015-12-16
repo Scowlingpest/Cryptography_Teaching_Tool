@@ -1,8 +1,6 @@
-package tool.CryptoMethods.Views.Diffie_HellmanScenes;
+package tool.CryptoMethods.Views.Diffie_Hellman_Scenes;
 
 import javafx.animation.SequentialTransition;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -44,12 +42,12 @@ public class DH_Step {
 
     }
 
-    public static void placeRobotsFirst(Robot e, Robot d, Pane p){
+    private static void placeRobotsFirst(Robot e, Robot d, Pane p){
         AnimationMethods.placeRobots(d, p, 1030, 175);
         AnimationMethods.placeRobots(e, p, 50, 175);
     }
 
-    public static void background(Pane p){
+    private static void background(Pane p){
         int start =20;
         Rectangle left = new Rectangle(start,50,400,550);
         left.getStyleClass().add("rectangle-encrypt");
@@ -78,17 +76,11 @@ public class DH_Step {
         }
 
         root.getChildren().add(bubble.getSp());
-        /*if(step==1)
-            DH_Animation.animationCreate(new int[]{0,0,0,0}, root,st,step,bubble);
-        else{
-            DH_Animation.animationCreate(comboBoxValues(), root,st,step,bubble);
-        }
-        */
         DH_Animation.animationCreate(root,st,step,bubble);
         return st;
     }
 
-    public static void comboBoxSetup(Pane root){
+    private static void comboBoxSetup(Pane root){
         pSelect = new ComboBox<>();
         pSelect.getItems().addAll(DH_Controller.getGenerators().keySet());
         pSelect.setValue(7);
@@ -98,13 +90,10 @@ public class DH_Step {
         qSelect.getItems().addAll(DH_Controller.getGenerators().get(7));
         qSelect.setValue(3);
 
-        pSelect.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Integer>() {
-            @Override
-            public void changed(ObservableValue<? extends Integer> observable, Integer oldValue, Integer newValue) {
-                qSelect.getItems().clear();
-                qSelect.getItems().addAll(DH_Controller.getGenerators().get(newValue));
-                qSelect.setValue(DH_Controller.getGenerators().get(newValue)[0]);
-            }
+        pSelect.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            qSelect.getItems().clear();
+            qSelect.getItems().addAll(DH_Controller.getGenerators().get(newValue));
+            qSelect.setValue(DH_Controller.getGenerators().get(newValue)[0]);
         });
 
         aSelect = new ComboBox<>();

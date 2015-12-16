@@ -10,7 +10,7 @@
     }
 
 .text-main{
-    -fx-font: 16px Arial;
+    -fx-font: 15px Arial;
     -fx-text-alignment: justify;
 
 }
@@ -22,8 +22,19 @@
     -fx-font-weight:bold;
 }
 .text-animate{
-    -fx-font:28px Arial;
+    -fx-font:22px Arial;
     -fx-text-alignment: left;
+    -fx-font-weight:bold;
+}
+
+.text-welcome{
+    -fx-font:40px Arial;
+    -fx-text-alignment: center;
+    -fx-font-weight:bold;
+}
+.text-instructions{
+    -fx-font:70px Arial;
+    -fx-text-alignment: center;
     -fx-font-weight:bold;
 }
 

@@ -21,7 +21,7 @@ import tool.Graphics.Speechbubble;
 public class AnimationMethods {
 
     public static void changeSpeedButton(Button b, double speed){
-        b.setText("Current speed:"+speed);
+        b.setText("Current speed:"+(String.format("%.0f",speed)));
     }
 
     public static void speedChanged(SequentialTransition st, int i,Button b){

@@ -5,7 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
-import tool.BuildingBlocks.Controllers.PrimeNumbersController;
+import tool.BuildingBlocks.Controllers.Prime_Numbers_Controller;
 import tool.BuildingBlocks.Controllers.Stream_vs_Block_Controller;
 import tool.Graphics.Block_Cipher;
 import tool.Graphics.Stream_Cipher;
@@ -36,7 +36,7 @@ public class Stream_vs_Block {
         playStream.setOnAction(event-> stream_cipher.getStreamAnimation().playFromStart());
         playStream.setLayoutX(300);playStream.setLayoutY(575);
 
-        Robot encrypt= PrimeNumbersController.getEncrypt();
+        Robot encrypt= Prime_Numbers_Controller.getEncrypt();
         StackPane sp = robotSetup(encrypt,Stream_vs_Block_Controller.getStreamPara());
 
 
@@ -57,7 +57,7 @@ public class Stream_vs_Block {
         playBlock.setLayoutX(300);playBlock.setLayoutY(575);
 
 
-        Robot decrypt= PrimeNumbersController.getDecrypt();
+        Robot decrypt= Prime_Numbers_Controller.getDecrypt();
         StackPane sp=robotSetup(decrypt, Stream_vs_Block_Controller.getBlockPara());
 
         right.getChildren().addAll(sp, block_cipher.getBlock(),playBlock);
@@ -67,7 +67,7 @@ public class Stream_vs_Block {
     }
 
     private static StackPane robotSetup(Robot r,Paragraph p){
-        VBox vb = PrimeNumbersController.organiseText(r.getTitle(), p, Stream_vs_Block_Controller.getTextWidth());
+        VBox vb = Prime_Numbers_Controller.organiseText(r.getTitle(), p, Stream_vs_Block_Controller.getTextWidth());
         vb.getChildren().add(r.getView());
 
         vb.getStyleClass().add("vbox");

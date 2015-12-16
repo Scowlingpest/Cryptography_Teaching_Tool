@@ -4,7 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import tool.BuildingBlocks.Controllers.PrimeNumbersController;
+import tool.BuildingBlocks.Controllers.Prime_Numbers_Controller;
 import tool.Graphics.Box;
 import tool.Graphics.Robot;
 
@@ -45,9 +45,9 @@ public class Prime_Numbers {
         for (int i = 1; i < 6; i++) {
             for (int j = 0; j < 5; j++) {
 
-                Box temp = new Box(PrimeNumbersController.getPrime(k));
+                Box temp = new Box(Prime_Numbers_Controller.getPrime(k));
                 temp.drawBox(0, 0,
-                        PrimeNumbersController.getTooltip());
+                        Prime_Numbers_Controller.getTooltip());
                 temp.setUpForPrime();
                 gridPane.add(temp.getSp(),j,i);
 
@@ -64,9 +64,9 @@ public class Prime_Numbers {
 
 
     public static void setUpLeft(BorderPane bp){
-        Robot encrypt=PrimeNumbersController.getEncrypt();
+        Robot encrypt= Prime_Numbers_Controller.getEncrypt();
 
-        VBox vb = PrimeNumbersController.organiseText(encrypt.getTitle(), PrimeNumbersController.getLeftPara(), PrimeNumbersController.getTextWidth());
+        VBox vb = Prime_Numbers_Controller.organiseText(encrypt.getTitle(), Prime_Numbers_Controller.getLeftPara(), Prime_Numbers_Controller.getTextWidth());
         vb.getChildren().add(encrypt.getView());
 
 
@@ -80,9 +80,9 @@ public class Prime_Numbers {
 
     public static void setUpRight(BorderPane bp){
 
-        Robot decrypt= PrimeNumbersController.getDecrypt();
+        Robot decrypt= Prime_Numbers_Controller.getDecrypt();
 
-        VBox vb = PrimeNumbersController.organiseText(decrypt.getTitle(), PrimeNumbersController.getRightPara(), PrimeNumbersController.getTextWidth());
+        VBox vb = Prime_Numbers_Controller.organiseText(decrypt.getTitle(), Prime_Numbers_Controller.getRightPara(), Prime_Numbers_Controller.getTextWidth());
         vb.getChildren().add(decrypt.getView());
 
         StackPane sp = new StackPane();

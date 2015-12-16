@@ -54,8 +54,8 @@ public class DH_Controller extends CryptoMethodsController {
 
     private static final String step1welcome = "Welcome to Diffie Hellman. This is a method of symmetric key exchange. The keys can then be used to encrypt and decrypt messages. Click play to start. ";
     private static final String step2welcome = "Welcome to Diffie Hellman. This is a chance for you to try your own methods. Select the p,q,a and b and click play. P and q should be prime, with q being a generator. The numbers a and b should be smaller than p to make it work, but see what happens when they aren't!";
-    private static final String pandQ = "First we have to decide on two prime numbers p and q. It doesn't matter if anyone else knows these so we can discuss them publicly. ";
-    private static  String prime = "We've decided on p="+getP()+" and q="+getQ()+". Now we both need to do some maths. The third party at the bottom knows about them as well but it doesn't matter. We're both going to pick another number, a and b. These can be any number.";
+    private static final String pandQ = "First we have to decide on two prime numbers p and q, with q being a generator of p. It doesn't matter if anyone else knows these so we can discuss them publicly. ";
+    private static  String prime = "We've decided on p="+getP()+" and q="+getQ()+". Now we both need to do some maths. The third party at the bottom knows about them as well but it doesn't matter. We're each going to pick another number, a and b. These can be any number smaller than p.";
     private static  String secretNum = "We've chosen secret a="+geta()+" and secret b ="+getb()+". These can be any number but we have to keep them secret, even from each other. We'll use these with p and q to work out some numbers";
     private static  String workingAandB ="We calculate A and B. A="+getEqA()+" and B="+getEqB()+". This turns out as A="+getEqANo()+" and B="+getEqBNo()+" so A="+getA()+" and B="+getB();
     private static  String tradeAB = "We now send A and B to each other. We share these publicly so the third party person will get them, but will not know what secret a and secret b are, so they will be unable to do anything with them";
@@ -66,7 +66,7 @@ public class DH_Controller extends CryptoMethodsController {
     private static final String step2Next ="Step 2 is now finished. Click Step 1 to see the example again or click Step 2 to input your own values again";
 
     private static final String pTooltip ="This is the publicly known prime number P";
-    private static final String qTooltip ="This is the publicly known prime number Q";
+    private static final String qTooltip ="This is the publicly known generator Q";
     private static final String aTooltip ="This is the secret number a";
     private static final String bTooltip ="This is the secret number b";
     private static final String eqATooltip="This is the equation for A";
@@ -314,5 +314,11 @@ public class DH_Controller extends CryptoMethodsController {
 
     public static String getKbTooltip() {
         return KbTooltip;
+    }
+
+    private static final String[] stepUsed = new String[]{"Prime Numbers","Generators"};
+
+    public static String[] getStepUsed() {
+        return stepUsed;
     }
 }

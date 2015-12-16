@@ -1,4 +1,4 @@
-package tool.CryptoMethods.Views.Diffie_HellmanScenes;
+package tool.CryptoMethods.Views.Diffie_Hellman_Scenes;
 
 import javafx.animation.ParallelTransition;
 import javafx.animation.SequentialTransition;
@@ -28,9 +28,6 @@ public class DH_Animation {
     static TableView<DataRow> decryptDetails = new TableView<>();
 
     public static void animationCreate(Pane root, SequentialTransition st, int step, Speechbubble bubble) {
-        //if (step==2){
-        //    DH_Controller.setUpAnimation(values[0],values[1],values[2],values[3]);
-        // }
         setupTableViews(root, encryptDetails, 50, DH_Controller.getDataE());
         setupTableViews(root, decryptDetails, 900, DH_Controller.getDataD());
         Text[] pQ = pandQDiscussion(st, bubble, root);
@@ -45,7 +42,6 @@ public class DH_Animation {
     private static void setupTableViews(Pane p, TableView<DataRow> tb, int x, ObservableList<DataRow> data) {
         tb.setFixedCellSize(25);
         tb.getItems().clear();
-        //tb.prefHeightProperty().bind(tb.fixedCellSizeProperty().multiply(Bindings.size(tb.getItems()).add(1.01)));
         tb.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tb.setMaxHeight(100);
         tb.getColumns().clear();

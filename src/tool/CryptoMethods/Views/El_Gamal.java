@@ -8,14 +8,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import tool.CryptoMethods.Controllers.DH_Controller;
-import tool.CryptoMethods.Views.Diffie_Hellman_Scenes.DH_Step;
+import tool.CryptoMethods.Views.El_Gamal_Scenes.EG_Step;
 
 /**
  * Author: Phillipa Russell
  * Student Number: 0900772r
- * Creation: 09/11/2015.
+ * Creation: 06/12/2015.
  */
-public class Diffie_Hellman {
+public class El_Gamal {
 
     static Duration paused=Duration.seconds(0);
     static Pane p = new Pane();
@@ -29,7 +29,6 @@ public class Diffie_Hellman {
 
 
     }
-
     public static void bottomControls(BorderPane bp){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
         AnimationMethods.buildingBlockButton(DH_Controller.getStepUsed(),bbUsed);
@@ -38,9 +37,9 @@ public class Diffie_Hellman {
         Button play = new Button("Play");
         play.setOnAction((javafx.event.ActionEvent event) -> {
             if(step==2 && paused==Duration.seconds(0)) {
-                DH_Step.getValues();
+                EG_Step.getValues();
                 buttonStep(2);
-                DH_Step.clearCombos(p);
+                EG_Step.clearCombos(p);
             }
             st.playFrom(paused);
             st.setRate(1);
@@ -95,8 +94,8 @@ public class Diffie_Hellman {
         step=i;
         p.getChildren().clear();
         st.getChildren().clear();
-        DH_Step.createPane(p);
-        st = DH_Step.createTimeLine(p,step);
+        EG_Step.createPane(p);
+        st = EG_Step.createTimeLine(p,step);
         paused=Duration.seconds(0);
     }
 

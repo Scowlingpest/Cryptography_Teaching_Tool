@@ -44,12 +44,12 @@ public class Speechbubble {
     }
 
     public void speechSettings(){
-        this.speech.setWrappingWidth(width-40);
+        this.speech.setWrappingWidth(width-45);
         this.speech.setTextAlignment(TextAlignment.JUSTIFY);
 
         if(type.charAt(0)=='t'){
 
-            StackPane.setMargin(this.speech,new Insets(75,25,15,15));
+            StackPane.setMargin(this.speech,new Insets(75,30,15,15));
         }
         else{
             StackPane.setMargin(this.speech, new Insets(15,25,75,15));

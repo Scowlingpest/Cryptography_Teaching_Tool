@@ -1,4 +1,4 @@
-package tool.CryptoMethods.Views.RSAScenes;
+package tool.CryptoMethods.Views.RSA_Scenes;
 
 import javafx.animation.*;
 import javafx.geometry.Insets;

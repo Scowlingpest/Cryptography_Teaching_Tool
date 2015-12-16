@@ -8,10 +8,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import tool.CryptoMethods.Controllers.RSA_Controller;
-import tool.CryptoMethods.Views.RSAScenes.RSA_Step_1;
-import tool.CryptoMethods.Views.RSAScenes.RSA_Step_2;
-import tool.CryptoMethods.Views.RSAScenes.RSA_Step_3;
-import tool.CryptoMethods.Views.RSAScenes.RSA_Step_4;
+import tool.CryptoMethods.Views.RSA_Scenes.RSA_Step_1;
+import tool.CryptoMethods.Views.RSA_Scenes.RSA_Step_2;
+import tool.CryptoMethods.Views.RSA_Scenes.RSA_Step_3;
+import tool.CryptoMethods.Views.RSA_Scenes.RSA_Step_4;
 
 
 /** Author : Phillipa Russell
@@ -34,7 +34,7 @@ public class RSA {
 
     public static void bottomControls(BorderPane bp){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
-        Button currentSpeed = new Button("Current speed:1");
+        Button currentSpeed = new Button("Current speed:1 ");
 
         Button play = new Button("Play");
         play.setOnAction((javafx.event.ActionEvent event) -> {
@@ -65,6 +65,7 @@ public class RSA {
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(RSA_Controller.getStep1Used(),bbUsed);
         });
+
 
         Button second = new Button("Step 2");
         second.setOnAction((javafx.event.ActionEvent event) -> {
@@ -114,13 +115,15 @@ public class RSA {
 
 
 
-        HBox hb = new HBox();
-        hb.getChildren().addAll(first,second,third,fourth,play,pause);
-        hb.getChildren().addAll(speed1, speed2, speed3,speed6,speed10);
+        HBox buttonBar = new HBox();
+        buttonBar.setSpacing(3);
+        buttonBar.getChildren().addAll(first, second, third, fourth, play, pause);
+        buttonBar.getChildren().addAll(speed1, speed2, speed3, speed6, speed10);
 
-        hb.getChildren().addAll(bbUsed, currentSpeed);
+        buttonBar.getChildren().addAll(bbUsed, currentSpeed);
 
-        bp.setBottom(hb);
+
+        bp.setBottom(buttonBar);
         bp.setCenter(p);
     }
 

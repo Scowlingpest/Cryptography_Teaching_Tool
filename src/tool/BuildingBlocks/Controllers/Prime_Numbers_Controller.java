@@ -8,7 +8,7 @@ import tool.Models.Prime_Num;
  * Student Number: 0900772r
  * Creation: 13/10/2015.
  */
-public class PrimeNumbersController extends BuildingBlockController {
+public class Prime_Numbers_Controller extends BuildingBlockController {
 
     final static String[] tooltip = {"Think this is a prime number? Click and find out",
             "Well done! This is a prime as \n it can only be divided by itself \n and 1!",
@@ -28,7 +28,7 @@ public class PrimeNumbersController extends BuildingBlockController {
 
     final static int TextWidth = 250;
 
-    public PrimeNumbersController() {
+    public Prime_Numbers_Controller() {
     }
 
     final static Prime_Num[] primes = setUpPrimes();
