@@ -46,8 +46,7 @@ public class Prime_Numbers {
             for (int j = 0; j < 5; j++) {
 
                 Box temp = new Box(Prime_Numbers_Controller.getPrime(k));
-                temp.drawBox(0, 0,
-                        Prime_Numbers_Controller.getTooltip());
+                temp.drawBox(Prime_Numbers_Controller.getTooltip());
                 temp.setUpForPrime();
                 gridPane.add(temp.getSp(),j,i);
 

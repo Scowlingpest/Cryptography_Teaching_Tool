@@ -28,16 +28,31 @@ public class Box {
         sp = new StackPane();
     }
 
-    public void drawBox(int x, int y, String[] tool){
-        box = new Rectangle(x,y,90,90);
+    public Box(String s){
+        number = new Text(s);
+        number.setStyle("-fx-font-size:32");
+        prime=false;
+        sp = new StackPane();
+    }
+
+    public void drawBox(String[] tool){
+        drawBox(tool,90,90);
+
+    }
+
+    public void drawBox(String[] tool,int height,int width){
+        box = new Rectangle(0,0,width,height);
         box.getStyleClass().add("box-base");
-        
+
         tip = new toolTipSpecial(tool);
 
         this.number.setBoundsType(TextBoundsType.VISUAL);
         sp.getChildren().addAll(this.box,this.number);
         Tooltip.install(sp,tip.getTooltip());
+    }
 
+    public void boxColor(String s){
+        this.box.getStyleClass().add(s);
     }
 
     public void setUpForPrime(){

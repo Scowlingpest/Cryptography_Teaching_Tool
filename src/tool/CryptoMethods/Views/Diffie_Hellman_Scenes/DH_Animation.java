@@ -93,10 +93,10 @@ public class DH_Animation {
         textChange.setOnFinished(event -> {
             p.setText(String.valueOf(DH_Controller.getP()));
             q.setText(String.valueOf(DH_Controller.getQ()));
-            DH_Controller.addToTable("P", DH_Controller.getP(), encryptDetails, DH_Controller.getDataE());
-            DH_Controller.addToTable("Q", DH_Controller.getQ(), encryptDetails, DH_Controller.getDataE());
-            DH_Controller.addToTable("P", DH_Controller.getP(), decryptDetails, DH_Controller.getDataD());
-            DH_Controller.addToTable("Q", DH_Controller.getQ(), decryptDetails, DH_Controller.getDataD());
+            DH_Controller.addToTable("P", DH_Controller.getP(), DH_Controller.getDataE());
+            DH_Controller.addToTable("Q", DH_Controller.getQ(), DH_Controller.getDataE());
+            DH_Controller.addToTable("P", DH_Controller.getP(), DH_Controller.getDataD());
+            DH_Controller.addToTable("Q", DH_Controller.getQ(), DH_Controller.getDataD());
         });
         ParallelTransition finished = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeInto(p), AnimationMethods.fadeInto(q)
@@ -149,8 +149,8 @@ public class DH_Animation {
             texts[0].setText(String.valueOf(DH_Controller.geta()));
             texts[1].setText(String.valueOf(DH_Controller.getb()));
 
-            DH_Controller.addToTable("b", DH_Controller.getb(), encryptDetails, DH_Controller.getDataE());
-            DH_Controller.addToTable("a", DH_Controller.geta(), decryptDetails, DH_Controller.getDataD());
+            DH_Controller.addToTable("b", DH_Controller.getb(), DH_Controller.getDataE());
+            DH_Controller.addToTable("a", DH_Controller.geta(), DH_Controller.getDataD());
         });
         ParallelTransition numbersAppear = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeInto(texts[0]), AnimationMethods.fadeInto(texts[1])
@@ -186,8 +186,8 @@ public class DH_Animation {
         equationChange.setOnFinished(event -> {
             texts[0].setText(DH_Controller.getEqANo());
             texts[1].setText(DH_Controller.getEqBNo());
-            DH_Controller.addToTable("B", DH_Controller.getB(), encryptDetails, DH_Controller.getDataE());
-            DH_Controller.addToTable("A", DH_Controller.getA(), decryptDetails, DH_Controller.getDataD());
+            DH_Controller.addToTable("B", DH_Controller.getB(), DH_Controller.getDataE());
+            DH_Controller.addToTable("A", DH_Controller.getA(), DH_Controller.getDataD());
         });
         ParallelTransition equationAppear = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeInto(texts[0]), AnimationMethods.fadeInto(texts[1])
@@ -225,8 +225,8 @@ public class DH_Animation {
                 AnimationMethods.fadeAway(texts[0]), AnimationMethods.fadeAway(texts[1])
         });
         fadeAB.setOnFinished(event -> {
-            DH_Controller.addToTable("B", DH_Controller.getB(), decryptDetails, DH_Controller.getDataD());
-            DH_Controller.addToTable("A", DH_Controller.getA(), encryptDetails, DH_Controller.getDataE());
+            DH_Controller.addToTable("B", DH_Controller.getB(), DH_Controller.getDataD());
+            DH_Controller.addToTable("A", DH_Controller.getA(), DH_Controller.getDataE());
         });
         ParallelTransition appearAB = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeInto(texts[0]), AnimationMethods.fadeInto(texts[1])
@@ -301,8 +301,8 @@ public class DH_Animation {
             texts[1].setX(0);
 
 
-            DH_Controller.addToTable("K", DH_Controller.getKa(), decryptDetails, DH_Controller.getDataD());
-            DH_Controller.addToTable("K", DH_Controller.getKb(), encryptDetails, DH_Controller.getDataE());
+            DH_Controller.addToTable("K", DH_Controller.getKa(), DH_Controller.getDataD());
+            DH_Controller.addToTable("K", DH_Controller.getKb(), DH_Controller.getDataE());
         });
 
         ParallelTransition appearNo = AnimationMethods.createParallel(new Transition[]{

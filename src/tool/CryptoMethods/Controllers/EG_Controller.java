@@ -21,7 +21,7 @@ public class EG_Controller extends CryptoMethodsController {
     static HashMap<Integer,Integer[]> generators = setupMap();
 
     private static HashMap<Integer,Integer[]> setupMap(){
-        HashMap<Integer,Integer[]> primes = new HashMap<Integer,Integer[]>();
+        HashMap<Integer,Integer[]> primes = new HashMap<>();
         primes.put(7,new Integer[]{3,5});
         primes.put(9,new Integer[]{2,5});
         primes.put(11,new Integer[]{2,7});
@@ -125,16 +125,16 @@ public class EG_Controller extends CryptoMethodsController {
 
     private static double findInverse(){
         double d;
-        int i=1;
+
         double c =EG_Controller.getKa();
         double p =EG_Controller.getP();
-        do{
+        for(int i=1;i<p;i++){
             d= (c*i)%p;
             if (d==1){
                 return i;
             }
             i++;
-        }while(d!=1);
+        }
         return 0;
     }
     //getters for everything above, setters for non-final values

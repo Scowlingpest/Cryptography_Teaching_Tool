@@ -21,7 +21,7 @@ public class DH_Controller extends CryptoMethodsController {
     static HashMap<Integer,Integer[]> generators = setupMap();
 
     private static HashMap<Integer,Integer[]> setupMap(){
-        HashMap<Integer,Integer[]> primes = new HashMap<Integer,Integer[]>();
+        HashMap<Integer,Integer[]> primes = new HashMap<>();
         primes.put(7,new Integer[]{3,5});
         primes.put(9,new Integer[]{2,5});
         primes.put(11,new Integer[]{2,7});

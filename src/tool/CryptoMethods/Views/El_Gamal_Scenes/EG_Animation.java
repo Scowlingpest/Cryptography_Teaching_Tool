@@ -104,10 +104,10 @@ public class EG_Animation {
         textChange.setOnFinished(event -> {
             p.setText(String.valueOf(EG_Controller.getP()));
             q.setText(String.valueOf(EG_Controller.getQ()));
-            EG_Controller.addToTable("P", EG_Controller.getP(), encryptDetails, EG_Controller.getDataE());
-            EG_Controller.addToTable("Q", EG_Controller.getQ(), encryptDetails, EG_Controller.getDataE());
-            EG_Controller.addToTable("P", EG_Controller.getP(), decryptDetails, EG_Controller.getDataD());
-            EG_Controller.addToTable("Q", EG_Controller.getQ(), decryptDetails, EG_Controller.getDataD());
+            EG_Controller.addToTable("P", EG_Controller.getP(), EG_Controller.getDataE());
+            EG_Controller.addToTable("Q", EG_Controller.getQ(), EG_Controller.getDataE());
+            EG_Controller.addToTable("P", EG_Controller.getP(), EG_Controller.getDataD());
+            EG_Controller.addToTable("Q", EG_Controller.getQ(), EG_Controller.getDataD());
         });
         ParallelTransition finished = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeInto(p), AnimationMethods.fadeInto(q)
@@ -161,8 +161,8 @@ public class EG_Animation {
             texts[0].setText(String.valueOf(EG_Controller.geta()));
             texts[1].setText(String.valueOf(EG_Controller.getb()));
 
-            EG_Controller.addToTable("b", EG_Controller.getb(), encryptDetails, EG_Controller.getDataE());
-            EG_Controller.addToTable("a", EG_Controller.geta(), decryptDetails, EG_Controller.getDataD());
+            EG_Controller.addToTable("b", EG_Controller.getb(), EG_Controller.getDataE());
+            EG_Controller.addToTable("a", EG_Controller.geta(), EG_Controller.getDataD());
         });
         ParallelTransition numbersAppear = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeInto(texts[0]), AnimationMethods.fadeInto(texts[1])
@@ -198,8 +198,8 @@ public class EG_Animation {
         equationChange.setOnFinished(event -> {
             texts[0].setText(EG_Controller.getEqANo());
             texts[1].setText(EG_Controller.getEqBNo());
-            EG_Controller.addToTable("B", EG_Controller.getB(), encryptDetails, EG_Controller.getDataE());
-            EG_Controller.addToTable("A", EG_Controller.getA(), decryptDetails, EG_Controller.getDataD());
+            EG_Controller.addToTable("B", EG_Controller.getB(), EG_Controller.getDataE());
+            EG_Controller.addToTable("A", EG_Controller.getA(), EG_Controller.getDataD());
         });
         ParallelTransition equationAppear = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeInto(texts[0]), AnimationMethods.fadeInto(texts[1])
@@ -238,8 +238,8 @@ public class EG_Animation {
         });
 
         fadeAB.setOnFinished(event -> {
-            EG_Controller.addToTable("B", EG_Controller.getB(), decryptDetails, EG_Controller.getDataD());
-            EG_Controller.addToTable("A", EG_Controller.getA(), encryptDetails, EG_Controller.getDataE());
+            EG_Controller.addToTable("B", EG_Controller.getB(), EG_Controller.getDataD());
+            EG_Controller.addToTable("A", EG_Controller.getA(), EG_Controller.getDataE());
         });
 
         ParallelTransition appearAB = AnimationMethods.createParallel(new Transition[]{
@@ -315,8 +315,8 @@ public class EG_Animation {
             texts[1].setX(0);
 
 
-            EG_Controller.addToTable("K", EG_Controller.getKa(), encryptDetails, EG_Controller.getDataE());
-            EG_Controller.addToTable("K", EG_Controller.getKb(), decryptDetails, EG_Controller.getDataD());
+            EG_Controller.addToTable("K", EG_Controller.getKa(), EG_Controller.getDataE());
+            EG_Controller.addToTable("K", EG_Controller.getKb(), EG_Controller.getDataD());
         });
 
         ParallelTransition appearNo = AnimationMethods.createParallel(new Transition[]{
@@ -333,7 +333,7 @@ public class EG_Animation {
         });
         removeKs.setOnFinished(event->{
             texts[1].setText("m=3");
-            EG_Controller.addToTable("M", EG_Controller.getM(),encryptDetails,EG_Controller.getDataE());
+            EG_Controller.addToTable("M", EG_Controller.getM(),EG_Controller.getDataE());
             Tooltip.install(texts[1],new Tooltip(EG_Controller.getmTooltip()));
             Tooltip.install(texts[0],null);
 
@@ -352,16 +352,14 @@ public class EG_Animation {
         });
         FadeTransition cEqAppear = AnimationMethods.fadeInto(texts[1]);
         FadeTransition cEqDisappear = AnimationMethods.fadeAway(texts[1]);
-        cEqDisappear.setOnFinished(event->{
-            texts[1].setText(EG_Controller.getEqCNo());
-        });
+        cEqDisappear.setOnFinished(event-> texts[1].setText(EG_Controller.getEqCNo()));
 
         FadeTransition numEqAppear = AnimationMethods.fadeInto(texts[1]);
         FadeTransition numEqDisappear = AnimationMethods.fadeAway(texts[1]);
         numEqDisappear.setOnFinished(event->{
             texts[1].setText("C = "+EG_Controller.getC());
             Tooltip.install(texts[1],new Tooltip(EG_Controller.getcTooltip()));
-            EG_Controller.addToTable("C", EG_Controller.getC(), encryptDetails, EG_Controller.getDataE());
+            EG_Controller.addToTable("C", EG_Controller.getC(), EG_Controller.getDataE());
             texts[1].setX(-25);
 
         });
@@ -382,13 +380,13 @@ public class EG_Animation {
         //send C across to the other person
         TranslateTransition sendC = AnimationMethods.moveNode(texts[1],-725,0,5);
         sendC.setOnFinished(event->{
-            EG_Controller.addToTable("C", EG_Controller.getC(), decryptDetails, EG_Controller.getDataD());
+            EG_Controller.addToTable("C", EG_Controller.getC(), EG_Controller.getDataD());
         });
         FadeTransition fadeC = AnimationMethods.fadeAway(texts[1]);
         fadeC.setOnFinished(event -> {
             texts[1].setText("Inv ="+EG_Controller.getInv());
             Tooltip.install(texts[1],new Tooltip(EG_Controller.getInvTooltip()));
-            EG_Controller.addToTable("Inv",EG_Controller.getInv(),decryptDetails,EG_Controller.getDataD());
+            EG_Controller.addToTable("Inv",EG_Controller.getInv(),EG_Controller.getDataD());
 
         });
 
@@ -396,10 +394,7 @@ public class EG_Animation {
         FadeTransition evilAppear = AnimationMethods.fadeInto(evilC);
         TranslateTransition evilMove = AnimationMethods.moveNode(evilC, 0, 200, 5);
         FadeTransition evilDisappear = AnimationMethods.fadeAway(evilC);
-        evilDisappear.setOnFinished(event -> {
-            p.getChildren().remove(evilC);
-
-        });
+        evilDisappear.setOnFinished(event -> p.getChildren().remove(evilC));
 
         //display inv and make it disappear
         FadeTransition invAppear = AnimationMethods.fadeInto(texts[1]);
@@ -409,10 +404,7 @@ public class EG_Animation {
 
         //change bubble to start decryption bit
         AnimationMethods.changeBubble(st,bubble,EG_Controller.getDecryptMessage());
-        invFade.setOnFinished(event->{
-            texts[1].setText(EG_Controller.getEqD());
-
-        });
+        invFade.setOnFinished(event-> texts[1].setText(EG_Controller.getEqD()));
 
         //make the equation of D appear
         FadeTransition eqAppear = AnimationMethods.fadeInto(texts[1]);
@@ -427,7 +419,7 @@ public class EG_Animation {
         numEqFade.setOnFinished(event->{
             texts[1].setText("M ="+EG_Controller.getD());
             Tooltip.install(texts[1],new Tooltip(EG_Controller.getdTooltip()));
-            EG_Controller.addToTable("M",EG_Controller.getD(),decryptDetails,EG_Controller.getDataD());
+            EG_Controller.addToTable("M",EG_Controller.getD(),EG_Controller.getDataD());
         });
 
         //make the decrypted message appear and tell people it's finished

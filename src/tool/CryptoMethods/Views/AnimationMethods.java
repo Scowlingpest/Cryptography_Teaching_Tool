@@ -53,11 +53,11 @@ public class AnimationMethods {
     }
 
     public static Text textSetup(String text, int x, int y, String tool){
-        return textSmallSetup(text,x,y,tool,"text-animate");
+        return textSmallSetup(text,x,y,tool,"text-title");
     }
 
     public static Text equationSetup(String text, int x, int y, String tool){
-        return textSmallSetup(text,x,y,tool,"text-title");
+        return textSmallSetup(text,x,y,tool,"text-animate");
     }
     public static Text textSmallSetup(String text,int x,int y,String tool, String size){
         Text t = new Text(text);

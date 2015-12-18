@@ -113,6 +113,10 @@
     -fx-fill:LIGHTPINK;
 }
 
+.box-robot-neither{
+    -fx-stroke:#c7afc7;
+}
+
 .radio-button .radio {
     -fx-border-width: 3px;
     -fx-border-color: #000;

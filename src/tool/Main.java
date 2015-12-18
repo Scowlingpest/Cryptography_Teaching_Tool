@@ -12,6 +12,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import tool.BuildingBlocks.Views.*;
+import tool.CryptoMethods.Views.AES;
 import tool.CryptoMethods.Views.Diffie_Hellman;
 import tool.CryptoMethods.Views.El_Gamal;
 import tool.CryptoMethods.Views.RSA;
@@ -163,8 +164,14 @@ public class Main extends Application {
             clearBorderPane(root);
             El_Gamal.start(root);
         });
+        MenuItem aes = new MenuItem("AES");
+        aes.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
+        aes.setOnAction(e -> {
+            clearBorderPane(root);
+            AES.start(root);
+        });
 
-        methods.getItems().addAll(rsa,dh,eg);
+        methods.getItems().addAll(rsa,dh,eg,aes);
     }
 
     public static void main(String[] args) {

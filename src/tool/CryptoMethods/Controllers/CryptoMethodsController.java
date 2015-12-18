@@ -1,7 +1,6 @@
 package tool.CryptoMethods.Controllers;
 
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableView;
 import tool.Graphics.Robot;
 import tool.Models.DataRow;
 import tool.Models.Header;
@@ -27,19 +26,7 @@ public class CryptoMethodsController {
         return decrypt;
     }
 
-    public static final String bbUsed = "Building Blocks Used:";
-
-    public static final String primeNumber = "Prime Numbers";
-
-    public static String getBbUsed() {
-        return bbUsed;
-    }
-
-    public static String getPrimeNumber() {
-        return primeNumber;
-    }
-
-    public static void addToTable(String n,double v,TableView tableView,ObservableList<DataRow> data){
+    public static void addToTable(String n,double v,ObservableList<DataRow> data){
         data.add(new DataRow(n,String.valueOf(v)));
 
     }
