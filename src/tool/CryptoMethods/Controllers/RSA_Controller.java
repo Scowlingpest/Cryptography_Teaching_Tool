@@ -1,8 +1,5 @@
 package tool.CryptoMethods.Controllers;
 
-import tool.Models.Header;
-import tool.Models.Paragraph;
-
 /**
  * Author : Phillipa Russell
  * Created: 31/10/2015
@@ -387,10 +384,10 @@ public class RSA_Controller extends CryptoMethodsController {
         return tooltipStep4decrypt;
     }
 
-    private static final String[] step1Used = new String[]{"Prime Numbers","Keys"};
-    private static final String[] step2Used = new String[]{"Prime Numbers","Keys","Encryption & Decryption"};
-    private static final String[] step3Used = new String[]{"Prime Numbers","Keys","Encryption & Decryption"};
-    private static final String[] step4Used = new String[]{"Prime Numbers","Keys","Encryption & Decryption"};
+    private static final String[] step1Used = new String[]{"Prime Numbers"};
+    private static final String[] step2Used = new String[]{"Prime Numbers","Encryption & Decryption"};
+    private static final String[] step3Used = new String[]{"Prime Numbers","Encryption & Decryption"};
+    private static final String[] step4Used = new String[]{"Prime Numbers","Encryption & Decryption"};
 
     public static String[] getStep1Used() {
         return step1Used;

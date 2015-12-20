@@ -34,6 +34,7 @@ public class AnimationMethods {
         r.getView().setLayoutY(y);
         r.setImageWidth(135);
 
+
         p.getChildren().add(r.getView());
     }
 
@@ -138,6 +139,5 @@ public class AnimationMethods {
         FadeTransition bubbleAppear =AnimationMethods.fadeInto(bubble.getSp(),3);
         st.getChildren().addAll(bubbleChange,bubbleAppear);
     }
-
 
 }

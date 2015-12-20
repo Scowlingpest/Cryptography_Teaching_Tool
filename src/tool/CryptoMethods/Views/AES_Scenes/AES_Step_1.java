@@ -6,7 +6,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import tool.CryptoMethods.Controllers.AES_Controller;
-import tool.CryptoMethods.Controllers.RSA_Controller;
 import tool.CryptoMethods.Views.AnimationMethods;
 import tool.Graphics.Arrow;
 import tool.Graphics.Box;
@@ -20,20 +19,21 @@ import tool.Graphics.Speechbubble;
  */
 public class AES_Step_1 {
     static Speechbubble bubble;
-    static Robot encrypt;
+    static Robot encrypt = AES_Controller.getEncrypt();
 
     public static void createPane(Pane root){
-        encrypt = RSA_Controller.getEncrypt();
+        encrypt = AES_Controller.getEncrypt();
+
         //Pane root = new Pane();
         root.setPrefSize(1100,600);
         background(root);
 
-        AnimationMethods.placeRobots(encrypt,root,400,200);
-        encrypt.setImageWidth(200);
+        AnimationMethods.placeRobots(encrypt,root,50,50);
+        encrypt.setImageWidth(150);
 
-        bubble = new Speechbubble("tl", AES_Controller.getWelcome(),275);
-        bubble.getSp().setLayoutX(550);
-        bubble.getSp().setLayoutY(300);
+        bubble = new Speechbubble("tl", AES_Controller.getStep_1_welcome(),275);
+        bubble.getSp().setLayoutX(175);
+        bubble.getSp().setLayoutY(125);
 
         root.getChildren().add(bubble.getSp());
         root.setPadding(new Insets(0,100,0,100));
@@ -65,11 +65,10 @@ public class AES_Step_1 {
 
     }
 
+    //moves the robot and the speechbubble into the top corner, and makes the robot smaller
     private static void moveRobot(SequentialTransition st){
-        FadeTransition fadeBubble = AnimationMethods.fadeAway(bubble.getSp());
-        fadeBubble.setOnFinished(event->{
-            bubble.setSpeech(AES_Controller.getDetail());
-        });
+       /*FadeTransition fadeBubble = AnimationMethods.fadeAway(bubble.getSp());
+        fadeBubble.setOnFinished(event-> bubble.setSpeech(AES_Controller.getStep_1_detail()));
 
         TranslateTransition moveEncrypt = AnimationMethods.moveNode(encrypt.getView(),-375,-200,4);
         TranslateTransition moveBubble  = AnimationMethods.moveNode(bubble.getSp(),-375,-175,1);
@@ -83,11 +82,14 @@ public class AES_Step_1 {
 
         st.getChildren().addAll(fadeBubble,pt1,moveBubble,appearDetail,
                 AnimationMethods.pauseSeconds(5));
-
+       */
+        AnimationMethods.changeBubble(st, bubble, AES_Controller.getStep_1_detail());
+        st.getChildren().add(AnimationMethods.pauseSeconds(10));
     }
 
+    //animates the key sizes appearance and moving
     private static Box[] aesSizes(SequentialTransition st, Pane p){
-        AnimationMethods.changeBubble(st,bubble,AES_Controller.getSizes());
+        AnimationMethods.changeBubble(st,bubble,AES_Controller.getStep_1_sizes());
 
         Box size128 = new Box("128");
         Box size192 = new Box("192");
@@ -125,9 +127,9 @@ public class AES_Step_1 {
 
         return new Box[]{size128,size192,size256};
 
-
     }
 
+    //animates the rounds, 1,2,...,final in rows
     private static Box[] aesRounds(SequentialTransition st, Pane p,Box[] boxes){
         Text[] ones = roundAdd(st,p,boxes,220,"1");
         Text[] twos = roundAdd(st,p,boxes,275,"2");
@@ -144,7 +146,7 @@ public class AES_Step_1 {
         AnimationMethods.changeBubble(st,bubble,AES_Controller.getKeys());
 
         boxes = new Box[]{boxes[0],boxes[1],boxes[2],new Box("Key")};
-        boxes[3].drawBox(new String[]{"This is the key we input to the key scheduler","",""});
+        boxes[3].drawBox("This is the key we input to the key scheduler",90,90);
         boxes[3].getSp().setLayoutX(200);boxes[3].getSp().setLayoutY(400);
         boxes[3].getSp().setOpacity(0);
 
@@ -186,15 +188,14 @@ public class AES_Step_1 {
                 AnimationMethods.fadeAway(text[1]),
                 AnimationMethods.fadeAway(text[2])
         });
-        pt.setOnFinished(event->{
-            p.getChildren().removeAll(text[0],text[1],text[2]);
-        });
+        pt.setOnFinished(event-> p.getChildren().removeAll(text[0],text[1],text[2]));
         st.getChildren().add(pt);
     }
 
+    //makes the key to schedule to new key equation again
     private static void keySchedule(SequentialTransition st,Pane p, Box[] boxes){
         Box rijndael =new Box("Rijndael key scheduler");
-        rijndael.drawBox(new String[]{"This is the key scheduler","",""},90,360);
+        rijndael.drawBox("This is the key scheduler",90,360);
         rijndael.getSp().setLayoutX(400);rijndael.getSp().setLayoutY(400);
         rijndael.getSp().setOpacity(0); rijndael.boxColor("box-robot-neither");
 
@@ -238,15 +239,14 @@ public class AES_Step_1 {
                 AnimationMethods.fadeAway(rijndael.getSp()),
                 AnimationMethods.fadeAway(result.getSp())
         });
-        fadeEverything.setOnFinished(event->{
-            p.getChildren().removeAll(boxes[0].getSp(),boxes[1].getSp(),boxes[2].getSp(),
-                    boxes[3].getSp(),rijndael.getSp(),result.getSp(),arrowFrom.getC(),arrowGo.getC());
-        });
+        fadeEverything.setOnFinished(event-> p.getChildren().removeAll(boxes[0].getSp(),boxes[1].getSp(),boxes[2].getSp(),
+                boxes[3].getSp(),rijndael.getSp(),result.getSp(),arrowFrom.getC(),arrowGo.getC()));
 
         st.getChildren().add(fadeEverything);
 
     }
 
+    //used in keySchedule, makes the options appear as part of the equation
     private static void numberRounds(SequentialTransition st, Pane p){
         String[] number = new String[]{"128","192","256",""};
         String[] rounds = new String[]{"x 10","x 12","x 14",""};
@@ -276,12 +276,11 @@ public class AES_Step_1 {
             st.getChildren().addAll(fadeIn,AnimationMethods.pauseSeconds(3),fadeAway);
         }
         FadeTransition pause = AnimationMethods.fadeAway(keySize);
-        pause.setOnFinished(event->{
-            p.getChildren().removeAll(keySize,start,end);
-        });
+        pause.setOnFinished(event-> p.getChildren().removeAll(keySize,start,end));
         st.getChildren().add(pause);
     }
 
+    //makes the round stages appear with tooltips, also makes mix column disappear and the others fill the space
     private static void roundDetail(SequentialTransition st, Pane p){
         AnimationMethods.changeBubble(st,bubble,AES_Controller.getStages());
 
@@ -300,7 +299,7 @@ public class AES_Step_1 {
         int y = 275;
         for (int i =0;i<4;i++){
             boxes[i]=new Box(stages[i]);
-            boxes[i].drawBox(new String[]{tooltips[i],null,null},150,150);
+            boxes[i].drawBox(tooltips[i],150,150);
             boxes[i].getSp().setLayoutX(x+(i*175));boxes[i].getSp().setLayoutY(y);
             boxes[i].getSp().setOpacity(0);
             p.getChildren().add(boxes[i].getSp());

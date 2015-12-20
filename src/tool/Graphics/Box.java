@@ -16,21 +16,21 @@ import tool.Models.Prime_Num;
 public class Box {
 
     private Rectangle box;
-    private Text number;
+    private Text text;
     private Boolean prime;
     private StackPane sp;
     private toolTipSpecial tip;
 
     public Box(Prime_Num n){
-        number = new Text(n.getNumber());
-        number.setStyle("-fx-font-size:32");
+        text = new Text(n.getNumber());
+        text.setStyle("-fx-font-size:32");
         prime=n.getPrime();
         sp = new StackPane();
     }
 
     public Box(String s){
-        number = new Text(s);
-        number.setStyle("-fx-font-size:32");
+        text = new Text(s);
+        text.setStyle("-fx-font-size:32");
         prime=false;
         sp = new StackPane();
     }
@@ -40,14 +40,18 @@ public class Box {
 
     }
 
+    public void drawBox(String tool,int height,int width){
+        drawBox(new String[]{tool,null,null},height,width);
+    }
+
     public void drawBox(String[] tool,int height,int width){
         box = new Rectangle(0,0,width,height);
         box.getStyleClass().add("box-base");
 
         tip = new toolTipSpecial(tool);
 
-        this.number.setBoundsType(TextBoundsType.VISUAL);
-        sp.getChildren().addAll(this.box,this.number);
+        this.text.setBoundsType(TextBoundsType.VISUAL);
+        sp.getChildren().addAll(this.box,this.text);
         Tooltip.install(sp,tip.getTooltip());
     }
 
@@ -71,5 +75,13 @@ public class Box {
 
     public StackPane getSp() {
         return sp;
+    }
+
+    public void changeText(String s){
+        this.text.setText(s);
+    }
+
+    public Text getTextFromSp(){
+        return (Text) this.sp.getChildren().get(1);
     }
 }

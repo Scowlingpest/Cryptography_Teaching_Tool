@@ -59,10 +59,7 @@ public class Speechbubble {
 
 
     public void setSpeech(String speech) {
-        this.speech = new Text(speech);
-        speechSettings();
-        sp.getChildren().remove(1);
-        sp.getChildren().add(this.speech);
+        this.speech.setText(speech);
         sp.setOpacity(0);
     }
 

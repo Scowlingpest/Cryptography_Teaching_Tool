@@ -21,6 +21,7 @@ public class RSA {
     static Duration paused=Duration.seconds(0);
     static Pane p = new Pane();
     static SequentialTransition st =new SequentialTransition();
+    static int step=0;
 
     public static void start(BorderPane bp){
 
@@ -38,6 +39,9 @@ public class RSA {
 
         Button play = new Button("Play");
         play.setOnAction((javafx.event.ActionEvent event) -> {
+            if(paused==Duration.seconds(0)){
+                setupPane(step,bp);
+            }
             st.playFrom(paused);
             st.setRate(1);
             AnimationMethods.changeSpeedButton(currentSpeed, st.getRate());
@@ -53,14 +57,8 @@ public class RSA {
         //step buttons, repetitive but essential
         Button first = new Button("Step 1");
         first.setOnAction((javafx.event.ActionEvent event) -> {
-            //clear screen of old animation
-            p.getChildren().clear();
-            st.getChildren().clear();
-
-            //draw new stuff
-            RSA_Step_1.createPane(p);
-            st =RSA_Step_1.createTimeLine(p);
-
+            setupPane(1,bp);
+            step=1;
             //set time to 0 and get used building blocks for the step
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(RSA_Controller.getStep1Used(),bbUsed);
@@ -69,30 +67,24 @@ public class RSA {
 
         Button second = new Button("Step 2");
         second.setOnAction((javafx.event.ActionEvent event) -> {
-            p.getChildren().clear();
-            st.getChildren().clear();
-            RSA_Step_2.createPane(p);
-            st =RSA_Step_2.createTimeLine(p);
+            setupPane(2, bp);
+            step=2;
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(RSA_Controller.getStep2Used(),bbUsed);
         });
 
         Button third = new Button("Step 3");
         third.setOnAction((javafx.event.ActionEvent event) -> {
-            p.getChildren().clear();
-            st.getChildren().clear();
-            RSA_Step_3.createPane(p);
-            st =RSA_Step_3.createTimeLine(p);
+            setupPane(3, bp);
+            step=3;
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(RSA_Controller.getStep3Used(),bbUsed);
         });
 
         Button fourth = new Button("Step 4");
         fourth.setOnAction((javafx.event.ActionEvent event) -> {
-            p.getChildren().clear();
-            st.getChildren().clear();
-            RSA_Step_4.createPane(p);
-            st =RSA_Step_4.createTimeLine(p);
+            setupPane(4, bp);
+            step=4;
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(RSA_Controller.getStep4Used(),bbUsed);
         });
@@ -125,6 +117,32 @@ public class RSA {
 
         bp.setBottom(buttonBar);
         bp.setCenter(p);
+    }
+
+    private static void setupPane(int i,BorderPane bp){
+        st.stop();
+        p.getChildren().clear();
+        st.getChildren().clear();
+        switch (i){
+            case 1:
+                RSA_Step_1.createPane(p);
+                st=RSA_Step_1.createTimeLine(p);
+                break;
+            case 2:
+                RSA_Step_2.createPane(p);
+                st=RSA_Step_2.createTimeLine(p);
+                break;
+            case 3:
+                RSA_Step_3.createPane(p);
+                st=RSA_Step_3.createTimeLine(p);
+                break;
+            case 4:
+                RSA_Step_4.createPane(p);
+                st=RSA_Step_4.createTimeLine(p);
+                break;
+        }
+        bp.setCenter(p);
+
     }
 
 

@@ -41,6 +41,10 @@ public class El_Gamal {
                 buttonStep(2);
                 EG_Step.clearCombos(p);
             }
+            else if (paused==Duration.seconds(0)){
+                st.stop();
+                buttonStep(step);
+            }
             st.playFrom(paused);
             st.setRate(1);
             AnimationMethods.changeSpeedButton(currentSpeed, st.getRate());
@@ -94,7 +98,9 @@ public class El_Gamal {
         step=i;
         p.getChildren().clear();
         st.getChildren().clear();
+
         EG_Step.createPane(p);
+
         st = EG_Step.createTimeLine(p,step);
         paused=Duration.seconds(0);
     }

@@ -12,6 +12,7 @@ public class Paper {
     Image imageA;
     Image imageEncrypt;
     Image imageDecrypt;
+    Image imageSingle;
     ImageView view = new ImageView();
     toolTipSpecial ttS;
 
@@ -19,6 +20,7 @@ public class Paper {
         this.imageA=new Image("tool/Files/Images/paper.png");
         this.imageEncrypt = new Image("tool/Files/Images/encryptedPaper.png");
         this.imageDecrypt = new Image("tool/Files/Images/decryptedPaper.png");
+        this.imageSingle  = new Image("tool/Files/Images/paper_sheet.png");
 
         this.ttS=new toolTipSpecial(new String[]{"Message before encryption","Message after Encryption","Message once it's been decrypted"});
         Tooltip.install(this.view,this.ttS.getTooltip());
@@ -34,6 +36,9 @@ public class Paper {
             case "decrypt":
                 changeToDecrypt();
                 break;
+            case "single":
+                changeToSingle();
+                break;
             default:
                 changeToBase();
                 break;
@@ -42,8 +47,8 @@ public class Paper {
         view.setSmooth(true);
         view.setCache(true);
         view.setFitWidth(size);
-        view.setX(x);
-        view.setY(y);
+        view.setLayoutX(x);
+        view.setLayoutY(y);
         view.setOpacity(0);
     }
 
@@ -61,9 +66,14 @@ public class Paper {
         this.ttS.useTextB();
     }
 
+    public void changeToSingle(){
+        this.view.setImage(this.imageSingle);
+        Tooltip.install(this.view,new Tooltip("A message block of 128 bits"));
+    }
     public void changeToBase(){
         this.view.setImage(this.imageA);
         this.ttS.useBaseText();
     }
+
 
 }

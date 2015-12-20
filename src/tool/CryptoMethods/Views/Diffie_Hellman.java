@@ -42,6 +42,11 @@ public class Diffie_Hellman {
                 buttonStep(2);
                 DH_Step.clearCombos(p);
             }
+            else if (paused==Duration.seconds(0)){
+                st.stop();
+                buttonStep(step);
+            }
+
             st.playFrom(paused);
             st.setRate(1);
             AnimationMethods.changeSpeedButton(currentSpeed, st.getRate());
@@ -95,7 +100,10 @@ public class Diffie_Hellman {
         step=i;
         p.getChildren().clear();
         st.getChildren().clear();
+
         DH_Step.createPane(p);
+
+
         st = DH_Step.createTimeLine(p,step);
         paused=Duration.seconds(0);
     }

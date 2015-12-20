@@ -7,11 +7,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import tool.CryptoMethods.Controllers.RSA_Controller;
+import tool.CryptoMethods.Controllers.AES_Controller;
 import tool.CryptoMethods.Views.AES_Scenes.AES_Step_1;
-import tool.CryptoMethods.Views.RSA_Scenes.RSA_Step_2;
-import tool.CryptoMethods.Views.RSA_Scenes.RSA_Step_3;
-import tool.CryptoMethods.Views.RSA_Scenes.RSA_Step_4;
+import tool.CryptoMethods.Views.AES_Scenes.AES_Step_2;
+import tool.CryptoMethods.Views.AES_Scenes.AES_Step_3;
+import tool.CryptoMethods.Views.AES_Scenes.AES_Step_4;
 
 /**
  * Author: Phillipa Russell
@@ -23,6 +23,7 @@ public class AES {
     static Duration paused=Duration.seconds(0);
     static Pane p = new Pane();
     static SequentialTransition st =new SequentialTransition();
+    static int step=0;
 
     public static void start(BorderPane bp){
 
@@ -37,6 +38,9 @@ public class AES {
 
         Button play = new Button("Play");
         play.setOnAction((javafx.event.ActionEvent event) -> {
+            if(paused==Duration.seconds(0)){
+                setupPane(step,bp);
+            }
             st.playFrom(paused);
             st.setRate(1);
             AnimationMethods.changeSpeedButton(currentSpeed, st.getRate());
@@ -53,47 +57,39 @@ public class AES {
         Button first = new Button("Step 1");
         first.setOnAction((javafx.event.ActionEvent event) -> {
             //clear screen of old animation
-            p.getChildren().clear();
-            st.getChildren().clear();
-
-            //draw new stuff
-            AES_Step_1.createPane(p);
-            st =AES_Step_1.createTimeLine(p);
+           setupPane(1,bp);
 
             //set time to 0 and get used building blocks for the step
             paused=Duration.seconds(0);
-            AnimationMethods.buildingBlockButton(RSA_Controller.getStep1Used(),bbUsed);
+            AnimationMethods.buildingBlockButton(AES_Controller.getStep1Used(),bbUsed);
+            step=1;
         });
 
 
         Button second = new Button("Step 2");
         second.setOnAction((javafx.event.ActionEvent event) -> {
-            p.getChildren().clear();
-            st.getChildren().clear();
-            RSA_Step_2.createPane(p);
-            st =RSA_Step_2.createTimeLine(p);
+            setupPane(2,bp);
+
             paused=Duration.seconds(0);
-            AnimationMethods.buildingBlockButton(RSA_Controller.getStep2Used(),bbUsed);
+            AnimationMethods.buildingBlockButton(AES_Controller.getStep2Used(),bbUsed);
+            step=2;
         });
 
         Button third = new Button("Step 3");
         third.setOnAction((javafx.event.ActionEvent event) -> {
-            p.getChildren().clear();
-            st.getChildren().clear();
-            RSA_Step_3.createPane(p);
-            st =RSA_Step_3.createTimeLine(p);
+            setupPane(3,bp);
+
             paused=Duration.seconds(0);
-            AnimationMethods.buildingBlockButton(RSA_Controller.getStep3Used(),bbUsed);
+            AnimationMethods.buildingBlockButton(AES_Controller.getStep3Used(),bbUsed);
+            step=3;
         });
 
         Button fourth = new Button("Step 4");
         fourth.setOnAction((javafx.event.ActionEvent event) -> {
-            p.getChildren().clear();
-            st.getChildren().clear();
-            RSA_Step_4.createPane(p);
-            st =RSA_Step_4.createTimeLine(p);
+            setupPane(4,bp);
+            step=4;
             paused=Duration.seconds(0);
-            AnimationMethods.buildingBlockButton(RSA_Controller.getStep4Used(),bbUsed);
+            AnimationMethods.buildingBlockButton(AES_Controller.getStep4Used(),bbUsed);
         });
 
         Button speed1 = new Button("Play speed 1x");
@@ -123,8 +119,34 @@ public class AES {
 
 
         bp.setBottom(buttonBar);
-        bp.setCenter(p);
+
     }
+
+    private static void setupPane(int i,BorderPane bp){
+        st.stop();
+        p.getChildren().clear();
+        st.getChildren().clear();
+        switch (i){
+            case 1:
+                AES_Step_1.createPane(p);
+                st=AES_Step_1.createTimeLine(p);
+                break;
+            case 2:
+                AES_Step_2.createPane(p);
+                st=AES_Step_2.createTimeLine(p);
+                break;
+            case 3:
+                AES_Step_3.createPane(p);
+                st=AES_Step_3.createTimeLine(p);
+                break;
+            case 4:
+                AES_Step_4.createPane(p);
+                st=AES_Step_4.createTimeLine(p);
+        }
+        bp.setCenter(p);
+
+    }
+
 
 
 
