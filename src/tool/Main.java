@@ -125,6 +125,13 @@ public class Main extends Application {
             Vigenère_Cipher.start(root);
         });
 
+        MenuItem diffTrans = new MenuItem("Diffusion vs Transformation");
+        diffTrans.setAccelerator(KeyCombination.keyCombination("Ctrl+T"));
+        diffTrans.setOnAction(event->{
+            clearBorderPane(root);
+            Diffusion_vs_Transformation.start(root);
+        });
+
         MenuItem generator = new MenuItem("Generator");
         generator.setAccelerator(KeyCombination.keyCombination("Ctrl+G"));
         generator.setOnAction(event -> {
@@ -141,7 +148,7 @@ public class Main extends Application {
 
         Menu maths = new Menu("Mathematics");
         maths.getItems().addAll(primeNo,generator,invMod);
-        blocks.getItems().addAll(maths,asymmetricVsSymmetric,encryptDecrypt,streamBlock,vigenèreCipher);
+        blocks.getItems().addAll(maths,asymmetricVsSymmetric,encryptDecrypt,streamBlock,vigenèreCipher,diffTrans);
     }
 
     public void setUpCryptographyMenu(Menu methods, final BorderPane root){

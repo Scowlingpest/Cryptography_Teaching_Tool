@@ -384,10 +384,10 @@ public class RSA_Controller extends CryptoMethodsController {
         return tooltipStep4decrypt;
     }
 
-    private static final String[] step1Used = new String[]{"Prime Numbers"};
-    private static final String[] step2Used = new String[]{"Prime Numbers","Encryption & Decryption"};
-    private static final String[] step3Used = new String[]{"Prime Numbers","Encryption & Decryption"};
-    private static final String[] step4Used = new String[]{"Prime Numbers","Encryption & Decryption"};
+    private static final String[] step1Used = new String[]{"Prime Numbers","Diffusion vs Transformation","Stream vs Block","Asymmetric vs Symmetric"};
+    private static final String[] step2Used = new String[]{"Prime Numbers","Encryption & Decryption","Diffusion vs Transformation","Stream vs Block"};
+    private static final String[] step3Used = new String[]{"Prime Numbers","Encryption & Decryption","Diffusion vs Transformation"};
+    private static final String[] step4Used = new String[]{"Prime Numbers","Encryption & Decryption","Diffusion vs Transformation"};
 
     public static String[] getStep1Used() {
         return step1Used;

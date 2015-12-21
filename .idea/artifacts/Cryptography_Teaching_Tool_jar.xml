@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="Cryptography Teaching Tool:jar">
+  <artifact type="jar" build-on-make="true" name="Cryptography Teaching Tool:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Cryptography_Teaching_Tool_jar</output-path>
     <root id="archive" name="Cryptography Teaching Tool.jar">
       <element id="module-output" name="Cryptography Teaching Tool" />

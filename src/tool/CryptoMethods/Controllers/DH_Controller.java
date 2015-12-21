@@ -316,7 +316,7 @@ public class DH_Controller extends CryptoMethodsController {
         return KbTooltip;
     }
 
-    private static final String[] stepUsed = new String[]{"Prime Numbers","Generators"};
+    private static final String[] stepUsed = new String[]{"Prime Numbers","Generators","Asymmetric vs Symmetric","Encrypt vs Decrypt"};
 
     public static String[] getStepUsed() {
         return stepUsed;

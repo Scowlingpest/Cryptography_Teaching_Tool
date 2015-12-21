@@ -503,7 +503,7 @@ public class EG_Controller extends CryptoMethodsController {
         EG_Controller.decryptMessage = decryptMessage;
     }
 
-    private static final String[] stepUsed = new String[]{"Prime Numbers","Generators","Inverted Modulus"};
+    private static final String[] stepUsed = new String[]{"Prime Numbers","Generators","Inverted Modulus","Asymmetric vs Symmetric"};
 
     public static String[] getStepUsed() {
         return stepUsed;
