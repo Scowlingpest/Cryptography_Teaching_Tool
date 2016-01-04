@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import tool.CryptoMethods.Controllers.DH_Controller;
 import tool.CryptoMethods.Views.Diffie_Hellman_Scenes.DH_Step;
+import tool.Models.MonitoringMap;
 
 /**
  * Author: Phillipa Russell
@@ -22,15 +23,15 @@ public class Diffie_Hellman {
     static SequentialTransition st =new SequentialTransition();
     static int step =1;
 
-    public static void start(BorderPane bp){
+    public static void start(BorderPane bp,MonitoringMap monitor){
 
-        bottomControls(bp);
+        bottomControls(bp,monitor);
 
 
 
     }
 
-    public static void bottomControls(BorderPane bp){
+    public static void bottomControls(BorderPane bp,MonitoringMap monitor){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
         AnimationMethods.buildingBlockButton(DH_Controller.getStepUsed(),bbUsed);
         Button currentSpeed = new Button("Current speed:1");
@@ -59,11 +60,13 @@ public class Diffie_Hellman {
         });
         Button first = new Button("Step 1");
         first.setOnAction((javafx.event.ActionEvent event) -> {
+            monitor.incrementValue("DH1");
             buttonStep(1);
 
         });
         Button second = new Button("Step 2");
         second.setOnAction((javafx.event.ActionEvent event) -> {
+            monitor.incrementValue("DH2");
             buttonStep(2);
 
         });

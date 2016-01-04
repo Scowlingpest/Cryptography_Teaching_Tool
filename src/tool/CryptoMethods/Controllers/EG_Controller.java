@@ -133,7 +133,7 @@ public class EG_Controller extends CryptoMethodsController {
             if (d==1){
                 return i;
             }
-            i++;
+
         }
         return 0;
     }

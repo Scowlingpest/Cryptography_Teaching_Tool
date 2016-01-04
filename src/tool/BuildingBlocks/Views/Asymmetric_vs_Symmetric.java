@@ -10,7 +10,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import tool.BuildingBlocks.Controllers.Asymmetric_vs_Symmetric_Controller;
 import tool.Graphics.Robot;
@@ -51,7 +50,7 @@ public class Asymmetric_vs_Symmetric{
 
     public static StackPane setUpInformation(Robot robot, Paragraph text){
         StackPane sp =new StackPane();
-        backgroundSetup(600,275,sp,robot.getStyle());
+        Asymmetric_vs_Symmetric_Controller.backgroundSetup(600,275,sp,robot.getStyle());
 
         HBox hb = new HBox();
         hb.getChildren().add(robot.getView());
@@ -70,7 +69,7 @@ public class Asymmetric_vs_Symmetric{
         StackPane sp = new StackPane();
         VBox finished = new VBox();
         finished.getStyleClass().add("vbox");
-        backgroundSetup(500, 600, sp, "rectangle-neither");
+        Asymmetric_vs_Symmetric_Controller.backgroundSetup(500, 600, sp, "rectangle-neither");
 
         VBox vbEncrypt = new VBox();
         final ToggleGroup first=setUpVBox(Asymmetric_vs_Symmetric_Controller.getEncryptKey(),vbEncrypt);
@@ -111,16 +110,6 @@ public class Asymmetric_vs_Symmetric{
         vb.getChildren().remove(2);
         vb.getChildren().add(changeBottom(expected1.equals(expected2)));
 
-    }
-
-
-    public static void backgroundSetup(int width, int height, StackPane sp,String style){
-        Rectangle rectangle = new Rectangle();
-        rectangle.setHeight(height);
-        rectangle.setWidth(width);
-        rectangle.getStyleClass().add(style);
-
-        sp.getChildren().add(rectangle);
     }
 
     public static ToggleGroup setUpVBox(Header title, VBox vb){

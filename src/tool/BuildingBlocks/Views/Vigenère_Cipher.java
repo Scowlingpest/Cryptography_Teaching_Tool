@@ -7,7 +7,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import tool.BuildingBlocks.Controllers.Vigenère_Cipher_Controller;
 import tool.Graphics.Para_Text;
 import tool.Graphics.Robot;
@@ -44,7 +43,7 @@ public class Vigenère_Cipher {
 
     public static StackPane setUpInformation(Robot robot, Paragraph p,int size){
         StackPane sp =new StackPane();
-        backgroundSetup(625,size,sp,robot.getStyle());
+        Vigenère_Cipher_Controller.backgroundSetup(625,size,sp,robot.getStyle());
 
 
         HBox hb = new HBox();
@@ -62,7 +61,7 @@ public class Vigenère_Cipher {
 
     public static void setUpRight(BorderPane bp){
         StackPane sp = new StackPane();
-        backgroundSetup(500,650,sp,"rectangle-neither");
+        Vigenère_Cipher_Controller.backgroundSetup(500, 650, sp, "rectangle-neither");
 
         Title graphHeader = new Title(Vigenère_Cipher_Controller.getGraph());
         ImageView graph = graphSetUp();
@@ -79,15 +78,6 @@ public class Vigenère_Cipher {
     }
 
 
-
-    public static void backgroundSetup(int width, int height, StackPane sp,String style){
-        Rectangle rectangle = new Rectangle();
-        rectangle.setHeight(height);
-        rectangle.setWidth(width);
-        rectangle.getStyleClass().add(style);
-
-        sp.getChildren().add(rectangle);
-    }
 
     private static ImageView graphSetUp(){
         ImageView graph = new ImageView(new Image("tool/Files/Images/VigenèreGraph.png"));

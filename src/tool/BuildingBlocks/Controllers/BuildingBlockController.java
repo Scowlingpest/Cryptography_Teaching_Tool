@@ -1,6 +1,8 @@
 package tool.BuildingBlocks.Controllers;
 
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import tool.Graphics.Robot;
 import tool.Graphics.Titled_Information;
 import tool.Models.Header;
@@ -26,6 +28,15 @@ public abstract class BuildingBlockController {
 
     public static VBox organiseText(Header h,Paragraph p, int width){
         return new Titled_Information(h,p,width).getVb();
+    }
+
+    public static void backgroundSetup(int width, int height, StackPane sp,String style){
+        Rectangle rectangle = new Rectangle();
+        rectangle.setHeight(height);
+        rectangle.setWidth(width);
+        rectangle.getStyleClass().add(style);
+
+        sp.getChildren().add(rectangle);
     }
 
 }

@@ -7,7 +7,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import tool.BuildingBlocks.Controllers.Generator_controller;
 import tool.Graphics.Robot;
@@ -29,7 +28,7 @@ public class Generator {
     private static void setUpLeft(BorderPane bp) {
         StackPane sp = new StackPane();
 
-        drawBackground(650,625,sp,"rectangle-neither");
+       Generator_controller.backgroundSetup(650, 625, sp, "rectangle-neither");
         sp.setPadding(new Insets(10));
 
         VBox vb  = new VBox();
@@ -76,22 +75,12 @@ public class Generator {
 
     private static StackPane drawRobot(Robot r,String s){
         StackPane sp = new StackPane();
-        drawBackground(500,300,sp,r.getStyle());
+        Generator_controller.backgroundSetup(500, 300, sp, r.getStyle());
         VBox vb = Generator_controller.organiseText(r.getTitle(), new Paragraph(s),290);
         HBox hb = new HBox();
         hb.getChildren().addAll(vb, r.getView());
         sp.getChildren().add(hb);
         return sp;
-    }
-
-    private static void drawBackground(int x, int y,StackPane sp, String style){
-        Rectangle r=new Rectangle();
-        r.setY(10);
-        r.setWidth(x);
-        r.setHeight(y);
-        r.getStyleClass().add(style);
-        sp.getChildren().add(r);
-
     }
 
     private static void decryptSays(int i) {
@@ -110,7 +99,7 @@ public class Generator {
                 s=Generator_controller.getModulus();
                 break;
 
-        };
+        }
         changeText(s,decryptStack);
     }
 

@@ -6,8 +6,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 import tool.BuildingBlocks.Controllers.Diffusion_vs_Transformation_Controller;
 import tool.BuildingBlocks.Controllers.Prime_Numbers_Controller;
 import tool.Graphics.Column_Cipher;
@@ -35,8 +33,9 @@ public class Diffusion_vs_Transformation {
 
         Button playColumn = new Button("Play Diffusion animation");
         playColumn.setOnAction(event -> {
-            if (column_cipher.getAnimation().getCurrentTime()==Duration.millis(0)){
+            if (column_cipher.getAnimation().getCurrentRate()==0.0d){
             column_cipher.getAnimation().playFromStart();
+
         }});
         playColumn.setLayoutX(300);playColumn.setLayoutY(585);
 
@@ -58,7 +57,7 @@ public class Diffusion_vs_Transformation {
 
         Button playBlock = new Button("Play Transformation animation");
         playBlock.setOnAction(event-> {
-            if (transformation.getAnimation().getCurrentTime()==Duration.millis(0)){
+            if (transformation.getAnimation().getCurrentRate()==0.0d){
             transformation.getAnimation().playFromStart();
         }});
         playBlock.setLayoutX(300);playBlock.setLayoutY(575);
@@ -81,19 +80,12 @@ public class Diffusion_vs_Transformation {
 
 
         StackPane sp = new StackPane();
-        drawBackground(Diffusion_vs_Transformation_Controller.getRectWidth(),Diffusion_vs_Transformation_Controller.getRectHeight(),sp,r.getStyle());
+        Diffusion_vs_Transformation_Controller.backgroundSetup(Diffusion_vs_Transformation_Controller.getRectWidth(),Diffusion_vs_Transformation_Controller.getRectHeight(),sp,r.getStyle());
         sp.setPadding(new Insets(20));
 
         sp.getChildren().add(vb);
         return sp;
     }
-    public static void drawBackground(int x, int y,StackPane sp, String style){
-        Rectangle r=new Rectangle();
-        r.setWidth(x);
-        r.setHeight(y);
-        r.getStyleClass().add(style);
-        sp.getChildren().add(r);
 
-    }
 
 }

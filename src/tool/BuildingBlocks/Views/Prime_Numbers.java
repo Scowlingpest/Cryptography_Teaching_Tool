@@ -2,7 +2,6 @@ package tool.BuildingBlocks.Views;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import tool.BuildingBlocks.Controllers.Prime_Numbers_Controller;
 import tool.Graphics.Box;
@@ -27,7 +26,7 @@ public class Prime_Numbers {
         setUpRight(bp);
 
         StackPane sp = new StackPane();
-        drawBackground(600,650,sp,"rectangle-neither");
+        Prime_Numbers_Controller.backgroundSetup(600, 650, sp, "rectangle-neither");
 
         Text title =new Text("Prime Numbers");
         title.getStyleClass().add("text-title");
@@ -70,7 +69,7 @@ public class Prime_Numbers {
 
 
         StackPane sp = new StackPane();
-        drawBackground(275,650,sp,encrypt.getStyle());
+        Prime_Numbers_Controller.backgroundSetup(275, 650, sp, encrypt.getStyle());
 
         sp.getChildren().add(vb);
         bp.setLeft(sp);
@@ -85,23 +84,13 @@ public class Prime_Numbers {
         vb.getChildren().add(decrypt.getView());
 
         StackPane sp = new StackPane();
-        drawBackground(275,650,sp,decrypt.getStyle());
+        Prime_Numbers_Controller.backgroundSetup(275, 650, sp, decrypt.getStyle());
         sp.getChildren().add(vb);
 
         bp.setRight(sp);
 
     }
 
-
-    public static void drawBackground(int x, int y,StackPane sp, String style){
-        Rectangle r=new Rectangle();
-        r.setY(10);
-        r.setWidth(x);
-        r.setHeight(y);
-        r.getStyleClass().add(style);
-        sp.getChildren().add(r);
-
-    }
 
 
 }

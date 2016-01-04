@@ -12,6 +12,7 @@ import tool.CryptoMethods.Views.RSA_Scenes.RSA_Step_1;
 import tool.CryptoMethods.Views.RSA_Scenes.RSA_Step_2;
 import tool.CryptoMethods.Views.RSA_Scenes.RSA_Step_3;
 import tool.CryptoMethods.Views.RSA_Scenes.RSA_Step_4;
+import tool.Models.MonitoringMap;
 
 
 /** Author : Phillipa Russell
@@ -23,9 +24,9 @@ public class RSA {
     static SequentialTransition st =new SequentialTransition();
     static int step=0;
 
-    public static void start(BorderPane bp){
+    public static void start(BorderPane bp,MonitoringMap monitor){
 
-        bottomControls(bp);
+        bottomControls(bp,monitor);
 
 
 
@@ -33,7 +34,7 @@ public class RSA {
 
 
 
-    public static void bottomControls(BorderPane bp){
+    public static void bottomControls(BorderPane bp,MonitoringMap monitor){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
         Button currentSpeed = new Button("Current speed:1 ");
 
@@ -62,6 +63,7 @@ public class RSA {
             //set time to 0 and get used building blocks for the step
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(RSA_Controller.getStep1Used(),bbUsed);
+            monitor.incrementValue("RSA1");
         });
 
 
@@ -71,6 +73,7 @@ public class RSA {
             step=2;
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(RSA_Controller.getStep2Used(),bbUsed);
+            monitor.incrementValue("RSA2");
         });
 
         Button third = new Button("Step 3");
@@ -79,6 +82,7 @@ public class RSA {
             step=3;
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(RSA_Controller.getStep3Used(),bbUsed);
+            monitor.incrementValue("RSA3");
         });
 
         Button fourth = new Button("Step 4");
@@ -87,6 +91,7 @@ public class RSA {
             step=4;
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(RSA_Controller.getStep4Used(),bbUsed);
+            monitor.incrementValue("RSA4");
         });
 
         Button speed1 = new Button("Play speed 1x");

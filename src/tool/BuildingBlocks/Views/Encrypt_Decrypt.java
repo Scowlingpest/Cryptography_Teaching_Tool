@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Rectangle;
 import tool.BuildingBlocks.Controllers.Encrypt_Decrypt_Controller;
 import tool.Graphics.Arrow;
 import tool.Graphics.Para_Text;
@@ -64,7 +63,7 @@ public class Encrypt_Decrypt {
 
     //puts the robot, heading and paragraph into a stackpane
     public static StackPane info(StackPane sp, Robot robot, Paragraph information){
-        backgroundSetup(550,325,sp,robot.getStyle());
+        Encrypt_Decrypt_Controller.backgroundSetup(550, 325, sp, robot.getStyle());
 
         HBox hb = new HBox();
         hb.getStyleClass().add("hbox");
@@ -78,21 +77,12 @@ public class Encrypt_Decrypt {
         return sp;
     }
 
-    //setups the rectangle for the background
-    public static void backgroundSetup(int width, int height, StackPane sp,String style){
-        Rectangle rectangle = new Rectangle();
-        rectangle.setHeight(height);
-        rectangle.setWidth(width);
-        rectangle.getStyleClass().add(style);
-
-        sp.getChildren().add(rectangle);
-    }
 
     //setups the bottom of the screen
     public static void setUpBottom(BorderPane bp){
         StackPane sp = new StackPane();
         sp.getStyleClass().add("stack");
-        backgroundSetup(1180, 300, sp, "rectangle-neither");
+        Encrypt_Decrypt_Controller.backgroundSetup(1180, 300, sp, "rectangle-neither");
 
 
 
@@ -119,7 +109,7 @@ public class Encrypt_Decrypt {
 
         Para_Text right=new Para_Text(Encrypt_Decrypt_Controller.getCaesar(),230);
         StackPane sp = new StackPane();
-        backgroundSetup(250,275,sp,"rectangle-speech");
+        Encrypt_Decrypt_Controller.backgroundSetup(250,275,sp,"rectangle-speech");
         sp.getChildren().add(right.getPara());
         //sp.getStyleClass().add("stack");
 

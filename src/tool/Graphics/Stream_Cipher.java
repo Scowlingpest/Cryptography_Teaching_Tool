@@ -18,6 +18,7 @@ public class Stream_Cipher {
     Text[] numbers = new Text[9];
     int size;
     int gap ;
+    SequentialTransition animate= new SequentialTransition();
 
     public Stream_Cipher(int s){
         int binary = 1;
@@ -38,6 +39,7 @@ public class Stream_Cipher {
                 this.stream.getChildren().addAll(boxes[i], numbers[i]);
                 binary= (binary==1)? 0:1;
             }
+        animateStream();
     }
 
     public Pane getStream() {
@@ -46,7 +48,7 @@ public class Stream_Cipher {
 
 
     public SequentialTransition animateStream(){
-        SequentialTransition stream = new SequentialTransition();
+        animate = new SequentialTransition();
         Color temp = null;
         for(int j=0;j<2;j++) {
             temp=(temp==Color.GREEN)? Color.PURPLE:Color.GREEN;
@@ -58,15 +60,15 @@ public class Stream_Cipher {
                 StrokeTransition black = new StrokeTransition(Duration.seconds(1), this.boxes[i], temp, Color.BLACK);
                 PauseTransition pause = new PauseTransition(Duration.seconds(1
                 ));
-                stream.getChildren().addAll(colour, black, pause);
+                animate.getChildren().addAll(colour, black, pause);
 
             }
         }
-        return stream;
+        return animate;
     }
 
     public SequentialTransition getStreamAnimation() {
-        return animateStream();
+        return animate;
     }
 
 

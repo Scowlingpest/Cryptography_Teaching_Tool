@@ -12,6 +12,7 @@ import tool.CryptoMethods.Views.AES_Scenes.AES_Step_1;
 import tool.CryptoMethods.Views.AES_Scenes.AES_Step_2;
 import tool.CryptoMethods.Views.AES_Scenes.AES_Step_3;
 import tool.CryptoMethods.Views.AES_Scenes.AES_Step_4;
+import tool.Models.MonitoringMap;
 
 /**
  * Author: Phillipa Russell
@@ -25,14 +26,13 @@ public class AES {
     static SequentialTransition st =new SequentialTransition();
     static int step=0;
 
-    public static void start(BorderPane bp){
-
-        bottomControls(bp);
+    public static void start(BorderPane bp,MonitoringMap monitor){
+        bottomControls(bp,monitor);
     }
 
 
 
-    public static void bottomControls(BorderPane bp){
+    public static void bottomControls(BorderPane bp,MonitoringMap monitor){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
         Button currentSpeed = new Button("Current speed:1 ");
 
@@ -63,6 +63,7 @@ public class AES {
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(AES_Controller.getStep1Used(),bbUsed);
             step=1;
+            monitor.incrementValue("AES1");
         });
 
 
@@ -73,6 +74,7 @@ public class AES {
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(AES_Controller.getStep2Used(),bbUsed);
             step=2;
+            monitor.incrementValue("AES2");
         });
 
         Button third = new Button("Step 3");
@@ -82,6 +84,7 @@ public class AES {
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(AES_Controller.getStep3Used(),bbUsed);
             step=3;
+            monitor.incrementValue("AES3");
         });
 
         Button fourth = new Button("Step 4");
@@ -90,6 +93,7 @@ public class AES {
             step=4;
             paused=Duration.seconds(0);
             AnimationMethods.buildingBlockButton(AES_Controller.getStep4Used(),bbUsed);
+            monitor.incrementValue("AES4");
         });
 
         Button speed1 = new Button("Play speed 1x");

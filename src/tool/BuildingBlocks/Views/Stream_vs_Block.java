@@ -3,13 +3,15 @@ package tool.BuildingBlocks.Views;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.layout.*;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import tool.BuildingBlocks.Controllers.Prime_Numbers_Controller;
 import tool.BuildingBlocks.Controllers.Stream_vs_Block_Controller;
 import tool.Graphics.Block_Cipher;
-import tool.Graphics.Stream_Cipher;
 import tool.Graphics.Robot;
+import tool.Graphics.Stream_Cipher;
 import tool.Models.Paragraph;
 
 
@@ -33,7 +35,10 @@ public class Stream_vs_Block {
         stream_cipher.getStream().setLayoutY(300);
 
         Button playStream = new Button("Play Stream animation");
-        playStream.setOnAction(event-> stream_cipher.getStreamAnimation().playFromStart());
+        playStream.setOnAction(event->{
+            if (stream_cipher.getStreamAnimation().getCurrentRate()==0.0d){
+                stream_cipher.getStreamAnimation().playFromStart();}
+        });
         playStream.setLayoutX(300);playStream.setLayoutY(575);
 
         Robot encrypt= Prime_Numbers_Controller.getEncrypt();
@@ -53,7 +58,11 @@ public class Stream_vs_Block {
         block_cipher.getBlock().setLayoutY(275);
 
         Button playBlock = new Button("Play Block animation");
-        playBlock.setOnAction(event-> block_cipher.getAnimation().playFromStart());
+        playBlock.setOnAction(event->{
+            if (block_cipher.getAnimation().getCurrentRate()==0.0d){
+                block_cipher.getAnimation().playFromStart();
+            }
+        });
         playBlock.setLayoutX(300);playBlock.setLayoutY(575);
 
 
@@ -74,19 +83,12 @@ public class Stream_vs_Block {
 
 
         StackPane sp = new StackPane();
-        drawBackground(Stream_vs_Block_Controller.getRectWidth(),Stream_vs_Block_Controller.getRectHeight(),sp,r.getStyle());
+        Stream_vs_Block_Controller.backgroundSetup(Stream_vs_Block_Controller.getRectWidth(), Stream_vs_Block_Controller.getRectHeight(), sp, r.getStyle());
         sp.setPadding(new Insets(20));
 
         sp.getChildren().add(vb);
         return sp;
     }
-    public static void drawBackground(int x, int y,StackPane sp, String style){
-        Rectangle r=new Rectangle();
-        r.setWidth(x);
-        r.setHeight(y);
-        r.getStyleClass().add(style);
-        sp.getChildren().add(r);
 
-    }
 
 }

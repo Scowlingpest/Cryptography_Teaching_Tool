@@ -7,7 +7,7 @@ import tool.Models.Paragraph;
  * Student Number: 0900772r
  * Creation: 20/12/2015.
  */
-public class Diffusion_vs_Transformation_Controller {
+public class Diffusion_vs_Transformation_Controller extends BuildingBlockController{
 
     private static final Paragraph diffusion = new Paragraph("Diffusion is the art of mixing up a message without changing the actual content. So performing diffusion on a message is like cutting it up and making a mosaic out of it. "+
     "There is an example below of a column cipher which is a good example of diffusion. None of the letters are changed, the order is just changed. Above the animation is the message and how it is changed due to the cipher. Press play and see it for yourself.");

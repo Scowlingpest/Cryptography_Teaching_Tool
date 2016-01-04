@@ -16,6 +16,12 @@ import tool.CryptoMethods.Views.AES;
 import tool.CryptoMethods.Views.Diffie_Hellman;
 import tool.CryptoMethods.Views.El_Gamal;
 import tool.CryptoMethods.Views.RSA;
+import tool.Models.MonitoringMap;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Author: Phillipa Russell
@@ -23,6 +29,7 @@ import tool.CryptoMethods.Views.RSA;
  * Created: 06/10/2015
  */
 public class Main extends Application {
+    MonitoringMap monitor=new MonitoringMap();
 
     @Override
     public void start(Stage primaryStage) {
@@ -55,7 +62,9 @@ public class Main extends Application {
         Menu menuFile = new Menu("File");
         MenuItem exitMenuItem = new MenuItem("Exit");
         exitMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
-        exitMenuItem.setOnAction(e -> Platform.exit());
+        exitMenuItem.setOnAction(e ->{
+            Platform.exit();
+        });
 
         MenuItem instructions = new MenuItem("Instructions");
         instructions.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));
@@ -94,6 +103,7 @@ public class Main extends Application {
         primeNo.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
         primeNo.setOnAction(e -> {
             clearBorderPane(root);
+            monitor.incrementValue("PN");
             Prime_Numbers.start(root);
         });
 
@@ -101,6 +111,7 @@ public class Main extends Application {
         asymmetricVsSymmetric.setAccelerator(KeyCombination.keyCombination("Ctrl+S"));
         asymmetricVsSymmetric.setOnAction(e -> {
             clearBorderPane(root);
+            monitor.incrementValue("AS");
             Asymmetric_vs_Symmetric.start(root);
         });
 
@@ -108,6 +119,7 @@ public class Main extends Application {
         encryptDecrypt.setAccelerator(KeyCombination.keyCombination("Ctrl+D"));
         encryptDecrypt.setOnAction(e -> {
             clearBorderPane(root);
+            monitor.incrementValue("ED");
             Encrypt_Decrypt.start(root);
         });
 
@@ -115,6 +127,7 @@ public class Main extends Application {
         streamBlock.setAccelerator(KeyCombination.keyCombination("Ctrl+B"));
         streamBlock.setOnAction(event -> {
             clearBorderPane(root);
+            monitor.incrementValue("SB");
             Stream_vs_Block.start(root);
         });
 
@@ -122,6 +135,7 @@ public class Main extends Application {
         vigenèreCipher.setAccelerator(KeyCombination.keyCombination("Ctrl+V"));
         vigenèreCipher.setOnAction(event -> {
             clearBorderPane(root);
+            monitor.incrementValue("VC");
             Vigenère_Cipher.start(root);
         });
 
@@ -129,6 +143,7 @@ public class Main extends Application {
         diffTrans.setAccelerator(KeyCombination.keyCombination("Ctrl+T"));
         diffTrans.setOnAction(event->{
             clearBorderPane(root);
+            monitor.incrementValue("DT");
             Diffusion_vs_Transformation.start(root);
         });
 
@@ -136,6 +151,7 @@ public class Main extends Application {
         generator.setAccelerator(KeyCombination.keyCombination("Ctrl+G"));
         generator.setOnAction(event -> {
             clearBorderPane(root);
+            monitor.incrementValue("GR");
             Generator.start(root);
         });
 
@@ -143,6 +159,7 @@ public class Main extends Application {
         invMod.setAccelerator(KeyCombination.keyCombination("Ctrl+M"));
         invMod.setOnAction(event->{
             clearBorderPane(root);
+            monitor.incrementValue("IM");
             Inv_Mod.start(root);
         });
 
@@ -156,26 +173,26 @@ public class Main extends Application {
         rsa.setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
         rsa.setOnAction(e -> {
             clearBorderPane(root);
-            RSA.start(root);
+            RSA.start(root,monitor);
         });
         MenuItem dh = new MenuItem("Diffie Hellman");
         dh.setAccelerator((KeyCombination.keyCombination("Ctrl+H")));
         dh.setOnAction(event -> {
             clearBorderPane(root);
-            Diffie_Hellman.start(root);
+            Diffie_Hellman.start(root,monitor);
         });
 
         MenuItem eg = new MenuItem("El Gamal");
         eg.setAccelerator((KeyCombination.keyCombination("Ctrl+E")));
         eg.setOnAction(event->{
             clearBorderPane(root);
-            El_Gamal.start(root);
+            El_Gamal.start(root,monitor);
         });
         MenuItem aes = new MenuItem("AES");
         aes.setAccelerator(KeyCombination.keyCombination("Ctrl+A"));
         aes.setOnAction(e -> {
             clearBorderPane(root);
-            AES.start(root);
+            AES.start(root,monitor);
         });
 
         methods.getItems().addAll(rsa,dh,eg,aes);
@@ -184,4 +201,18 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    @Override
+    public void stop(){
+        try {
+            BufferedWriter output = new BufferedWriter(new FileWriter(new File("src/tool/Files/Monitoring.csv"), true));
+            output.write(monitor.lineGenerate()+"\n");
+            output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 }
