@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import tool.CryptoMethods.Controllers.DH_Controller;
+import tool.CryptoMethods.Controllers.EG_Controller;
 import tool.CryptoMethods.Views.El_Gamal_Scenes.EG_Step;
 import tool.Models.MonitoringMap;
 
@@ -32,7 +32,7 @@ public class El_Gamal {
     }
     public static void bottomControls(BorderPane bp,MonitoringMap monitor){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
-        AnimationMethods.buildingBlockButton(DH_Controller.getStepUsed(),bbUsed);
+        AnimationMethods.buildingBlockButton(EG_Controller.getStepUsed(),bbUsed);
         Button currentSpeed = new Button("Current speed:1");
 
         Button play = new Button("Play");
