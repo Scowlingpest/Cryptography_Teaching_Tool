@@ -27,9 +27,9 @@ public class Diffusion_vs_Transformation {
     private static void setUpLeft(BorderPane bp){
         Pane left = new Pane();
 
-        Column_Cipher column_cipher = new Column_Cipher(75);
+        Column_Cipher column_cipher = new Column_Cipher(65);
         column_cipher.getP().setLayoutX(250);
-        column_cipher.getP().setLayoutY(200);
+        column_cipher.getP().setLayoutY(250);
 
         Button playColumn = new Button("Play Diffusion animation");
         playColumn.setOnAction(event -> {
@@ -37,7 +37,7 @@ public class Diffusion_vs_Transformation {
             column_cipher.getAnimation().playFromStart();
 
         }});
-        playColumn.setLayoutX(300);playColumn.setLayoutY(585);
+        playColumn.setLayoutX(290);playColumn.setLayoutY(590);
 
         Robot decrypt= Prime_Numbers_Controller.getDecrypt();
         StackPane sp = robotSetup(decrypt, Diffusion_vs_Transformation_Controller.getDiffusion());

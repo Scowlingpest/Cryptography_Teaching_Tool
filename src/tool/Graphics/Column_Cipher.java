@@ -27,8 +27,8 @@ public class Column_Cipher {
         columns[0]=new VBox(); columns[1]=new VBox(); columns[2]= new VBox();
         this.size=s;
         this.gap=this.size+10;
-        String message ="ColumnCipher";
-        encrypted = new TextField("ColumnCipher");
+        String message ="BoaColumnsXX";
+        encrypted = new TextField("Columns");
         encrypted.setDisable(true);
 
         for (int i =0;i<12;i++){
@@ -67,10 +67,10 @@ public class Column_Cipher {
 
         });
         pt2.setOnFinished(event->
-        this.encrypted.setText("lconumpcirhe"));
+        this.encrypted.setText("lco num xsx"));
 
         pt3.setOnFinished(event->
-        this.encrypted.setText("ColumnCipher"));
+        this.encrypted.setText("Columns"));
 
         this.animation.getChildren().addAll(pt1, pt2,
                 AnimationMethods.pauseSeconds(5),pt3);
