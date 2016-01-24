@@ -34,7 +34,9 @@ public class Vigenère_Cipher {
         StackPane encryptSays =setUpInformation(encrypt,Vigenère_Cipher_Controller.getInformation(),250);
         StackPane decryptSays =setUpInformation(decrypt,Vigenère_Cipher_Controller.getHowItWorks(),375);
 
-        vb.getChildren().addAll(encryptSays,decryptSays);
+        vb.getChildren().addAll(encryptSays, decryptSays);
+        vb.setSpacing(5);
+        vb.setPadding(new Insets(10,0,0,0));
 
         bp.setLeft(vb);
 
@@ -52,7 +54,7 @@ public class Vigenère_Cipher {
         VBox vb = Vigenère_Cipher_Controller.organiseText(robot.getTitle(),
                 p, Vigenère_Cipher_Controller.getTEXTWIDTH());
 
-        hb.setPadding(new Insets(15,10,0,30));
+        hb.setPadding(new Insets(10,5,0,30));
 
         hb.getChildren().add(vb);
         sp.getChildren().add(hb);
@@ -61,7 +63,7 @@ public class Vigenère_Cipher {
 
     public static void setUpRight(BorderPane bp){
         StackPane sp = new StackPane();
-        Vigenère_Cipher_Controller.backgroundSetup(500, 650, sp, "rectangle-neither");
+        Vigenère_Cipher_Controller.backgroundSetup(530, 650, sp, "rectangle-neither");
 
         Title graphHeader = new Title(Vigenère_Cipher_Controller.getGraph());
         ImageView graph = graphSetUp();
@@ -80,7 +82,7 @@ public class Vigenère_Cipher {
 
 
     private static ImageView graphSetUp(){
-        ImageView graph = new ImageView(new Image("tool/Files/Images/VigenèreGraph.png"));
+        ImageView graph = new ImageView(new Image("Files/Images/VigenèreGraph.png"));
         graph.setPreserveRatio(true);
         graph.setFitWidth(400);
         graph.setSmooth(true);

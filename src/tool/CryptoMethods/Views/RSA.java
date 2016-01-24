@@ -36,6 +36,7 @@ public class RSA {
 
     public static void bottomControls(BorderPane bp,MonitoringMap monitor){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
+        bbUsed.getStyleClass().add("button");
         Button currentSpeed = new Button("Current speed:1 ");
 
         Button play = new Button("Play");
@@ -113,7 +114,7 @@ public class RSA {
 
 
         HBox buttonBar = new HBox();
-        buttonBar.setSpacing(3);
+        //buttonBar.setSpacing(3);
         buttonBar.getChildren().addAll(first, second, third, fourth, play, pause);
         buttonBar.getChildren().addAll(speed1, speed2, speed3, speed6, speed10);
 

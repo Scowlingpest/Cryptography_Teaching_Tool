@@ -8,7 +8,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 import tool.BuildingBlocks.Controllers.Instructions_Controller;
 import tool.CryptoMethods.Views.AnimationMethods;
 import tool.Graphics.Robot;
@@ -21,6 +20,8 @@ import tool.Models.Header_Paragraph;
  * Student Number: 0900772r
  * Creation: 13/12/2015.
  */
+
+//used for both the instruction screen and welcome screen (does more insruction work so called instructions)
 public class Instructions {
 
     public static void start(BorderPane bp,Boolean button){
@@ -37,7 +38,7 @@ public class Instructions {
 
         if (button==false){
             setupBubbles(p);
-            setupText(button,p);
+            setupText(p);
             bp.setCenter(p);
         }
         else {
@@ -51,31 +52,17 @@ public class Instructions {
         Speechbubble helloEncrypt=new Speechbubble("bl",
                 Instructions_Controller.getHelloEncrypt(), Instructions_Controller.getBubbleSize(),
                 Instructions_Controller.getX1(),Instructions_Controller.getY1());
-       /* Speechbubble topControls=new Speechbubble("tl",
-                Instructions_Controller.getTopControls(), Instructions_Controller.getBubbleSize(),
-                Instructions_Controller.getX1()+100,Instructions_Controller.getY2());
-        Speechbubble bottomControls=new Speechbubble("tc",
-                Instructions_Controller.getBottomControls(), Instructions_Controller.getBubbleSize()+20,
-                0,Instructions_Controller.getY3());
-*/
+
         Speechbubble helloDecrypt=new Speechbubble("br",
                 Instructions_Controller.getHelloDecrypt(), Instructions_Controller.getBubbleSize(),
                 Instructions_Controller.getX2(),Instructions_Controller.getY1());
-       /*
-        Speechbubble buildingBlocks=new Speechbubble("tr",
-                Instructions_Controller.getBuildingBlocks(), Instructions_Controller.getBubbleSize(),
-                Instructions_Controller.getX2()-100,Instructions_Controller.getY2());
-        Speechbubble interactive=new Speechbubble("tc",
-                Instructions_Controller.getInteractive(), Instructions_Controller.getBubbleSize(),
-                900,Instructions_Controller.getY3());
-                */
 
 
         p.getChildren().addAll(helloEncrypt.getSp(), helloDecrypt.getSp());
 
     }
 
-    private static void setupText(Boolean button, Pane p){
+    private static void setupText(Pane p){
         Rectangle rect = new Rectangle(375,250,500,100);
         rect.getStyleClass().add("rectangle-neither");
 
@@ -89,12 +76,7 @@ public class Instructions {
 
     private static void paginationSetup(BorderPane bp){
         Pagination pagination = new Pagination(5);
-        pagination.setPageFactory(new Callback<Integer, Node>() {
-            @Override
-            public Node call(Integer pageIndex) {
-                return createPage(pageIndex);
-            }
-        });
+        pagination.setPageFactory(pageIndex -> createPage(pageIndex));
         bp.setCenter(pagination);
 
 

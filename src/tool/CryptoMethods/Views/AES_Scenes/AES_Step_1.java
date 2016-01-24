@@ -251,7 +251,7 @@ public class AES_Step_1 {
         String[] number = new String[]{"128","192","256",""};
         String[] rounds = new String[]{"x 10","x 12","x 14",""};
 
-        Text keySize = AnimationMethods.textSetup("Key Size:",25,455,null);
+        Text keySize = AnimationMethods.textSetup("Key Size:",35,425,null);
 
         st.getChildren().add(AnimationMethods.fadeInto(keySize));
 

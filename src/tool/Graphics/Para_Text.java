@@ -6,6 +6,7 @@ import tool.Models.Paragraph;
 /** Author : Phillipa Russell
  *  Created: 15/10/2015
  */
+//graphical form of the paragraph object
 public class Para_Text {
 
     Text para;

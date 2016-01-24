@@ -118,8 +118,7 @@ public class AnimationMethods {
     }
 
     public static PauseTransition pauseSeconds(int seconds){
-        PauseTransition pt = new PauseTransition(Duration.seconds(seconds));
-        return pt;
+        return new PauseTransition(Duration.seconds(seconds));
     }
 
     public static ScaleTransition changeSize(Node a, double x, int seconds){
@@ -133,9 +132,7 @@ public class AnimationMethods {
 
     public static void changeBubble(SequentialTransition st, Speechbubble bubble, String s){
         FadeTransition bubbleChange =AnimationMethods.fadeAway(bubble.getSp(),3);
-        bubbleChange.setOnFinished(event->{
-            bubble.setSpeech(s);
-        });
+        bubbleChange.setOnFinished(event-> bubble.setSpeech(s));
         FadeTransition bubbleAppear =AnimationMethods.fadeInto(bubble.getSp(),3);
         st.getChildren().addAll(bubbleChange,bubbleAppear);
     }

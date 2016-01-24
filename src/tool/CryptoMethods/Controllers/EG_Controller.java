@@ -62,7 +62,7 @@ public class EG_Controller extends CryptoMethodsController {
     private static String eqDNo = "("+inv+"*"+c+")"+"mod "+p;
 
 
-    private static final String step1welcome = "Welcome to El Gamal, this is based on Diffie Hellman and is very similar. This includes. Click play to start. ";
+    private static final String step1welcome = "Welcome to El Gamal, this is based on Diffie Hellman and is very similar. This is an asymmetric method of encryption. Click play to start. ";
     private static final String step2welcome = "Welcome to El Gamal. This is a chance for you to try your own numbers. Select the p,q,a and b and click play. P and q should be prime, with q being a generator. The numbers a and b should be smaller than p to make it work, but see what happens when they aren't!";
     private static final String pandQ = "First we have to decide on two prime numbers p and q, with q being a generator of p. It doesn't matter if anyone else knows these so we can discuss them publicly. ";
     private static String prime = "We've decided on p="+getP()+" and q="+getQ()+". Now we both need to do some maths. The third party at the bottom knows about them as well but it doesn't matter. We're each going to pick another number, a and b. These can be any number smaller than p.";
@@ -95,7 +95,6 @@ public class EG_Controller extends CryptoMethodsController {
     private static final String mTooltip = "This is the message that we will encrypt";
     private static final String eqCTooltip = "This is the equation for C, using the key and the message";
     private static final String dTooltip = "This is the encrypted message decrypted";
-    private static final String dEqTooltip ="This is the equation for decrypting the message, it's (inv*c) mod p";
     private static final String invTooltip =" This is the invert modulus of the key";
 
     public static void setUpAnimation(int p, int q, int a, int b){
@@ -419,9 +418,6 @@ public class EG_Controller extends CryptoMethodsController {
         return dTooltip;
     }
 
-    public static String getdEqTooltip() {
-        return dEqTooltip;
-    }
 
     public static String getInvTooltip() {
         return invTooltip;
@@ -436,10 +432,6 @@ public class EG_Controller extends CryptoMethodsController {
 
     public static void setB(int b) {
         EG_Controller.b = b;
-    }
-
-    public static void setM(int m) {
-        EG_Controller.m = m;
     }
 
     public static void setA(double a) {
@@ -462,45 +454,8 @@ public class EG_Controller extends CryptoMethodsController {
         EG_Controller.d = (getInv()*getC())%getP();
     }
 
-
-    public static void setEqCNo() {
-        EG_Controller.eqCNo = "("+getKa()+"*"+getM()+")"+"mod "+getP();
-    }
-
-    public static void setEqMNo() {
-        EG_Controller.eqDNo = "("+getInv()+"*"+getM()+")"+"mod "+getP();;
-    }
-
     public static void setPrime(String prime) {
         EG_Controller.prime = prime;
-    }
-
-    public static void setSecretNum(String secretNum) {
-        EG_Controller.secretNum = secretNum;
-    }
-
-    public static void setWorkingAandB(String workingAandB) {
-        EG_Controller.workingAandB = workingAandB;
-    }
-
-    public static void setTradeAB(String tradeAB) {
-        EG_Controller.tradeAB = tradeAB;
-    }
-
-    public static void setCalculateSecret(String calculateSecret) {
-        EG_Controller.calculateSecret = calculateSecret;
-    }
-
-    public static void setFinalKCalc(String finalKCalc) {
-        EG_Controller.finalKCalc = finalKCalc;
-    }
-
-    public static void setEncryptM(String encryptM) {
-        EG_Controller.encryptM = encryptM;
-    }
-
-    public static void setDecryptMessage(String decryptMessage) {
-        EG_Controller.decryptMessage = decryptMessage;
     }
 
     private static final String[] stepUsed = new String[]{"Prime Numbers","Generators","Inverted Modulus","Asymmetric vs Symmetric"};

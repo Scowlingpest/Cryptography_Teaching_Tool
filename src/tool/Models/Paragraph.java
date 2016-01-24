@@ -1,8 +1,11 @@
 package tool.Models;
 
 /**
- * Created by Phillipa on 13/10/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 13/10/2015.
  */
+//object used for a paragraph of text, helps with text settings
 public class Paragraph {
     String text;
 

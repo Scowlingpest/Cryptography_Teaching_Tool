@@ -32,7 +32,7 @@ public class Transformation {
     Paragraph results = new Paragraph("Even if you know the two colours used, it's hard to get the exact shade "+
                                       "that the  result is. For example for our two colours you could get all of "+
                                       " the following shades depending on how much of each you use.");
-    ImageView shades = new ImageView("tool/Files/Images/Colours.png");
+    ImageView shades = new ImageView("Files/Images/Colours.png");
 
     public Transformation(){
         p=new Pane();
@@ -95,9 +95,7 @@ public class Transformation {
                 AnimationMethods.fadeInto(this.first),
                 AnimationMethods.fadeInto(this.second)
         });
-        pt3.setOnFinished(event->{
-            info.setText(results.getText());
-        });
+        pt3.setOnFinished(event-> info.setText(results.getText()));
 
         ParallelTransition pt4 = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.moveNode(this.first,0,0,3),

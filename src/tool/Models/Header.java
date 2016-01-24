@@ -1,7 +1,9 @@
 package tool.Models;
 
 /**
- * Created by Phillipa on 13/10/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 13/10/2015.
  */
 public class Header {
     String title;

@@ -33,7 +33,9 @@ public class Diffie_Hellman {
 
     public static void bottomControls(BorderPane bp,MonitoringMap monitor){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
+        bbUsed.getStyleClass().add("button");
         AnimationMethods.buildingBlockButton(DH_Controller.getStepUsed(),bbUsed);
+
         Button currentSpeed = new Button("Current speed:1");
 
         Button play = new Button("Play");

@@ -50,7 +50,7 @@ public class Asymmetric_vs_Symmetric{
 
     public static StackPane setUpInformation(Robot robot, Paragraph text){
         StackPane sp =new StackPane();
-        Asymmetric_vs_Symmetric_Controller.backgroundSetup(600,275,sp,robot.getStyle());
+        Asymmetric_vs_Symmetric_Controller.backgroundSetup(600,300,sp,robot.getStyle());
 
         HBox hb = new HBox();
         hb.getChildren().add(robot.getView());

@@ -24,10 +24,10 @@ import java.util.ArrayList;
 public class Inv_Mod_Controller extends BuildingBlockController {
     final static int TextWidth = 300;
 
-    final static Paragraph leftPara =new Paragraph("An inverse modulus is a type of modulus arithmetic. Modulus arithmetic is special laws of maths which only occur in times when "+
+    final static Paragraph leftPara =new Paragraph("An inverse modulus is a type of modulus arithmetic. Modulus arithmetic are special laws of maths which only occur when "+
             "the modulus is being taken, for example a+b is different from a+b(mod c). An inverse modulus is written as x^-1. In normal maths this means to raise x to the power of -1 " +
             "but in modulus arithmetic it means to find the inverse. The inverse is the number which when multiplied by x will give 1. In other words (x * x^-1)mod n =1."+
-            "The only way to find out what value x^-1 holds, it to do trial and error until we end up with a number which will give 1 when mod  is applied to it. Only x numbers who "+
+            " The only way to find out what value x^-1 holds, is to do trial and error until we end up with a number which will give 1 when mod  is applied to it. Only x numbers who "+
             "share no prime number factors with n can have a modular inverse.");
 
     final static Paragraph rightPara = new Paragraph("There are 2 steps for calculating an inverse modular:\n" +
@@ -40,7 +40,7 @@ public class Inv_Mod_Controller extends BuildingBlockController {
 
     static final String tooltip ="This is a simple n*x mod k equation, if the result is 1 then x is the inverse of n";
 
-    static final int mod = 17;
+    static final int mod = 16;
     static final int number = mod-1;
     static Text[] results = new Text[number];
     static Text[] finished = new Text[number];
@@ -52,14 +52,14 @@ public class Inv_Mod_Controller extends BuildingBlockController {
     static boolean found = false;
 
     public static void setupEquation(VBox vb){
-        for(int i =0;i<16;i++){
+        for(int i =0;i<number;i++){
             HBox hb = new HBox();
             equationAnswer[i]=input*(i+1.0);
-            results[i] = AnimationMethods.equationSetup(String.format("%.0f", equationAnswer[i] % 17),0,0,null);
+            results[i] = AnimationMethods.equationSetup(String.format("%.0f", equationAnswer[i] % mod),0,0,null);
 
 
             equation[i]=AnimationMethods.equationSetup((Integer.toString(input)+"*"+Integer.toString((i+1))+'\t'+" ="+
-                    String.format("%.0f", equationAnswer[i])+"(mod 17) = "+'\t'),0,0,null);
+                    String.format("%.0f", equationAnswer[i])+"(mod 16) = "+'\t'),0,0,null);
 
             hb.getChildren().addAll(equation[i],results[i]);
             vb.getChildren().add(hb);
@@ -115,9 +115,9 @@ public class Inv_Mod_Controller extends BuildingBlockController {
         vb.setSpacing(2);
         SequentialTransition st = setupTransition(i,vb);
         st.playFromStart();
-        Paragraph output = new Paragraph("This number has no inverted modulus because it is not a coprime of 17, try picking a coprime next time and see the difference!");
+        Paragraph output = new Paragraph("This number has no inverted modulus because it is not a coprime of 16, try picking a coprime next time and see the difference!");
         if(found){
-            output=new Paragraph("This number has an inverted modulus because it is a coprime of 17. The green line is the inverted number for the number you picked.");
+            output=new Paragraph("This number has an inverted modulus because it is a coprime of 16. The green line is the inverted number for the number you picked.");
         }
         Para_Text pt = new Para_Text(output,475);
         vb.getChildren().addAll(hb, pt.getPara());

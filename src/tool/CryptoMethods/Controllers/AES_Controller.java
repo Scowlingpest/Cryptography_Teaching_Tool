@@ -7,6 +7,9 @@ package tool.CryptoMethods.Controllers;
  */
 public class AES_Controller extends CryptoMethodsController {
 
+    static int BOXWIDTH = 475;
+
+    public static int getBOXWIDTH(){return BOXWIDTH;}
     //Step 1 variables used
     private static final String step_1_welcome  = "Hi, and welcome to AES. AES stands for Advanced Encryption Standard and is one of the most secure encryption standards in the world, the US government even uses it! Click play below to start this step. I'll be explaining this step and the following step on my own because Decrypt is away getting the other steps ready for you!";
     private static final String step_1_detail   = "In the next step(Step 2), I will show you how we use AES to encrypt stuff, but for now I will explain the key details of it. In Step 3 i'll show you how I send the key and the encrypted message to Decrypt, who will show you how he decrypts the message in Step 4. But first I will explain the key areas of AES.";
@@ -96,7 +99,7 @@ public class AES_Controller extends CryptoMethodsController {
     //Step 2 and step 4 variables
     private static final int boxX    = 200; private static final int boxY1 = 100;
     private static final int boxY2   = 300; private static final int boxY3 = 500;
-    private static final int startLocX = 100; private static final int endLocX = 650;
+    private static final int startLocX = 100; private static final int endLocX = boxX+BOXWIDTH;
     private static final int startLocY = 100; private static final int endLocY = 500;
     private static final int difference =getEndLocX()-getStartLocX();
     private static final int halfway = (difference)/2;

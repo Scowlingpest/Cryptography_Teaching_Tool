@@ -53,6 +53,7 @@ public class EG_Animation {
         //sets up the table column headings
         TableColumn<DataRow, String> name = new TableColumn<>("Item");
         TableColumn<DataRow, String> value = new TableColumn<>("Value");
+        //noinspection unchecked
         tb.getColumns().addAll(name, value);
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         value.setCellValueFactory(new PropertyValueFactory<>("value"));
@@ -379,9 +380,7 @@ public class EG_Animation {
 
         //send C across to the other person
         TranslateTransition sendC = AnimationMethods.moveNode(texts[1],-725,0,5);
-        sendC.setOnFinished(event->{
-            EG_Controller.addToTable("C", EG_Controller.getC(), EG_Controller.getDataD());
-        });
+        sendC.setOnFinished(event-> EG_Controller.addToTable("C", EG_Controller.getC(), EG_Controller.getDataD()));
         FadeTransition fadeC = AnimationMethods.fadeAway(texts[1]);
         fadeC.setOnFinished(event -> {
             texts[1].setText("Inv ="+EG_Controller.getInv());
@@ -409,9 +408,7 @@ public class EG_Animation {
         //make the equation of D appear
         FadeTransition eqAppear = AnimationMethods.fadeInto(texts[1]);
         FadeTransition eqFade   = AnimationMethods.fadeAway(texts[1]);
-        eqFade.setOnFinished(event->{
-            texts[1].setText(EG_Controller.getEqDNo());
-        });
+        eqFade.setOnFinished(event-> texts[1].setText(EG_Controller.getEqDNo()));
 
         //make Ds numbered equation appear
         FadeTransition numEqAppear = AnimationMethods.fadeInto(texts[1]);

@@ -32,6 +32,7 @@ public class El_Gamal {
     }
     public static void bottomControls(BorderPane bp,MonitoringMap monitor){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
+        bbUsed.getStyleClass().add("button");
         AnimationMethods.buildingBlockButton(EG_Controller.getStepUsed(),bbUsed);
         Button currentSpeed = new Button("Current speed:1");
 

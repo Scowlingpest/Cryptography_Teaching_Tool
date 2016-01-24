@@ -23,14 +23,14 @@ public class Box {
 
     public Box(Prime_Num n){
         text = new Text(n.getNumber());
-        text.setStyle("-fx-font-size:32");
+        text.getStyleClass().add("box-text");
         prime=n.getPrime();
         sp = new StackPane();
     }
 
     public Box(String s){
         text = new Text(s);
-        text.setStyle("-fx-font-size:32");
+        text.getStyleClass().add("box-text");
         prime=false;
         sp = new StackPane();
     }

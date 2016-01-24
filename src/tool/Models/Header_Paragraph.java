@@ -1,8 +1,11 @@
 package tool.Models;
 
 /**
- * Created by Phillipa on 13/10/2015.
+ * Author: Phillipa Russell
+ * Student Number: 0900772r
+ * Creation: 13/10/2015.
  */
+//takes in a header and a paragraph to combine them, maps to Titled_Information
 public class Header_Paragraph {
     Header header;
     Paragraph paragraph;

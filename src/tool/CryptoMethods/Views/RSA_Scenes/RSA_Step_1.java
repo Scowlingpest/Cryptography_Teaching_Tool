@@ -27,7 +27,7 @@ public class RSA_Step_1 {
 
         placeRobotsFirst(encrypt,decrypt,root);
 
-        welcome = new Speechbubble("tr",RSA_Controller.getWelcome(),200);
+        welcome = new Speechbubble("tr",RSA_Controller.getWelcome(),250);
         welcome.getSp().setLayoutX(750);
         welcome.getSp().setLayoutY(250);
 
@@ -64,8 +64,6 @@ public class RSA_Step_1 {
         int x=375;
         int y=150;
 
-        FadeTransition welcomeDisappear = AnimationMethods.fadeAway(welcome.getSp());
-        st.getChildren().add(welcomeDisappear);
 
         Text p = AnimationMethods.textSetup(RSA_Controller.getPrimeP(), x, y, RSA_Controller.getTooltipP());
         Text q =AnimationMethods.textSetup(RSA_Controller.getPrimeQ(), x, (y += 35), RSA_Controller.getTooltipQ());
@@ -76,7 +74,7 @@ public class RSA_Step_1 {
         Text k = AnimationMethods.textSetup(RSA_Controller.getPrimeK(), x, (y += 35), RSA_Controller.getTooltipK());
         Text jSecret = AnimationMethods.textSetup(RSA_Controller.getSecretJEq(), x, (y += 35), RSA_Controller.getTooltipSecretJ());
         Text jNo = AnimationMethods.textSetup(RSA_Controller.getSecretJNo(), x, (y += 35), RSA_Controller.getTooltipJNo());
-        Text j = AnimationMethods.textSetup(RSA_Controller.getSecretJ(), x, y+=35, RSA_Controller.getTooltipJ());
+        Text j = AnimationMethods.textSetup(RSA_Controller.getSecretJ(), x, (y+35), RSA_Controller.getTooltipJ());
 
         Speechbubble encrypts = AnimationMethods.invisSpeechbubble(RSA_Controller.geteInfo(), 100, 180, "tl", 200);
         root.getChildren().add(encrypts.getSp());
@@ -91,13 +89,7 @@ public class RSA_Step_1 {
         bubbleAnd2Text(RSA_Controller.getjExp(),st,root,jSecret,jNo);
         bubbleAnd1Text(RSA_Controller.getCalculations(),st,root,j);
 
-        Speechbubble next=setUpBubble(RSA_Controller.getStep1next());
-        root.getChildren().add(next.getSp());
-
-        FadeTransition finalBubble = AnimationMethods.fadeInto(next.getSp());
-        FadeTransition finalBubbleFade = AnimationMethods.fadeAway(next.getSp());
-
-        st.getChildren().addAll(finalBubble, AnimationMethods.pauseSeconds(5), finalBubbleFade);
+        AnimationMethods.changeBubble(st,welcome,RSA_Controller.getStep1next());
 
         return st;
     }
@@ -105,42 +97,30 @@ public class RSA_Step_1 {
 
 
     public static void bubbleAnd2Text(String bubble, SequentialTransition st, Pane p, Text a, Text b){
-        Speechbubble speechB = setUpBubble(bubble);
-        p.getChildren().addAll(a,b,speechB.getSp());
-
-        FadeTransition bubbleAppear = AnimationMethods.fadeInto(speechB.getSp());
-        FadeTransition bubbleDisappear = AnimationMethods.fadeAway(speechB.getSp());
+        AnimationMethods.changeBubble(st,welcome,bubble);
 
         FadeTransition textAAppear = AnimationMethods.fadeInto(a);
         FadeTransition textBAppear = AnimationMethods.fadeInto(b);
+        p.getChildren().addAll(a,b);
 
 
         ParallelTransition pt1 = AnimationMethods.createParallel(new Transition[]{textAAppear,textBAppear});
 
-        st.getChildren().addAll(bubbleAppear,pt1,
-                AnimationMethods.pauseSeconds(7),
-                bubbleDisappear);
+        st.getChildren().addAll(pt1,
+                AnimationMethods.pauseSeconds(5));
     }
 
-    public static void bubbleAnd1Text(String bubble, SequentialTransition st, Pane p, Text a){
-        Speechbubble speechB = setUpBubble(bubble);
-        p.getChildren().add(speechB.getSp());
-
-        FadeTransition bubbleAppear = AnimationMethods.fadeInto(speechB.getSp());
-        FadeTransition bubbleDisappear = AnimationMethods.fadeAway(speechB.getSp());
+    private static void bubbleAnd1Text(String bubble, SequentialTransition st, Pane p, Text a){
+        AnimationMethods.changeBubble(st,welcome,bubble);
 
         FadeTransition textAppear = AnimationMethods.fadeInto(a);
 
         p.getChildren().add(a);
 
-        st.getChildren().addAll(bubbleAppear,textAppear,
-                AnimationMethods.pauseSeconds(7),
-                bubbleDisappear);
+        st.getChildren().addAll(textAppear,
+                AnimationMethods.pauseSeconds(5)
+                );
 
-    }
-
-    public static Speechbubble setUpBubble(String bubble){
-        return AnimationMethods.invisSpeechbubble(bubble, 750, 250, "tr", 225);
     }
 
 

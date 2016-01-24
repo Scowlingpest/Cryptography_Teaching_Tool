@@ -22,7 +22,7 @@ public class Speechbubble {
 
 
     public Speechbubble(String type, String input, int width) {
-        this.bubble=new ImageView(new Image("tool/Files/Images/speechbubbles/speechbubble_"+type+".png"));
+        this.bubble=new ImageView(new Image("Files/Images/speechbubbles/speechbubble_" +type+".png"));
 
         this.bubble.setFitWidth(width);
         this.bubble.setPreserveRatio(true);
@@ -46,6 +46,7 @@ public class Speechbubble {
     public void speechSettings(){
         this.speech.setWrappingWidth(width-45);
         this.speech.setTextAlignment(TextAlignment.JUSTIFY);
+        this.speech.getStyleClass().add("text-bubble");
 
         if(type.charAt(0)=='t'){
 

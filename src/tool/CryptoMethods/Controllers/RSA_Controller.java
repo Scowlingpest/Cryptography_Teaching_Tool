@@ -20,11 +20,11 @@ public class RSA_Controller extends CryptoMethodsController {
 
     static final String welcome =      "Welcome to RSA! This is an Asymmetric method of encryption. To start off with we need a lot of numbers that I will be calculating. Click play and we'll begin";
     static final String eInfo =        "RSA encryption uses 2 keys, a public key and a secret key. Decrypt will keep the secret key and I will receive the public key in the next step.";
-    static final String pqExpn =       "Firstly I select two prime numbers p and q. We'll keep them relatively small in this case. ";
+    static final String pqExpn =       "Firstly I select two prime numbers p and q. We'll keep them relatively small in this case but in real life the numbers should all be large. ";
     static final String nExp =         "Then I calculate n, an important number which is p and q multiplied together.";
     static final String totientExp =   "Next is the totient, which we're calling z for simplicity, often is it written as φ(n) for reasons we won't go into here.";
     static final String kExp =         "We need another prime number which z cannot be divided by called k, we'll use 7 to keep things small";
-    static final String jExp =         "To finish off our calculations, we need j. J is calculated as k*j=1(mod z) so in other words, (k*j)/z gives us something with a remainder of 1. We don't care about the something, just the fact that it gives us the remainder of 1.";
+    static final String jExp =         "To finish off our calculations, we need j ,the inverse modular of k. J is calculated as k*j=1(mod z) so in other words, (k*j)/z gives us something with a remainder of 1. We don't care about the something, just the fact that it gives us the remainder of 1. ";
     static final String calculations = "And thats the initial calculations finished! I have to keep all these numbers safe and secret, except for n and k which are the public key. I can now send this to people so they can encrypt messages for me!";
     static final String step1next =    "Click on 2 to see the next step!";
 
@@ -172,8 +172,6 @@ public class RSA_Controller extends CryptoMethodsController {
 
     static final String tooltipPK = "The public key calculated previously, in case you've forgotten n=33 and k=7";
     static final String tooltipEq = "The equation used for encryption, m^k mod n, with m being the letter as a number";
-    static final String tooltipnoPK = "The public key with n and k replaced with the numbers calculated in the previous step.";
-    static final String tooltipnoEq= "The encryption algorithm with the letters replaced with numbers";
 
 
     public static String getHeyStep2() {
@@ -230,14 +228,6 @@ public class RSA_Controller extends CryptoMethodsController {
 
     public static String getTooltipEq() {
         return tooltipEq;
-    }
-
-    public static String getTooltipnoPK() {
-        return tooltipnoPK;
-    }
-
-    public static String getTooltipnoEq() {
-        return tooltipnoEq;
     }
 
     //step 3 strings
@@ -384,7 +374,7 @@ public class RSA_Controller extends CryptoMethodsController {
         return tooltipStep4decrypt;
     }
 
-    private static final String[] step1Used = new String[]{"Prime Numbers","Diffusion vs Transformation","Stream vs Block","Asymmetric vs Symmetric"};
+    private static final String[] step1Used = new String[]{"Prime Numbers","Diffusion vs Transformation","Stream vs Block","Asymmetric vs Symmetric","Inverse Modular"};
     private static final String[] step2Used = new String[]{"Prime Numbers","Encryption & Decryption","Diffusion vs Transformation","Stream vs Block"};
     private static final String[] step3Used = new String[]{"Prime Numbers","Encryption & Decryption","Diffusion vs Transformation"};
     private static final String[] step4Used = new String[]{"Prime Numbers","Encryption & Decryption","Diffusion vs Transformation"};

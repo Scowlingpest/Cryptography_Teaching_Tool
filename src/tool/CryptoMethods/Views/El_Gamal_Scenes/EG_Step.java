@@ -21,7 +21,7 @@ import tool.Graphics.Speechbubble;
  * Creation: 07/12/2015.
  */
 public class EG_Step {
-    static VBox combos = new VBox();
+    static HBox combos = new HBox();
     static ComboBox<Integer> pSelect = new ComboBox<>();
     static ComboBox<Integer> qSelect = new ComboBox<>();
     static ComboBox<Integer> aSelect = new ComboBox<>();
@@ -55,7 +55,7 @@ public class EG_Step {
         Rectangle middle = new Rectangle(start=+430,50,350,550);
         middle.getStyleClass().add("rectangle-neither");
 
-        Rectangle right = new Rectangle(start+=360,50,400,550);
+        Rectangle right = new Rectangle(start+360,50,400,550);
         right.getStyleClass().add("rectangle-encrypt");
 
 
@@ -104,18 +104,18 @@ public class EG_Step {
         }
         aSelect.setValue(10);
         bSelect.setValue(14);
-        combos = new VBox();
+        combos = new HBox();
 
-        HBox line1 = new HBox();
-        HBox line2 = new HBox();
-        line1.getChildren().addAll(new Label("p:"),pSelect,
-                new Label("q:"),qSelect);
-        line2.getChildren().addAll(new Label("a:"),aSelect,
-                new Label("b:"),bSelect);
-        combos.setLayoutX(500);
+        VBox line1 = new VBox();VBox line2 = new VBox();
+        VBox line3 = new VBox();VBox line4 = new VBox();
+
+        line1.getChildren().addAll(new Label("p"),pSelect);line2.getChildren().addAll(new Label("q"),qSelect);
+        line3.getChildren().addAll(new Label("a"),aSelect); line4.getChildren().addAll( new Label("b"),bSelect);
+
+        combos.setLayoutX(465);
         combos.setLayoutY(200);
 
-        combos.getChildren().addAll(line1,line2);
+        combos.getChildren().addAll(line1,line2,line3,line4);
         root.getChildren().add(combos);
     }
 

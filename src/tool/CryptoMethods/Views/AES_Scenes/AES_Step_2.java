@@ -67,31 +67,13 @@ public class AES_Step_2 {
 
     //moves the robot and the speechbubble into the top corner, and makes the robot smaller
     private static void moveRobot(SequentialTransition st){
-        /*FadeTransition fadeBubble = AnimationMethods.fadeAway(bubble.getSp());
-        fadeBubble.setOnFinished(event->{
-            bubble.setSpeech(AES_Controller.getStep_2_rounds());
-        });
-
-        TranslateTransition moveEncrypt = AnimationMethods.moveNode(encrypt.getView(),425,-200,4);
-        TranslateTransition moveBubble  = AnimationMethods.moveNode(bubble.getSp(),425,-175,1);
-        ScaleTransition changeSize = AnimationMethods.changeSize(encrypt.getView(),0.75,4);
-
-
-        ParallelTransition pt1 = AnimationMethods.createParallel(new Transition[]
-                {moveEncrypt,changeSize});
-
-        FadeTransition appearDetail = AnimationMethods.fadeInto(bubble.getSp());
-
-        st.getChildren().addAll(fadeBubble,pt1,moveBubble,appearDetail,
-                AnimationMethods.pauseSeconds(5));
-               */
         AnimationMethods.changeBubble(st,bubble,AES_Controller.getStep_2_rounds());
         st.getChildren().add(AnimationMethods.pauseSeconds(10));
 
     }
 
     private static Box[] roundStages(SequentialTransition st, Pane p){
-        int width = 450;
+        int width = AES_Controller.getBOXWIDTH();
         Box[] boxes = new Box[3];
         boxes[0]= new Box("Round : 1");
         boxes[1]= new Box("Rounds: 2-9");
@@ -157,7 +139,7 @@ public class AES_Step_2 {
         st.getChildren().addAll(changeRound1,displayRound1);
 
         //moves paper into round 1
-        movePaperRound1(sheets[0],st);
+        movePaperRound1(sheets[0],st,1);
 
         //changes round 2 text
         FadeTransition changeRound2 = AnimationMethods.fadeAway(boxes[1].getTextFromSp());
@@ -194,7 +176,7 @@ public class AES_Step_2 {
         return sheets;
     }
 
-    private static void movePaperRound1(Paper sheet,SequentialTransition st){
+    private static void movePaperRound1(Paper sheet,SequentialTransition st,int t){
         TranslateTransition moveSheet = AnimationMethods.moveNode(sheet.getView(), AES_Controller.getHalfway(), 0, 4);
         FadeTransition fadePage = AnimationMethods.fadeAway(sheet.getView());
         FadeTransition appearFade = AnimationMethods.fadeInto(sheet.getView());
@@ -204,7 +186,7 @@ public class AES_Step_2 {
                 AnimationMethods.pauseSeconds(2),
                 appearFade,leaveRound);
 
-        AnimationMethods.changeBubble(st, bubble, AES_Controller.getStep_2_middle2());
+        if(t==1){AnimationMethods.changeBubble(st, bubble, AES_Controller.getStep_2_middle2());}
 
     }
 
@@ -221,7 +203,7 @@ public class AES_Step_2 {
                     AnimationMethods.pauseSeconds(2),
                     AnimationMethods.fadeInto(sheet.getView())
             );
-            if(i==2 && t==1){
+            if(t==1 && i==2){
                 AnimationMethods.changeBubble(st,bubble,AES_Controller.getStep_2_endLast());
             }
         }
@@ -251,14 +233,14 @@ public class AES_Step_2 {
 
     private static void next2Sheets(Paper[] sheets, Pane p, SequentialTransition st){
         AnimationMethods.changeBubble(st,bubble,AES_Controller.getStep_2_encrypt());
-        movePaperRound1(sheets[1],st);
+        movePaperRound1(sheets[1],st,2);
         movePaperRoundMiddle(sheets[1],st,2);
         movePaperFinalRound(sheets[1],st);
         FadeTransition remove2 = AnimationMethods.fadeAway(sheets[1].getView());
         remove2.setOnFinished(event-> p.getChildren().remove(sheets[1]));
         st.getChildren().add(remove2);
 
-        movePaperRound1(sheets[2],st);
+        movePaperRound1(sheets[2],st,3);
         movePaperRoundMiddle(sheets[2],st,3);
         movePaperFinalRound(sheets[2],st);
         FadeTransition remove3 = AnimationMethods.fadeAway(sheets[2].getView());

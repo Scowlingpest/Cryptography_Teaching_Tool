@@ -55,7 +55,7 @@ public class RSA_Step_4 {
 
     public static SequentialTransition createTimeLine(Pane p){
         SequentialTransition st = new SequentialTransition();
-        Speechbubble bubble =new Speechbubble("tl",RSA_Controller.getWelcomeStep4(),215,125,175);
+        Speechbubble bubble =new Speechbubble("tl",RSA_Controller.getWelcomeStep4(),225,125,175);
 
         p.getChildren().addAll(bubble.getSp());
         encryptPaper(p,st,bubble);

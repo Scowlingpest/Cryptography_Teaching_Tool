@@ -18,10 +18,7 @@ import tool.CryptoMethods.Views.El_Gamal;
 import tool.CryptoMethods.Views.RSA;
 import tool.Models.MonitoringMap;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Author: Phillipa Russell
@@ -29,6 +26,7 @@ import java.io.IOException;
  * Created: 06/10/2015
  */
 public class Main extends Application {
+    // monitoring map for recording what users click
     MonitoringMap monitor=new MonitoringMap();
 
     @Override
@@ -39,7 +37,7 @@ public class Main extends Application {
         BorderPane borderPane =setupMenu();
         borderPane.setBackground(new Background(new BackgroundFill(Color.web("#ebebeb"),CornerRadii.EMPTY,Insets.EMPTY)));
         Scene scene = new Scene(borderPane, 1200, 700);
-        scene.getStylesheets().add("tool/Files/Style.css");
+        scene.getStylesheets().add("Files/Style.css");
 
         Instructions.start(borderPane,false);
 
@@ -49,6 +47,7 @@ public class Main extends Application {
 
     }
 
+    //this setups the borderpane and the main menu
     public BorderPane setupMenu(){
         final BorderPane root = new BorderPane();
         VBox topContainer = new VBox();
@@ -62,9 +61,7 @@ public class Main extends Application {
         Menu menuFile = new Menu("File");
         MenuItem exitMenuItem = new MenuItem("Exit");
         exitMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
-        exitMenuItem.setOnAction(e ->{
-            Platform.exit();
-        });
+        exitMenuItem.setOnAction(e -> Platform.exit());
 
         MenuItem instructions = new MenuItem("Instructions");
         instructions.setAccelerator(KeyCombination.keyCombination("Ctrl+I"));
@@ -204,10 +201,34 @@ public class Main extends Application {
 
     @Override
     public void stop(){
-        try {
-            BufferedWriter output = new BufferedWriter(new FileWriter(new File("src/tool/Files/Monitoring.csv"), true));
-            output.write(monitor.lineGenerate()+"\n");
-            output.close();
+        try{
+            String path = System.getProperty("user.home") + File.separator + "Documents";
+            path += File.separator + "Cryptography Teaching Tool";
+            File customDir = new File(path);
+            path+=File.separator+"Monitoring.csv";
+
+            if(customDir.exists()){
+                BufferedWriter output = new BufferedWriter(new FileWriter(new File(path), true));
+                output.write(monitor.lineGenerate()+"\n");
+                output.close();
+            }
+            else {
+                File file = new File(path);
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+
+                InputStream url =getClass().getResourceAsStream("/Files/Monitoring.csv");
+                BufferedReader reader =new BufferedReader(new InputStreamReader(url));
+                BufferedWriter output = new BufferedWriter(new FileWriter(file));
+                String line = reader.readLine();
+                while(line!=null){
+                    output.write(line);
+                    line=reader.readLine();
+                }
+                output.write(monitor.lineGenerate()+"\n");
+                output.close();
+                reader.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

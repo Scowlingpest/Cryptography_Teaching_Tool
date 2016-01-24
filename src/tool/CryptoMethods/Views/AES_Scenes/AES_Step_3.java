@@ -79,17 +79,14 @@ public class AES_Step_3 {
         Text key = AnimationMethods.textSetup("Key",230,305,"This is the key before encryption");
         p.getChildren().add(key);
 
-        ImageView locked =new ImageView("tool/Files/Images/closedLock.png");
+        ImageView locked =new ImageView("Files/Images/closedLock.png");
         locked.setOpacity(0);locked.setLayoutX(230);locked.setLayoutY(270);
         locked.setPreserveRatio(true);locked.setFitWidth(35);
         p.getChildren().add(locked);
 
         FadeTransition keyAppear =AnimationMethods.fadeInto(key);
         FadeTransition keyChange = AnimationMethods.fadeAway(key);
-        keyChange.setOnFinished(event->{
-            p.getChildren().remove(key);
-
-        });
+        keyChange.setOnFinished(event-> p.getChildren().remove(key));
         FadeTransition reappear = AnimationMethods.fadeInto(locked);
         st.getChildren().addAll(keyAppear,AnimationMethods.pauseSeconds(3),
                                 keyChange,reappear);
@@ -118,20 +115,16 @@ public class AES_Step_3 {
                 moveKey,evilCopy});
 
         FadeTransition evilGone= AnimationMethods.fadeAway(copy);
-        evilGone.setOnFinished(event->{
-            p.getChildren().remove(copy);
-        });
+        evilGone.setOnFinished(event-> p.getChildren().remove(copy));
 
         FadeTransition keyChange=AnimationMethods.fadeAway(key);
         keyChange.setOnFinished(event->{
-            key.setImage(new Image("tool/Files/Images/openLock.png"));
+            key.setImage(new Image("Files/Images/openLock.png"));
             key.setFitWidth(50);
         });
         FadeTransition keyAppear = AnimationMethods.fadeInto(key);
         FadeTransition keyGone=AnimationMethods.fadeAway(key);
-        keyGone.setOnFinished(event->{
-            p.getChildren().remove(key);
-        });
+        keyGone.setOnFinished(event-> p.getChildren().remove(key));
 
 
         st.getChildren().addAll(briefPause,pt, evilGone,keyChange,keyAppear,
@@ -169,9 +162,7 @@ public class AES_Step_3 {
         }
 
         FadeTransition moveStack=AnimationMethods.fadeAway(stack.getView());
-        moveStack.setOnFinished(event->{
-            stack.getView().setLayoutX(860);
-        });
+        moveStack.setOnFinished(event-> stack.getView().setLayoutX(860));
         FadeTransition stackSent = AnimationMethods.fadeInto(stack.getView());
 
         st.getChildren().addAll(moveStack,stackSent);

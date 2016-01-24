@@ -31,16 +31,16 @@ public class Inv_Mod {
         StackPane sp = new StackPane();
         drawBackground(500,650,sp,"rectangle-neither");
 
-        Text title =new Text("Inverse Modulus of Number 17");
+        Text title =new Text("Inverse Modulus of Number 16");
         title.getStyleClass().add("text-title");
 
         vb.setSpacing(1);
         HBox hb = new HBox();
         ComboBox<Integer> choose = new ComboBox<>();
-        choose.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
+        choose.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
         choose.setValue(3);
 
-        Button play = new Button("Click to see if it is an inverted modulus of 17");
+        Button play = new Button("Click to see if it is an inverted modulus of 16");
         hb.getChildren().addAll(choose,play);
 
         play.setOnAction(event->{
@@ -58,6 +58,7 @@ public class Inv_Mod {
     }
     public static void setUpRight(BorderPane bp){
         Robot encrypt= Inv_Mod_Controller.getEncrypt();
+        encrypt.setImageWidth(165);
 
         VBox vb = Inv_Mod_Controller.organiseText(encrypt.getTitle(), Inv_Mod_Controller.getRightPara(), Inv_Mod_Controller.getTextWidth());
         vb.getChildren().add(encrypt.getView());
@@ -74,6 +75,7 @@ public class Inv_Mod {
     public static void setUpLeft(BorderPane bp){
 
         Robot decrypt= Inv_Mod_Controller.getDecrypt();
+        decrypt.setImageWidth(165);
 
         VBox vb = Inv_Mod_Controller.organiseText(decrypt.getTitle(), Inv_Mod_Controller.getLeftPara(), Inv_Mod_Controller.getTextWidth());
         vb.getChildren().add(decrypt.getView());

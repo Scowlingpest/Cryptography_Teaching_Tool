@@ -15,7 +15,7 @@ public class Vigenère_Cipher_Controller extends BuildingBlockController {
     static String noSpaces =message.replaceAll("\\s", "");
     static String keyword = generateKeyWord(key, noSpaces.length());
     static String encrypted =encrypt(noSpaces,key);
-    static int TEXTWIDTH=400;
+    static int TEXTWIDTH=410;
 
     private static String generateKeyWord(String key, int limit){
         String temp = "";
@@ -28,11 +28,11 @@ public class Vigenère_Cipher_Controller extends BuildingBlockController {
     static Paragraph information = new Paragraph("The Vigenère Cipher is another way of encryption and decryption. "+
             "This method uses a graph like the one on screen now. The X and Y axis are both the alphabet. Looking at the X axis you can see that each line is the alphabet starting at that letter. "+
     " So for the third line, C, the alphabet has been shifted twice and now starts at C, with A & B being moved to the end. "+
-    "The way this cipher method works is that there is a keyword and a message. ");
+    "The way this cipher method works is that there is a keyword(a word used as a key) and a message. ");
 
-    static Paragraph howItWorks = new Paragraph("The keyword is a word that will be used as the key. In this example we will use the word 'cookie'."+
+    static Paragraph howItWorks = new Paragraph("In this example we will use the word 'cookie' as the keyword."+
             "You can see our message at the bottom of the screen, 'Cryptography is Fun'. First we repeat the keyword so that we have the same number " + "" +
-            "of letters as the message (we remove the spaces),so 'CryptographyisFun' has 17 letters, meaning 'cookie' becomes 'cookiecookiecookiecoo'."+
+            "of letters as the message (we remove the spaces),so 'CryptographyisFun' has 17 letters, meaning 'cookie' becomes 'cookiecookiecooki'."+
     "To encrypt we compare the letters to the graph. The letter of the keyword is the X axis, the letter of the message is the Y axis, so "+
     "for the first letter we look at square (c,c), meaning we replace it with E (the letter at square (c,c)). We do this for the entire message to get the encrypted message. "+
     "For decrypting we look at the X axis for the letter (c in this case) and move along until we reach the letter from the encrypted message, then we get the y axis value to get the original letter.");

@@ -13,7 +13,7 @@ public class Monitor {
     ImageView image = new ImageView();
 
     public Monitor(int width, int x, int y) {
-        this.image.setImage(new Image("tool/Files/Images/monitor.png"));
+        this.image.setImage(new Image("Files/Images/monitor.png"));
         this.image.setFitWidth(width);
         this.image.setPreserveRatio(true);
         this.image.setLayoutX(x);
