@@ -22,11 +22,13 @@ import tool.Models.Paragraph;
  */
 public class Stream_vs_Block {
 
+    //starts method for the building block
     public static void start(BorderPane bp) {
         setUpLeft(bp);
         setUpRight(bp);
     }
 
+    //setups the left hand side of the screen with the stream stuff
     private static void setUpLeft(BorderPane bp){
         Pane left = new Pane();
 
@@ -50,6 +52,7 @@ public class Stream_vs_Block {
         bp.setLeft(left);
     }
 
+    //setups the right hand side of the screen with the block stuff
     private static void setUpRight(BorderPane bp){
         Pane right = new Pane();
 
@@ -75,6 +78,7 @@ public class Stream_vs_Block {
 
     }
 
+    //setups the robot with their information
     private static StackPane robotSetup(Robot r,Paragraph p){
         VBox vb = Prime_Numbers_Controller.organiseText(r.getTitle(), p, Stream_vs_Block_Controller.getTextWidth());
         vb.getChildren().add(r.getView());

@@ -16,6 +16,7 @@ import tool.Graphics.Speechbubble;
 public class RSA_Step_1 {
     static Speechbubble welcome;
 
+    //creates the pane needed for the animation
     public static void createPane(Pane root){
         Robot encrypt = RSA_Controller.getEncrypt();
         Robot decrypt = RSA_Controller.getDecrypt();
@@ -37,6 +38,7 @@ public class RSA_Step_1 {
 
     }
 
+    //setups the background of the animation
     public static void background(Pane p){
         Rectangle left = new Rectangle(30,50,260,550);
         left.getStyleClass().add("rectangle-encrypt");
@@ -52,6 +54,7 @@ public class RSA_Step_1 {
     }
 
 
+    //places the robots in their first location
     public static void placeRobotsFirst(Robot e, Robot d, Pane p){
         AnimationMethods.placeRobots(d, p, 950, 175);
         AnimationMethods.placeRobots(e, p, 35, 50);
@@ -59,6 +62,7 @@ public class RSA_Step_1 {
 
 
 
+    //creates the animation, creates all text and then animates it
     public static SequentialTransition createTimeLine(Pane root){
         SequentialTransition st = new SequentialTransition();
         int x=375;
@@ -95,7 +99,7 @@ public class RSA_Step_1 {
     }
 
 
-
+    //animation for changing the speech bubble and making 2 pieces of text appear
     public static void bubbleAnd2Text(String bubble, SequentialTransition st, Pane p, Text a, Text b){
         AnimationMethods.changeBubble(st,welcome,bubble);
 
@@ -110,6 +114,7 @@ public class RSA_Step_1 {
                 AnimationMethods.pauseSeconds(5));
     }
 
+    //animation for changing the speech bubble and making 1 piece of text appear
     private static void bubbleAnd1Text(String bubble, SequentialTransition st, Pane p, Text a){
         AnimationMethods.changeBubble(st,welcome,bubble);
 

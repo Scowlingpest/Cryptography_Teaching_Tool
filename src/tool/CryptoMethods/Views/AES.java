@@ -26,12 +26,17 @@ public class AES {
     static SequentialTransition st =new SequentialTransition();
     static int step=0;
 
+    //starts the aes, wipes the screen and sequential transition and resets the paused setting
     public static void start(BorderPane bp,MonitoringMap monitor){
+        p=new Pane();
+        st=new SequentialTransition();
+        step=0;
+        paused=Duration.seconds(0);
         bottomControls(bp,monitor);
     }
 
 
-
+    //creates the controls for the animations along the bottom of the screen
     public static void bottomControls(BorderPane bp,MonitoringMap monitor){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
         bbUsed.getStyleClass().add("button");
@@ -128,6 +133,7 @@ public class AES {
 
     }
 
+    //setups the pane and creates the animation for each step
     private static void setupPane(int i,BorderPane bp){
         st.stop();
         p.getChildren().clear();

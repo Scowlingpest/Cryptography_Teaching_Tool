@@ -39,6 +39,7 @@ public class DH_Animation {
 
     }
 
+    //creates the two tables used to contain values
     private static void setupTableViews(Pane p, TableView<DataRow> tb, int x, ObservableList<DataRow> data) {
         tb.setFixedCellSize(25);
         tb.getItems().clear();
@@ -62,9 +63,11 @@ public class DH_Animation {
         p.getChildren().add(vb);
     }
 
+    //moves p and q back and forth between the two robots, sets value and adds to table
     private static Text[] pandQDiscussion(SequentialTransition st, Speechbubble bubble, Pane root) {
         AnimationMethods.changeBubble(st, bubble, DH_Controller.getPandQ());
 
+        //create text objects and evil text objects
         Text p = AnimationMethods.textSetup("P", 975, 250, DH_Controller.getpTooltip());
         Text q = AnimationMethods.textSetup("Q", 200, 250, DH_Controller.getqTooltip());
 
@@ -72,6 +75,7 @@ public class DH_Animation {
         Text evilQ = AnimationMethods.textSetup("Q=" + q.getText(), 560, 295, DH_Controller.getqTooltip());
         root.getChildren().addAll(p, q, evilP, evilQ);
 
+        //make p and q appear, move across screen, move back and cange to values
         ParallelTransition textAppear = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeInto(p), AnimationMethods.fadeInto(q)
         });
@@ -90,6 +94,7 @@ public class DH_Animation {
         ParallelTransition textChange = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeAway(p), AnimationMethods.fadeAway(q)
         });
+        //add p and q to tables
         textChange.setOnFinished(event -> {
             p.setText(String.valueOf(DH_Controller.getP()));
             q.setText(String.valueOf(DH_Controller.getQ()));
@@ -106,6 +111,7 @@ public class DH_Animation {
             evilQ.setText("Q=" + q.getText());
         });
 
+        //move evil text to listener
         ParallelTransition evilAppear = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeInto(evilP), AnimationMethods.fadeInto(evilQ)
         });
@@ -128,6 +134,7 @@ public class DH_Animation {
 
     }
 
+    //animation for picking the secret numbers
     private static void secretNumberCalc(SequentialTransition st, Speechbubble bubble, Text[] texts) {
         AnimationMethods.changeBubble(st, bubble, DH_Controller.getPrime());
         ParallelTransition changeText = AnimationMethods.createParallel(new Transition[]{
@@ -162,6 +169,7 @@ public class DH_Animation {
 
     }
 
+    //animation for calculating A and B
     private static void calculateAB(SequentialTransition st, Speechbubble bubble, Text[] texts) {
         AnimationMethods.changeBubble(st, bubble, DH_Controller.getWorkingAandB());
         ParallelTransition textChange = AnimationMethods.createParallel(new Transition[]{

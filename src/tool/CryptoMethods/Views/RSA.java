@@ -25,7 +25,10 @@ public class RSA {
     static int step=0;
 
     public static void start(BorderPane bp,MonitoringMap monitor){
-
+        p=new Pane();
+        st=new SequentialTransition();
+        step=0;
+        paused=Duration.seconds(0);
         bottomControls(bp,monitor);
 
 

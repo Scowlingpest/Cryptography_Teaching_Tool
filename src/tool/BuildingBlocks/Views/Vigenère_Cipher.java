@@ -21,11 +21,13 @@ import tool.Models.Paragraph;
  */
 public class Vigenère_Cipher {
 
+    //start method for the block
     public static void start(BorderPane bp){
         setUpLeft(bp);
         setUpRight(bp);
     }
 
+    //sets up the left hand side of the screen with the robots
     public static void setUpLeft(BorderPane bp){
         Robot encrypt = Vigenère_Cipher_Controller.getEncrypt();
         Robot decrypt = Vigenère_Cipher_Controller.getDecrypt();
@@ -43,6 +45,7 @@ public class Vigenère_Cipher {
 
     }
 
+    //creates the information on screen for each robot
     public static StackPane setUpInformation(Robot robot, Paragraph p,int size){
         StackPane sp =new StackPane();
         Vigenère_Cipher_Controller.backgroundSetup(625,size,sp,robot.getStyle());
@@ -61,6 +64,7 @@ public class Vigenère_Cipher {
         return sp;
     }
 
+    //sets up the right hand side of the screen, adds the title, graph and information
     public static void setUpRight(BorderPane bp){
         StackPane sp = new StackPane();
         Vigenère_Cipher_Controller.backgroundSetup(530, 650, sp, "rectangle-neither");
@@ -80,7 +84,7 @@ public class Vigenère_Cipher {
     }
 
 
-
+    //creates the graph image view and applies the settings
     private static ImageView graphSetUp(){
         ImageView graph = new ImageView(new Image("Files/Images/VigenèreGraph.png"));
         graph.setPreserveRatio(true);
@@ -90,6 +94,7 @@ public class Vigenère_Cipher {
         return graph;
     }
 
+    //creates the information under the graph
     private static void informationSetUp(VBox vb){
         Title key= new Title(new Header("Key:\t\t\t"+Vigenère_Cipher_Controller.getKey()));
         Title message = new Title(new Header("Message:\t"+Vigenère_Cipher_Controller.getMessage()));

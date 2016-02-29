@@ -20,11 +20,13 @@ import tool.Models.Paragraph;
 public class Generator {
     static StackPane decryptStack = new StackPane();
 
+    //start method for the block
     public static void start(BorderPane bp) {
         setUpRight(bp);
         setUpLeft(bp);
     }
 
+    //sets up the left side of the screen with the animation
     private static void setUpLeft(BorderPane bp) {
         StackPane sp = new StackPane();
 
@@ -41,6 +43,7 @@ public class Generator {
         Button play = new Button("Click to see if it's modulus");
         hb.getChildren().addAll(choose,play);
 
+        //when play, create animation, play, change what decrypt is saying
         play.setOnAction(event->{
             int j=choose.getValue();
             Generator_controller.playTransition(j,vb,hb);
@@ -57,7 +60,7 @@ public class Generator {
     }
 
 
-
+    //sets up the right hand side of the screen with the two robots
     private static void setUpRight(BorderPane bp) {
 
         Robot decrypt = Generator_controller.getDecrypt();
@@ -73,6 +76,7 @@ public class Generator {
 
     }
 
+    //adds the robot to the screen with the data
     private static StackPane drawRobot(Robot r,String s){
         StackPane sp = new StackPane();
         Generator_controller.backgroundSetup(500, 300, sp, r.getStyle());
@@ -83,6 +87,7 @@ public class Generator {
         return sp;
     }
 
+    //changes what decrypt says depending on animation result
     private static void decryptSays(int i) {
         String s = "";
         switch (i){
@@ -103,6 +108,7 @@ public class Generator {
         changeText(s,decryptStack);
     }
 
+    //small method for changing the text decrypt uses
     private static void changeText(String text, StackPane sp){
         HBox hb =(HBox)sp.getChildren().get(1);
         VBox vb = (VBox)hb.getChildren().get(0);

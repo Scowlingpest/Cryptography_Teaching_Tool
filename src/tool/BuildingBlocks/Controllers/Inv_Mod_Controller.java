@@ -65,6 +65,7 @@ public class Inv_Mod_Controller extends BuildingBlockController {
             vb.getChildren().add(hb);
         }
     }
+
     private static SequentialTransition setupTransition(int i,VBox vb) {
         input=i;
         SequentialTransition st = new SequentialTransition();

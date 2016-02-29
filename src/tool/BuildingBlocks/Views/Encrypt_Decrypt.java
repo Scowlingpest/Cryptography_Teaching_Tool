@@ -28,9 +28,8 @@ public class Encrypt_Decrypt {
     public static void start(BorderPane bp) {
 
         setUpLeft(bp);
-        //setUpRight(bp);
         setUpBottom(bp);
-        //bp.setCenter(null);
+
     }
 
     //sets up the left hand side of the screen/borderpane
@@ -181,6 +180,7 @@ public class Encrypt_Decrypt {
         }
     }
 
+    //creates the instructions for the interactive element
     public static void instructionRow(GridPane gp){
         int g = Encrypt_Decrypt_Controller.getInstructionRow();
         Para_Text pt =new Para_Text(Encrypt_Decrypt_Controller.getInstructions(),800);
@@ -188,6 +188,7 @@ public class Encrypt_Decrypt {
         gp.add(pt.getPara(),0,g);
     }
 
+    //method for when the button is clicked
     public static void clickyPressed(String text, int n){
         String crypted = Encrypt_Decrypt_Controller.encryptText(text,n);
         encrypted.setText(crypted);

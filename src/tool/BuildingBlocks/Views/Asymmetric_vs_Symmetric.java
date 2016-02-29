@@ -22,32 +22,32 @@ import tool.Models.Paragraph;
 public class Asymmetric_vs_Symmetric{
 
 
+    //start method, setups the borderpane
     public static void start(BorderPane bp) {
         setUpLeft(bp);
         setUpRight(bp);
     }
 
 
+    //setups the left side, which has both robots and their information
     public static void setUpLeft(BorderPane bp) {
-
         VBox vb = new VBox();
         vb.getStyleClass().add("vbox");
-        Robot decrypt = Asymmetric_vs_Symmetric_Controller.getDecrypt();
 
+        //setups decrypts box of info
+        Robot decrypt = Asymmetric_vs_Symmetric_Controller.getDecrypt();
         vb.getChildren().add(setUpInformation(decrypt, Asymmetric_vs_Symmetric_Controller.getDecryptPara()));
 
+        //setups encrypts box of info
         Robot encrypt =Asymmetric_vs_Symmetric_Controller.getEncrypt();
-
-
         vb.getChildren().add(setUpInformation(encrypt, Asymmetric_vs_Symmetric_Controller.getEncryptPara()));
 
 
         bp.setLeft(vb);
-
-
     }
 
 
+    //setups the info box with a robot and text
     public static StackPane setUpInformation(Robot robot, Paragraph text){
         StackPane sp =new StackPane();
         Asymmetric_vs_Symmetric_Controller.backgroundSetup(600,300,sp,robot.getStyle());
@@ -65,12 +65,14 @@ public class Asymmetric_vs_Symmetric{
         return sp;
     }
 
+    //setups the right hand side with the interactive element
     public static void setUpRight(BorderPane bp) {
         StackPane sp = new StackPane();
         VBox finished = new VBox();
         finished.getStyleClass().add("vbox");
         Asymmetric_vs_Symmetric_Controller.backgroundSetup(500, 600, sp, "rectangle-neither");
 
+        //two toggle groups for the keys
         VBox vbEncrypt = new VBox();
         final ToggleGroup first=setUpVBox(Asymmetric_vs_Symmetric_Controller.getEncryptKey(),vbEncrypt);
         VBox vbDecrypt = new VBox();
@@ -80,7 +82,7 @@ public class Asymmetric_vs_Symmetric{
         HBox hb = new HBox();
         hb.getChildren().addAll(vbEncrypt,vbDecrypt);
 
-
+        //button for activating the change
         Button button = new Button(Asymmetric_vs_Symmetric_Controller.getButtonText());
 
 
@@ -104,6 +106,7 @@ public class Asymmetric_vs_Symmetric{
 
     }
 
+    //changes the text based on the selected radio buttons
     public static void changeVB(ToggleGroup first, ToggleGroup second, VBox vb){
         String expected1 =(String)first.getSelectedToggle().getUserData();
         String expected2 =(String)second.getSelectedToggle().getUserData();
@@ -113,11 +116,11 @@ public class Asymmetric_vs_Symmetric{
     }
 
     public static ToggleGroup setUpVBox(Header title, VBox vb){
-
         vb.getStyleClass().add("vbox");
         return radioButtonSetup(vb,title.getTitle());
     }
 
+    //setups the radio buttons
     public static ToggleGroup radioButtonSetup(VBox radio, String title){
         ToggleGroup group = new ToggleGroup();
 
@@ -137,14 +140,16 @@ public class Asymmetric_vs_Symmetric{
         return group;
     }
 
+    //changes the bottom segement of text based on the radio buttons
     public static VBox changeBottom(Boolean b) {
         if (b) {
-
+            //if same keys selected, show symmetric
             return(Asymmetric_vs_Symmetric_Controller.organiseText(
                     Asymmetric_vs_Symmetric_Controller.getSymmetric().getHeader(),
                     Asymmetric_vs_Symmetric_Controller.getSymmetric().getParagraph(),
                     Asymmetric_vs_Symmetric_Controller.getTEXTWIDTH()));
         }
+            //it different keys, show asymmetric
             return Asymmetric_vs_Symmetric_Controller.organiseText(
                     Asymmetric_vs_Symmetric_Controller.getAsymmetric().getHeader(),
                     Asymmetric_vs_Symmetric_Controller.getAsymmetric().getParagraph(),

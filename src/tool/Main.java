@@ -20,6 +20,7 @@ import tool.Models.MonitoringMap;
 
 import java.io.*;
 
+
 /**
  * Author: Phillipa Russell
  * Student Number: 0900772r
@@ -200,40 +201,40 @@ public class Main extends Application {
     }
 
     @Override
-    public void stop(){
-        try{
+    public void stop() {
+        try {
             String path = System.getProperty("user.home") + File.separator + "Documents";
             path += File.separator + "Cryptography Teaching Tool";
             File customDir = new File(path);
-            path+=File.separator+"Monitoring.csv";
+            path += File.separator + "Monitoring.csv";
 
-            if(customDir.exists()){
+            if (customDir.exists()) {
                 BufferedWriter output = new BufferedWriter(new FileWriter(new File(path), true));
-                output.write(monitor.lineGenerate()+"\n");
+                output.write(monitor.lineGenerate() + "\n");
                 output.close();
-            }
-            else {
+            } else {
                 File file = new File(path);
                 file.getParentFile().mkdirs();
                 file.createNewFile();
 
-                InputStream url =getClass().getResourceAsStream("/Files/Monitoring.csv");
-                BufferedReader reader =new BufferedReader(new InputStreamReader(url));
+                InputStream url = getClass().getResourceAsStream("/Files/Monitoring.csv");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(url));
                 BufferedWriter output = new BufferedWriter(new FileWriter(file));
                 String line = reader.readLine();
-                while(line!=null){
+                while (line != null) {
                     output.write(line);
-                    line=reader.readLine();
+                    line = reader.readLine();
                 }
-                output.write(monitor.lineGenerate()+"\n");
+                output.write(monitor.lineGenerate() + "\n");
                 output.close();
                 reader.close();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
+
+
+
 
 }
