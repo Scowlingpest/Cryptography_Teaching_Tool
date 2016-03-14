@@ -8,8 +8,10 @@ import tool.Models.Paragraph;
  * Student Number: 0900772r
  * Creation: 15/11/2015.
  */
+//controller class for the vigenere cipher building block
 public class Vigenère_Cipher_Controller extends BuildingBlockController {
 
+    //variables needed
     static String key = "cookie";
     static String message ="Cryptography is Fun";
     static String noSpaces =message.replaceAll("\\s", "");
@@ -17,6 +19,11 @@ public class Vigenère_Cipher_Controller extends BuildingBlockController {
     static String encrypted =encrypt(noSpaces,key);
     static int TEXTWIDTH=410;
 
+    /*generateKeyWord
+    parameters: key-key for cipher, limit - length of word to repeat to
+    returns - key that matches the length of the word that beings encrypted
+    takes in a word and repeats it until it matches the limit
+     */
     private static String generateKeyWord(String key, int limit){
         String temp = "";
         for(int i=0;i<limit;i++){
@@ -25,6 +32,7 @@ public class Vigenère_Cipher_Controller extends BuildingBlockController {
         return temp;
     }
 
+    //more variables needed
     static Paragraph information = new Paragraph("The Vigenère Cipher is another way of encryption and decryption. "+
             "This method uses a graph like the one on screen now. The X and Y axis are both the alphabet. Looking at the X axis you can see that each line is the alphabet starting at that letter. "+
     " So for the third line, C, the alphabet has been shifted twice and now starts at C, with A & B being moved to the end. "+
@@ -41,6 +49,7 @@ public class Vigenère_Cipher_Controller extends BuildingBlockController {
 
     static Header graph =new Header("Vigenère Graph");
 
+    //getters
     public static String getKey() {
         return key;
     }
@@ -77,6 +86,17 @@ public class Vigenère_Cipher_Controller extends BuildingBlockController {
         return encrypted;
     }
 
+    public static Paragraph getNotice() {
+        return notice;
+    }
+
+
+    /*encrypt
+    parameters: text- text to encrypt, key- keyword to use for encryption
+    returns: encrypted word
+    Goes through the word to encrypt and encrypts it using the keyword
+    Uses the maths specified in variable 'notice'
+    */
     public static String encrypt(String text, String key)
     {
         String res = "";
@@ -91,7 +111,4 @@ public class Vigenère_Cipher_Controller extends BuildingBlockController {
         return res;
     }
 
-    public static Paragraph getNotice() {
-        return notice;
-    }
 }

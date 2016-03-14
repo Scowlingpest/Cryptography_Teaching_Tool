@@ -14,14 +14,15 @@ import tool.CryptoMethods.Views.AnimationMethods;
 import tool.Graphics.Para_Text;
 import tool.Models.Paragraph;
 
-import java.util.ArrayList;
-
 /**
  * Author: Phillipa Russell
  * Student Number: 0900772r
  * Creation: 13/12/2015.
  */
+//controller class for the inverted modulus building block
 public class Inv_Mod_Controller extends BuildingBlockController {
+
+    //variables needed
     final static int TextWidth = 300;
 
     final static Paragraph leftPara =new Paragraph("An inverse modulus is a type of modulus arithmetic. Modulus arithmetic are special laws of maths which only occur when "+
@@ -43,14 +44,17 @@ public class Inv_Mod_Controller extends BuildingBlockController {
     static final int mod = 16;
     static final int number = mod-1;
     static Text[] results = new Text[number];
-    static Text[] finished = new Text[number];
-    static final Text modString = new Text("(mod "+mod);
+    static final Text modString = new Text("(mod "+mod+") =");
     static Double[] equationAnswer = new Double[number];
     static int input = 3;
-    static int[] used = new int[number];
     static Text[] equation = new Text[number];
     static boolean found = false;
 
+    /*setupEquation
+    parameters: vb-to contain equations
+    returns: null
+    Creates the equations and gets the answers, adds to the provided vbox
+     */
     public static void setupEquation(VBox vb){
         for(int i =0;i<number;i++){
             HBox hb = new HBox();
@@ -59,22 +63,26 @@ public class Inv_Mod_Controller extends BuildingBlockController {
 
 
             equation[i]=AnimationMethods.equationSetup((Integer.toString(input)+"*"+Integer.toString((i+1))+'\t'+" ="+
-                    String.format("%.0f", equationAnswer[i])+"(mod 16) = "+'\t'),0,0,null);
+                    String.format("%.0f", equationAnswer[i])+modString+'\t'),0,0,null);
 
             hb.getChildren().addAll(equation[i],results[i]);
             vb.getChildren().add(hb);
         }
     }
 
+    /*setupTransition
+    parameters: i- selected value for animation, vb- vbox to contain equations
+    returns: the animation for the building block
+    Gets the equations, goes through them and makes them appear in order, adds the tooltips and adds the colour changes
+ */
     private static SequentialTransition setupTransition(int i,VBox vb) {
         input=i;
         SequentialTransition st = new SequentialTransition();
         setupEquation(vb);
-        ArrayList<Integer> changes = new ArrayList<>();
         Color c;
 
         for (int j=0;j<number;j++){
-            c=Color.RED;changes.clear();
+            c=Color.RED;
 
             ParallelTransition pt = AnimationMethods.createParallel(new Transition[]{
                     AnimationMethods.fadeInto(equation[j], 2), AnimationMethods.fadeInto(results[j], 2)
@@ -100,6 +108,12 @@ public class Inv_Mod_Controller extends BuildingBlockController {
         return st;
     }
 
+    /*changeColour
+    parameters: i- the index that need changed, color- color to change to,
+                st- sequential transition to add animations too
+    returns: null
+    if the colour is green then change the equation as well as the result, otherwise just change the result
+     */
     public static void changeColour(int i,Color color,SequentialTransition st){
         if (color==Color.GREEN){
             FillTransition green = new FillTransition(Duration.seconds(1), equation[i], (Color) equation[i].getFill(), color);
@@ -110,6 +124,12 @@ public class Inv_Mod_Controller extends BuildingBlockController {
 
     }
 
+    /* playTransition
+    parameters: i- number user has selected to test, vb- vbox to contain equations,
+                hb- contains buttons to put at bottom of equations
+    returns: null
+    Creates the animation using the selected value and plays, also changes the output based on answer
+     */
     public static void playTransition(int i, VBox vb, HBox hb){
         found = false;
         vb.getChildren().clear();
@@ -124,6 +144,7 @@ public class Inv_Mod_Controller extends BuildingBlockController {
         vb.getChildren().addAll(hb, pt.getPara());
     }
 
+    //getters
     public static Paragraph getLeftPara() {
         return leftPara;
     }

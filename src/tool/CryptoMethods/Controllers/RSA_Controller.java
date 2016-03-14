@@ -235,7 +235,7 @@ public class RSA_Controller extends CryptoMethodsController {
     static final String secretKey = "(j,n)";
     static final String secretKeyNo ="(3,33)";
     static final String equationStep3No = "c^3 mod 33";
-    static final String unknownEqStep3 = "c^? mod ?";
+    static final String unknownEqStep3 = "c^? mod 33";
 
     static final String welcomeStep3 = "Welcome to step 3. Here we'll be sending our encrypted messages to Decrypt and showing you how they get decrypted.";
     static final String firstStep3 = "First we need to send the encrypted messages to Decrypt. You can see how we encrypted them in Step 2.";
@@ -245,7 +245,7 @@ public class RSA_Controller extends CryptoMethodsController {
     static final String decryptStep3 = "The equation c^j mod n is applied to each letter of the encrypted message. We should end up with a decrypted file, which will be identical to the original message";
     static final String unknownStep3 = "The person who intercepted my message is trying to decrypt it. However she does not have the secret key, so she cannot decrypt it, meaning the message is meaningless.";
     static final String resendStep3 = "It doesn't matter that they have my message, because they can't read it. When I manage to send my message to Decrypt, he will be able to decrypt it the same as the other message";
-    static final String nextStep3 = "That is the basic of RSA, but click on Step 4 if you would like to learn how I can encrypt information with my key.";
+    static final String nextStep3 = "That is the basics of RSA, but click on Step 4 if you would like to learn about using RSA for authentication.";
 
     static final String tooltipStep3SK = "The secret key used by Decrypt. To remind you, j=3, and n=33.";
     static final String tooltipStep3Eq = "Decryption equation, c^j mod n with c being the encrypted letter as a number";
@@ -322,8 +322,8 @@ public class RSA_Controller extends CryptoMethodsController {
 
     static final String welcomeStep4 = "Welcome to Step 4. We will show you how RSA can be used for authentication. Click play to see!";
     static final String firstStep4 = "First Decrypt uses his secret key to encrypt his message. He does this using the decrypt algorithm from Step 3 with the secret key values.";
-    static final String sendEncryptStep4 = "Now the message is encrypted, Decrypt will send it to me. Once it arrives I can decrypt it using the public key I received in Step 2. If I can decrypt it then I knows it's from Decrypt.";
-    static final String wrongStep4 = "I know the message was safe, because I could successful decrypt it. If someone else sends me a message, I won't be able to decrypt it because they won't have encrypted it with the secret key.";
+    static final String sendEncryptStep4 = "Now the message is encrypted, Decrypt will send it to me. Once it arrives I can decrypt it using the public key I received in Step 2. If I can decrypt it then I know it's from Decrypt.";
+    static final String wrongStep4 = "I know the message was safe, because I could successfully decrypt it. If someone else sends me a message, I won't be able to decrypt it because they won't have encrypted it with the secret key.";
     static final String finishStep4 = "And that's RSA finished. Feel free to go back over the other steps or move onto one of the other Cryptography methods. Any areas your unsure about can be double checked in the Building Blocks";
 
     static final String tooltipStep4Eq = "Equation for encryption, it's the same as the decryption equation from step 3 with the secret key only with m instead of c";

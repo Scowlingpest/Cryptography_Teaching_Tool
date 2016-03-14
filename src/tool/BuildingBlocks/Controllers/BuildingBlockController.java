@@ -12,8 +12,10 @@ import tool.Models.Paragraph;
  *  Created: 13/10/2015
  */
 
+//Master controller for the building blocks
 public abstract class BuildingBlockController {
 
+    //two robots and there getters
     final static Robot encrypt = new Robot("encrypt", "rectangle-encrypt", new String[]{"Hello! I'm Encrypt.", "", ""}, new Header("Encrypt Says:"), 0, 0);
 
     final static Robot decrypt = new Robot("decrypt", "rectangle-decrypt", new String[]{"Hello! I'm Decrypt.", "", ""}, new Header("Decrypt Says:"), 0, 0);
@@ -26,10 +28,12 @@ public abstract class BuildingBlockController {
         return decrypt;
     }
 
+    //organises the header and the paragraph into a titled piece of information
     public static VBox organiseText(Header h,Paragraph p, int width){
         return new Titled_Information(h,p,width).getVb();
     }
 
+    //setups rectangles for use in the background
     public static void backgroundSetup(int width, int height, StackPane sp,String style){
         Rectangle rectangle = new Rectangle();
         rectangle.setHeight(height);

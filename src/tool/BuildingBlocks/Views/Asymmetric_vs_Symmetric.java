@@ -19,17 +19,24 @@ import tool.Models.Paragraph;
 /** Author : Phillipa Russell
  *  Created: 10/10/2015
  */
+//Asymmetric vs symmetric building block view class
 public class Asymmetric_vs_Symmetric{
 
 
-    //start method, setups the borderpane
+    /*start method, setups the borderpane
+    parameters : bp- borderpane to setup
+    returns: null
+     */
     public static void start(BorderPane bp) {
         setUpLeft(bp);
         setUpRight(bp);
     }
 
 
-    //setups the left side, which has both robots and their information
+    /*setUpLeft,setups the left side, which has both robots and their information
+    parameters: bp - borderpane to add to
+    returns: null
+     */
     public static void setUpLeft(BorderPane bp) {
         VBox vb = new VBox();
         vb.getStyleClass().add("vbox");
@@ -47,7 +54,10 @@ public class Asymmetric_vs_Symmetric{
     }
 
 
-    //setups the info box with a robot and text
+    /*setUpInformation,setups the info box with a robot and text
+      parameters: robot - robot to add to screen, text- text to display
+      returns: stackpane with robot and information with background and header
+     */
     public static StackPane setUpInformation(Robot robot, Paragraph text){
         StackPane sp =new StackPane();
         Asymmetric_vs_Symmetric_Controller.backgroundSetup(600,300,sp,robot.getStyle());
@@ -65,7 +75,10 @@ public class Asymmetric_vs_Symmetric{
         return sp;
     }
 
-    //setups the right hand side with the interactive element
+    /*setUpRight, setups the right hand side with the interactive element
+    parameter: bp- bp to add to
+    returns: null
+     */
     public static void setUpRight(BorderPane bp) {
         StackPane sp = new StackPane();
         VBox finished = new VBox();
@@ -106,7 +119,11 @@ public class Asymmetric_vs_Symmetric{
 
     }
 
-    //changes the text based on the selected radio buttons
+    /* changeVB,changes the text based on the selected radio buttons
+    parameters: first-first set of radio buttons, second - second group of radio buttons
+                vb - vbox to change information in
+    returns: null
+     */
     public static void changeVB(ToggleGroup first, ToggleGroup second, VBox vb){
         String expected1 =(String)first.getSelectedToggle().getUserData();
         String expected2 =(String)second.getSelectedToggle().getUserData();
@@ -115,12 +132,19 @@ public class Asymmetric_vs_Symmetric{
 
     }
 
+    /*setUpVBox, setups the vbox containing the radio buttons
+    parameters: title- title to put at top of vbox, vb- vbox to setup
+    returns - radiobuttons
+     */
     public static ToggleGroup setUpVBox(Header title, VBox vb){
         vb.getStyleClass().add("vbox");
         return radioButtonSetup(vb,title.getTitle());
     }
 
-    //setups the radio buttons
+    /*radioButtonSetup,setups the radio buttons
+    parameters: radio- vbox to add radio buttons too,title - title of radio buttons
+    returns - the radio buttons
+     */
     public static ToggleGroup radioButtonSetup(VBox radio, String title){
         ToggleGroup group = new ToggleGroup();
 
@@ -140,7 +164,10 @@ public class Asymmetric_vs_Symmetric{
         return group;
     }
 
-    //changes the bottom segement of text based on the radio buttons
+    /*changeBottom,changes the bottom segement of text based on the radio buttons
+    parameters: b- boolean for whether radio button=radio button, if true then display symmetric
+    returns: vbox with displayed information
+     */
     public static VBox changeBottom(Boolean b) {
         if (b) {
             //if same keys selected, show symmetric

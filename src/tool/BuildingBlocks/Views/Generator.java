@@ -17,22 +17,32 @@ import tool.Models.Paragraph;
  * Student Number: 0900772r
  * Creation: 02/12/2015.
  */
+//Generator building block view
 public class Generator {
+    //variables needed later on
     static StackPane decryptStack = new StackPane();
 
-    //start method for the block
+    /*start method, setups the borderpane
+    parameters : bp- borderpane to setup
+    returns: null
+     */
     public static void start(BorderPane bp) {
         setUpRight(bp);
         setUpLeft(bp);
     }
 
-    //sets up the left side of the screen with the animation
+    /*setUpLeft,setups the left side with the equation animation
+    actually covers from left to right due to bp rules
+    parameters: bp - borderpane to add to
+    returns: null
+     */
     private static void setUpLeft(BorderPane bp) {
         StackPane sp = new StackPane();
 
        Generator_controller.backgroundSetup(650, 625, sp, "rectangle-neither");
         sp.setPadding(new Insets(10));
 
+        //setups combobox
         VBox vb  = new VBox();
         vb.setSpacing(5);
         HBox hb = new HBox();
@@ -40,6 +50,7 @@ public class Generator {
         choose.getItems().addAll(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
         choose.setValue(3);
 
+        //adds play button
         Button play = new Button("Click to see if it's modulus");
         hb.getChildren().addAll(choose,play);
 
@@ -60,7 +71,11 @@ public class Generator {
     }
 
 
-    //sets up the right hand side of the screen with the two robots
+    /*setUpRight,sets up the right hand side of the screen with the two robots
+    actually covers from left to right due to bp rules
+    parameters: bp - borderpane to add to
+    returns: null
+     */
     private static void setUpRight(BorderPane bp) {
 
         Robot decrypt = Generator_controller.getDecrypt();
@@ -76,7 +91,10 @@ public class Generator {
 
     }
 
-    //adds the robot to the screen with the data
+    /*drawRobot,adds the robot to the screen with the data
+    parameters: r- robot to add, s - string to display
+    returns: stackpane with robot,information,header and background
+     */
     private static StackPane drawRobot(Robot r,String s){
         StackPane sp = new StackPane();
         Generator_controller.backgroundSetup(500, 300, sp, r.getStyle());
@@ -87,7 +105,10 @@ public class Generator {
         return sp;
     }
 
-    //changes what decrypt says depending on animation result
+    /*decryptSays, changes what decrypt says depending on inputted value
+    parameters: i- value chosen by user to test
+    returns: null
+     */
     private static void decryptSays(int i) {
         String s = "";
         switch (i){
@@ -108,13 +129,15 @@ public class Generator {
         changeText(s,decryptStack);
     }
 
-    //small method for changing the text decrypt uses
+    /*changeText,small method for changing the text decrypt uses
+    parameters: text- text to use now, sp- stackpane to change
+    returns: null
+     */
     private static void changeText(String text, StackPane sp){
         HBox hb =(HBox)sp.getChildren().get(1);
         VBox vb = (VBox)hb.getChildren().get(0);
         Text p = (Text)vb.getChildren().get(1);
         p.setText(text);
-
 
     }
 }

@@ -8,8 +8,10 @@ import tool.Models.Prime_Num;
  * Student Number: 0900772r
  * Creation: 13/10/2015.
  */
+//Controller class for the prime numbers building block
 public class Prime_Numbers_Controller extends BuildingBlockController {
 
+    //variables needed
     final static String[] tooltip = {"Think this is a prime number? Click and find out",
             "Well done! This is a prime as \n it can only be divided by itself \n and 1!",
             "Nope! Sorry, this number can be divided\n by something other than itself and 1.\n Try again"};
@@ -33,6 +35,11 @@ public class Prime_Numbers_Controller extends BuildingBlockController {
 
     final static Prime_Num[] primes = setUpPrimes();
 
+    /*setUpPrimes
+    parameters : null
+    return: list of Prime_Num objects
+    Goes through numbers 2-26 and creates prime num objects
+     */
     private static Prime_Num[] setUpPrimes(){
         Prime_Num[] temp = new Prime_Num[25];
         for(int k=2;k<27;k++){
@@ -41,6 +48,7 @@ public class Prime_Numbers_Controller extends BuildingBlockController {
         return temp;
     }
 
+    //getters
     public static Prime_Num getPrime(int index){
         return primes[index];
     }

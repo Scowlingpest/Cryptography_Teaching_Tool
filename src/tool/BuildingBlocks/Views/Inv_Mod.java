@@ -16,19 +16,31 @@ import tool.Graphics.Robot;
  * Student Number: 0900772r
  * Creation: 13/12/2015.
  */
+//Inverted modulus building block view
 public class Inv_Mod {
 
 
-    //start method in the class, also setups the animation in the centre
+    /*start method, setups the borderpane
+    parameters : bp- borderpane to setup
+    returns: null
+     */
     public static void start(BorderPane bp) {
-
-        VBox vb=new VBox();
-        vb.getStyleClass().add("vbox");
-
 
         setUpLeft(bp);
         setUpRight(bp);
+        setUpCenter(bp);
 
+    }
+
+    /*setUpCenter, setups the animation in the center of the screen
+    parameters: bp- borderpane to add to
+    returns: null
+     */
+    private static void setUpCenter(BorderPane bp){
+        VBox vb=new VBox();
+        vb.getStyleClass().add("vbox");
+
+        //setups animation
         StackPane sp = new StackPane();
         drawBackground(500,650,sp,"rectangle-neither");
 
@@ -55,11 +67,14 @@ public class Inv_Mod {
 
         sp.getChildren().add(vb);
         bp.setCenter(sp);
-
     }
 
-    //creates the right hand side of the screen with encrypt
-    public static void setUpRight(BorderPane bp){
+
+    /*setUpRight, creates the right hand side of the screen with encrypt
+    parameters: bp- borderpane to add to
+    returns: null
+     */
+    private static void setUpRight(BorderPane bp){
         Robot encrypt= Inv_Mod_Controller.getEncrypt();
         encrypt.setImageWidth(165);
 
@@ -75,8 +90,11 @@ public class Inv_Mod {
 
     }
 
-    //creates the left hand side of the screen with the decrypt
-    public static void setUpLeft(BorderPane bp){
+    /*setUpLeft, creates the left hand side of the screen with the decrypt
+    parameters: bp- borderpane to add to
+    returns: null
+     */
+    private static void setUpLeft(BorderPane bp){
 
         Robot decrypt= Inv_Mod_Controller.getDecrypt();
         decrypt.setImageWidth(165);
@@ -93,8 +111,11 @@ public class Inv_Mod {
     }
 
 
-    //draws the rectangle backgrounds
-    public static void drawBackground(int x, int y,StackPane sp, String style){
+    /*drawBackground,draws the rectangle backgrounds
+    parameters: x- width, y- height, sp- stackpane to add to, style- style of rectangle
+    returns: null
+     */
+    private static void drawBackground(int x, int y,StackPane sp, String style){
         Rectangle r=new Rectangle();
         r.setY(10);
         r.setWidth(x);

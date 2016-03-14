@@ -50,6 +50,7 @@ public class DH_Animation {
 
         TableColumn<DataRow, String> name = new TableColumn<>("Item");
         TableColumn<DataRow, String> value = new TableColumn<>("Value");
+        //noinspection unchecked
         tb.getColumns().addAll(name, value);
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         value.setCellValueFactory(new PropertyValueFactory<>("value"));

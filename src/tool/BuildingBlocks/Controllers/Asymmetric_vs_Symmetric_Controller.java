@@ -9,6 +9,12 @@ import tool.Models.Paragraph;
  */
 public class Asymmetric_vs_Symmetric_Controller extends BuildingBlockController {
 
+    /*This is the controller class for the Asymmetric vs Symmetric building block.
+    It just contains texts and the getters for the text.
+     */
+
+
+    //final variables needed for building block
     final static int TEXTWIDTH=350;
 
     final static Paragraph decryptPara = new Paragraph("Asymmetric methods are cryptography methods in which the key for "+
@@ -42,6 +48,7 @@ public class Asymmetric_vs_Symmetric_Controller extends BuildingBlockController 
     public Asymmetric_vs_Symmetric_Controller() {
     }
 
+    //getters
     public static Paragraph getDecryptPara() {
         return decryptPara;
     }

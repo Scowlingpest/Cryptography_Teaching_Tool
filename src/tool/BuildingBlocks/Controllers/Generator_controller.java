@@ -21,6 +21,7 @@ import java.util.ArrayList;
  */
 public class Generator_controller extends BuildingBlockController {
 
+    //variables needed
     static final String background = "A generator is a special type of modulus root in which the root is a prime number. The modulus root of number x is a number which when raised to the power of 1 up to x-1 and had the modulus taken of x, will result in a unique value of 1 to x-1."+
             " So, for example, 3 is a modulus root of "+getStringMod()+" which is also prime, as such 3 is a generator. This is shown in the example to the side. Change the number and see if it is a generator or not.";
     static final String generator = "This number is a generator. This is because when you raise it to the power of 1<=x<="+getStringMod()+"-1 you get a result. When you take the modulus "+getStringMod()+" of all these results you end up with one instance of all numbers from 0 to n-1. It is a generator because it is a prime modulus root." +
@@ -41,11 +42,15 @@ public class Generator_controller extends BuildingBlockController {
     static int[] used = new int[number];
     static Text[] equation = new Text[number];
 
+    /*setupEquation
+    parameters: vb-to contain equations
+    returns: null
+    Creates the equations and gets the answers, adds to the provided vbox
+     */
     public static void setupEquation(VBox vb){
         for(int i =0;i<16;i++){
             HBox hb = new HBox();
             equationAnswer[i]=Math.pow(input,(i+1));
-            //used[i]=equationAnswer[i]%11;
             results[i] = AnimationMethods.equationSetup(String.format("%.0f", equationAnswer[i] % 17),0,0,null);
 
 
@@ -58,6 +63,12 @@ public class Generator_controller extends BuildingBlockController {
     }
 
 
+    /*changeColour
+    parameters: indexes- the indexes that need changed, color- color to change to,
+                st- sequential transition to add animations too
+    returns: null
+    Goes through the indexes and changes the colour of the result at that index to the provided colour
+     */
     public static void changeColour(ArrayList<Integer> indexes,Color color,SequentialTransition st){
         for(int i:indexes) {
             FillTransition ft = new FillTransition(Duration.seconds(1), results[i], (Color) results[i].getFill(), color);
@@ -65,6 +76,12 @@ public class Generator_controller extends BuildingBlockController {
         }
     }
 
+    /* playTransition
+    parameters: i- number user has selected to test, vb- vbox to contain equations,
+                hb- contains buttons to put at bottom of equations
+    returns: null
+    Creates the animation using the selected value and plays
+     */
     public static void playTransition(int i, VBox vb, HBox hb){
         vb.getChildren().clear();
         SequentialTransition st = setupTransition(i,vb);
@@ -72,6 +89,11 @@ public class Generator_controller extends BuildingBlockController {
         vb.getChildren().add(hb);
     }
 
+    /*setupTransition
+    parameters: i- selected value for animation, vb- vbox to contain equations
+    returns: the animation for the building block
+    Gets the equations, goes through them and makes them appear in order, adds the tooltips and adds the colour changes
+     */
     private static SequentialTransition setupTransition(int i,VBox vb) {
         input=i;
         SequentialTransition st = new SequentialTransition();
@@ -108,6 +130,8 @@ public class Generator_controller extends BuildingBlockController {
         return st;
     }
 
+
+    //more getters
     public static String getBackground() {
         return background;
     }

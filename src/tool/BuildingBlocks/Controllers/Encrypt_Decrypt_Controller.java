@@ -10,7 +10,10 @@ import tool.Models.Paragraph;
  * Student Number: 0900772r
  * Creation: 14/10/2015.
  */
+//Controller class for the encrypt decrypt building block
 public class Encrypt_Decrypt_Controller extends BuildingBlockController{
+
+    //variables needed by the building block
     final static Paragraph encryptPara = new Paragraph("Encryption is my speciality! Encryption is the art of concealing the contents of a message. "+
             " This is achieved by changing each letter in the message to something else using a key. This key tends to be a number "+
             " which is used in a formula which is decided by the encryption method. You can check out some of the other building  "+
@@ -45,6 +48,8 @@ public class Encrypt_Decrypt_Controller extends BuildingBlockController{
     final static int finalRow=4;
     final static int instructionRow=5;
 
+
+    //getters for the information
     public static int getTitleRow() {
         return titleRow;
     }
@@ -61,6 +66,7 @@ public class Encrypt_Decrypt_Controller extends BuildingBlockController{
 
     final static ObservableList<Integer> options = setUpCombo();
 
+    //setups the combo box to have values 1-25
     public static ObservableList<Integer> setUpCombo() {
 
         ObservableList<Integer> temp =FXCollections.observableArrayList();
@@ -112,6 +118,12 @@ public class Encrypt_Decrypt_Controller extends BuildingBlockController{
         return caesar;
     }
 
+
+    /*encryptText method
+    parameters: input- word to encrypt, n - key for encryption
+    returns: - encrypted text
+    Goes through word, adds key to value of char and mods by 26, adds new char to encrypted word
+     */
     public static String encryptText(String input, int n){
         int m;
         String encrypted="";
@@ -133,6 +145,11 @@ public class Encrypt_Decrypt_Controller extends BuildingBlockController{
         return encrypted;
     }
 
+    /*encryptText method
+    parameters: input- word to encrypt, n - key for decryption
+    returns: - decrypted text
+    Goes through word, removes key from value of char and mods by 26, adds new char to decrypted word
+    */
     public static String decryptText(String input, int n){
         int m;
         String decrypted ="";

@@ -21,11 +21,15 @@ import tool.Models.Header_Paragraph;
  * Creation: 13/12/2015.
  */
 
+//Instructions (and Welcome screen) view
 //used for both the instruction screen and welcome screen (does more instruction work so called instructions)
 public class Instructions {
 
-    //start method for the building block
-    public static void start(BorderPane bp,Boolean button){
+    /*start method, setups the borderpane
+    parameters : bp- borderpane to setup, instructions- boolean for whether it is instructions or not
+    returns: null
+    */
+    public static void start(BorderPane bp,Boolean instructions){
         Pane p = new Pane();
         p.setPrefSize(1150,650);
 
@@ -38,7 +42,7 @@ public class Instructions {
         encrypt.setImageWidth(175);decrypt.setImageWidth(175);
 
         //if not instruction page
-        if (button==false){
+        if (!instructions){
             setupBubbles(p);
             setupText(p);
             bp.setCenter(p);
@@ -51,7 +55,10 @@ public class Instructions {
 
     }
 
-    //creates the two speech bubbles on the welcome page
+    /*setupBubbles, creates the two speech bubbles on the welcome page
+    parameters: p - pane to add to
+    returns: null
+     */
    private static void setupBubbles(Pane p){
         Speechbubble helloEncrypt=new Speechbubble("bl",
                 Instructions_Controller.getHelloEncrypt(), Instructions_Controller.getBubbleSize(),
@@ -66,7 +73,10 @@ public class Instructions {
 
     }
 
-    //setups the welcome screen text i.e the title
+    /*setupText, setups the welcome screen text i.e the title
+     parameters: p - pane to add to
+     returns: null
+     */
     private static void setupText(Pane p){
         Rectangle rect = new Rectangle(375,250,500,100);
         rect.getStyleClass().add("rectangle-neither");
@@ -79,7 +89,10 @@ public class Instructions {
     }
 
 
-    //setups the instruction pagination
+    /*paginationSetup, setups the instruction pagination
+    parameters: bp - borderpane to add to
+    returns: null
+     */
     private static void paginationSetup(BorderPane bp){
         Pagination pagination = new Pagination(5);
         pagination.setPageFactory(pageIndex -> createPage(pageIndex));
@@ -88,7 +101,10 @@ public class Instructions {
 
     }
 
-    //creates the pages for the pagination
+    /*createPage, creates the pages for the pagination
+    parameters: pageIndex - the index of the page that is being created
+    returns: the page that has been created
+     */
     private static Node createPage(Integer pageIndex) {
         StackPane page = new StackPane();
         Header_Paragraph hp = new Header_Paragraph(Instructions_Controller.getPageTitlebyIndex(pageIndex),

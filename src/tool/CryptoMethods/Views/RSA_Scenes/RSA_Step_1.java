@@ -111,7 +111,7 @@ public class RSA_Step_1 {
         ParallelTransition pt1 = AnimationMethods.createParallel(new Transition[]{textAAppear,textBAppear});
 
         st.getChildren().addAll(pt1,
-                AnimationMethods.pauseSeconds(5));
+                AnimationMethods.pauseSeconds(7));
     }
 
     //animation for changing the speech bubble and making 1 piece of text appear
@@ -123,7 +123,7 @@ public class RSA_Step_1 {
         p.getChildren().add(a);
 
         st.getChildren().addAll(textAppear,
-                AnimationMethods.pauseSeconds(5)
+                AnimationMethods.pauseSeconds(7)
                 );
 
     }

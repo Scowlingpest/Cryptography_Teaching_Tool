@@ -28,10 +28,6 @@ public class DH_Controller extends CryptoMethodsController {
         primes.put(13,new Integer[]{2,7,11});
         primes.put(17,new Integer[]{3,5,7,11});
         primes.put(19,new Integer[]{3,13});
-        //primes.put(23,new Integer[]{5,7,11,17,19});
-        //primes.put(29,new Integer[]{2,3,11,19});
-        //primes.put(31,new Integer[]{3,11,13,17});
-        //primes.put(37,new Integer[]{2,5,13,17,19});
         return primes;
     }
     public static HashMap<Integer, Integer[]> getGenerators() {
@@ -40,8 +36,9 @@ public class DH_Controller extends CryptoMethodsController {
 
     private static int p =17; private static int q=3;
     private static int a =15; private static int b=13;
-    private static double A=((Math.pow(q,a))%p); private static double B = (Math.pow(q,b)%p);
-    private static double Ka=(Math.pow(B,a)%p); private static double Kb=(Math.pow(A,b)%p);
+    private static int A=(int)((Math.pow(q,a))%p); private static int B = (int)(Math.pow(q,b)%p);
+    private static int Ka=(int)(Math.pow(B,a)%p); private static int Kb=(int)(Math.pow(A,b)%p);
+
 
     private static final String eqA="(q^a)mod p"; private static final String eqB="(q^b)mod p";
     private static final String eqKa="(B^a)mod p"; private static final String eqKb ="(A^b)mod p";
@@ -124,19 +121,19 @@ public class DH_Controller extends CryptoMethodsController {
         return b;
     }
 
-    public static double getA() {
+    public static int getA() {
         return A;
     }
 
-    public static double getB() {
+    public static int getB() {
         return B;
     }
 
-    public static double getKa() {
+    public static int getKa() {
         return Ka;
     }
 
-    public static double getKb() {
+    public static int getKb() {
         return Kb;
     }
 
@@ -189,19 +186,19 @@ public class DH_Controller extends CryptoMethodsController {
     }
 
     public static void setA() {
-        DH_Controller.A = (Math.pow(getQ(),geta())%getP());
+        DH_Controller.A = (int)(Math.pow(getQ(),geta())%getP());
     }
 
     public static void setB() {
-        DH_Controller.B = (Math.pow(getQ(),getb())%getP());
+        DH_Controller.B = (int)(Math.pow(getQ(),getb())%getP());
     }
 
     public static void setKa() {
-        DH_Controller.Ka = (Math.pow(getB(),geta()))%getP();
+        DH_Controller.Ka = (int)(Math.pow(getB(),geta()))%getP();
     }
 
     public static void setKb() {
-        DH_Controller.Kb = (Math.pow(getA(),getb()))%getP();
+        DH_Controller.Kb = (int)(Math.pow(getA(),getb()))%getP();
     }
 
     public static void setEqANo() {
