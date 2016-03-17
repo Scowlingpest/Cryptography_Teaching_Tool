@@ -20,13 +20,20 @@ import tool.Graphics.Speechbubble;
  * Student Number: 0900772r
  * Creation: 09/11/2015.
  */
+//Diffie Hellman step class, used to sort out which step to load
 public class DH_Step {
-    static HBox combos = new HBox();
-    static ComboBox<Integer> pSelect = new ComboBox<>();
-    static ComboBox<Integer> qSelect = new ComboBox<>();
-    static ComboBox<Integer> aSelect = new ComboBox<>();
-    static ComboBox<Integer> bSelect = new ComboBox<>();
+    //combo box needed for step 2
+    private static HBox combos = new HBox();
+    private static ComboBox<Integer> pSelect = new ComboBox<>();
+    private static ComboBox<Integer> qSelect = new ComboBox<>();
+    private static ComboBox<Integer> aSelect = new ComboBox<>();
+    private static ComboBox<Integer> bSelect = new ComboBox<>();
 
+
+    /*createPane,creates the pane needed for the animation
+    parameters: root - pane to add items to
+    returns: null
+    */
     public static void createPane(Pane root){
         Robot encrypt = RSA_Controller.getEncrypt();
         Robot decrypt = RSA_Controller.getDecrypt();
@@ -42,11 +49,19 @@ public class DH_Step {
 
     }
 
+    /*placeRobotsFirst, places the robots in their first location
+    parameters: e,d - robots to place, p - pane to add robots to
+    returns: null
+    */
     private static void placeRobotsFirst(Robot e, Robot d, Pane p){
         AnimationMethods.placeRobots(d, p, 1030, 175);
         AnimationMethods.placeRobots(e, p, 50, 175);
     }
 
+    /*background, setups the background of the animation
+    parameters: p -pane to add backgrounds too
+    returns: null
+    */
     private static void background(Pane p){
         int start =20;
         Rectangle left = new Rectangle(start,50,400,550);
@@ -64,7 +79,11 @@ public class DH_Step {
 
     }
 
-    public static SequentialTransition createTimeLine(Pane root,int step) {
+    /*createTransition, creates the animation, call DH_Animation to create the animation
+    parameters: root- pane to add elements to
+    returns: sequential transition with all the animations
+    */
+    public static SequentialTransition createTransition(Pane root, int step) {
         SequentialTransition st = new SequentialTransition();
         Speechbubble bubble;
         if(step==2) {
@@ -80,22 +99,29 @@ public class DH_Step {
         return st;
     }
 
+    /*comboBoxSetup, setups the values for the combo boxes for step 2
+    parameters: root - pane to add the comboboxes to
+    returns: null
+     */
     private static void comboBoxSetup(Pane root){
+        //setups combobox for p value
         pSelect = new ComboBox<>();
         pSelect.getItems().addAll(DH_Controller.getGenerators().keySet());
         pSelect.setValue(7);
 
-
+        //setups combobox for q value
         qSelect = new ComboBox<>();
         qSelect.getItems().addAll(DH_Controller.getGenerators().get(7));
         qSelect.setValue(3);
 
+        //makes the q combobox based on the p value (so q are generators of p)
         pSelect.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             qSelect.getItems().clear();
             qSelect.getItems().addAll(DH_Controller.getGenerators().get(newValue));
             qSelect.setValue(DH_Controller.getGenerators().get(newValue)[0]);
         });
 
+        //setups combobox for a and b values
         aSelect = new ComboBox<>();
         bSelect = new ComboBox<>();
         for (int i=1;i<=15;i++){
@@ -106,6 +132,7 @@ public class DH_Step {
         bSelect.setValue(14);
         combos = new HBox();
 
+        //adds comboboxes to screen with labels
         VBox line1 = new VBox();VBox line2 = new VBox();
         VBox line3 = new VBox();VBox line4 = new VBox();
 
@@ -115,23 +142,32 @@ public class DH_Step {
         combos.setLayoutX(465);
         combos.setLayoutY(200);
 
-        //line1.getStyleClass().add("vbox");line2.getStyleClass().add("vbox");
-        //line3.getStyleClass().add("vbox");line4.getStyleClass().add("vbox");
-
         combos.getChildren().addAll(line1,line2,line3,line4);
         root.getChildren().add(combos);
     }
 
+    /*clearCombos, removes the combo boxes from the screen
+    parameters: root- pane to remove combo boxes from
+    returns: null
+     */
     public static void clearCombos(Pane root){
         root.getChildren().remove(combos);
 
     }
 
+    /*getValues, gets the combobox values and setups the animation with the new values
+    parameters: null
+    returns: null
+     */
     public static void getValues(){
         int[] temp =comboBoxValues();
         DH_Controller.setUpAnimation(temp[0],temp[1],temp[2],temp[3]);
     }
 
+    /*comboBoxValues, gets the values for all comboboxes
+    parameters: null
+    returns: array of ints from comboboxes
+     */
     private static int[] comboBoxValues(){
         return new int[]{pSelect.getValue(),qSelect.getValue(),
                 aSelect.getValue(),bSelect.getValue()};

@@ -16,14 +16,17 @@ import tool.Graphics.Speechbubble;
  * Student Number: 0900772r
  * Creation: 20/12/2015.
  */
+//AES step 4 class, decryption using AES
 public class AES_Step_4 {
 
-    static Speechbubble bubble;
-    static Robot decrypt;
+    private static Speechbubble bubble;
 
-    //creates the pane used in this step
+    /*createPane,creates the pane needed for the animation
+    parameters: root - pane to add items to
+    returns: null
+    */
     public static void createPane(Pane root){
-        decrypt = AES_Controller.getDecrypt();
+        Robot decrypt = AES_Controller.getDecrypt();
 
         root.setPrefSize(1100,600);
         background(root);
@@ -41,7 +44,10 @@ public class AES_Step_4 {
 
     }
 
-    //setups the background for this step
+    /*background, setups the background of the animation
+    parameters: p -pane to add backgrounds too
+    returns: null
+    */
     private static void background(Pane p){
         Rectangle left = new Rectangle(25,25,1150,600);
         left.getStyleClass().add("rectangle-decrypt");
@@ -51,9 +57,11 @@ public class AES_Step_4 {
 
     }
 
-    //setups the animation for this step, calls other methods in order
-    //creates, fills and returns a sequential transition
-    public static SequentialTransition createTimeLine(Pane root) {
+    /*createTransition, creates the animation, calls other methods to create each bit
+    parameters: root- pane to add elements to
+    returns: sequential transition with all the animations
+    */
+    public static SequentialTransition createTransition(Pane root) {
         SequentialTransition st = new SequentialTransition();
 
         robotHello(st);
@@ -69,21 +77,29 @@ public class AES_Step_4 {
 
     }
 
-    //first animation of step, changes the bubble from welcome to the first speech
+    /*robotHello,first animation of step, changes the bubble from welcome to the first speech
+    parameters: st - sequential transition to add animations to
+    returns: null
+     */
     private static void robotHello(SequentialTransition st){
         AnimationMethods.changeBubble(st,bubble,AES_Controller.getStep_4_rounds());
         st.getChildren().add(AnimationMethods.pauseSeconds(10));
     }
 
 
-    //adds the rounds to the pane and adds the animation for making them appear in order
+    /*roundStages, creates the three round boxes on screen
+    parameters: st - sequential transition to add animations to, p - pane to add objects to
+    returns: the created round boxes
+     */
     private static Box[] roundStages(SequentialTransition st, Pane p){
         int width = AES_Controller.getBOXWIDTH();
+        //creates round boxes
         Box[] boxes = new Box[3];
         boxes[0]= new Box("Round : 1");
         boxes[1]= new Box("Rounds: 2-9");
         boxes[2]= new Box("Round : 10");
 
+        //adds boxes to screen
         boxes[0].drawBox("This is the first round",90,width);boxes[0].getSp().setOpacity(0);
         boxes[0].getSp().setLayoutX(AES_Controller.getBoxX());boxes[0].getSp().setLayoutY(AES_Controller.getBoxY1());
 
@@ -102,7 +118,10 @@ public class AES_Step_4 {
         return boxes;
     }
 
-    //creates the stack of encrypted paper and adds the animation for them to appear
+    /*paperCreate, creates the stack of paper to represent the message
+    parameters: st - sequential transition to add animations to, p - pane to add objects to
+    returns: paper object
+     */
     private static Paper paperCreate(SequentialTransition st,Pane p){
         Paper stack = new Paper("encrypt",100,AES_Controller.getStartLocX(),AES_Controller.getStartLocY());
 
@@ -116,7 +135,11 @@ public class AES_Step_4 {
         return stack;
     }
 
-    //adds the individual 'blocks' of the message, changes the rounds titles and moves the paper sheets through the rounds
+    /* changeRounds, changes the rounds text and moves the first sheet of paper through rounds
+    parameters: st - sequential transition to add animations to, p - pane to add objects to,
+                boxes - the array of round boxes
+    returns: an array of paper objects
+     */
     private static Paper[] changeRounds(SequentialTransition st,Pane p, Box[] boxes){
         AnimationMethods.changeBubble(st,bubble, AES_Controller.getStep_4_first());
 
@@ -186,7 +209,10 @@ public class AES_Step_4 {
         return sheets;
     }
 
-    //moves a sheet of paper through the first round, make it pause and fade in and out on each sub-round
+    /*movePaperRound1, moves the sheet of paper through the first round
+    parameters: sheet- paper object to move, st - sequential transition to add animations to
+    returns: null
+     */
     private static void movePaperRound1(Paper sheet,SequentialTransition st){
         int x=150;
         for(int i=0;i<3;i++){
@@ -205,7 +231,11 @@ public class AES_Step_4 {
 
     }
 
-    //moves a sheet of paper down to the second round and through it, make it pause and fade in and out on each sub-round
+    /*movePaperRoundMiddle, moves a sheet of paper through the middle rounds
+    parameters: sheet- paper object to move, st - sequential transition to add animations to,
+                t - number of paper sheet it is
+    returns: null
+     */
     private static void movePaperRoundMiddle(Paper sheet,SequentialTransition st, int t){
         //move down to second round box
         TranslateTransition moveDown = AnimationMethods.moveNode(sheet.getView(),AES_Controller.getDifference(),100,3);
@@ -222,6 +252,7 @@ public class AES_Step_4 {
                     AnimationMethods.pauseSeconds(2),
                     AnimationMethods.fadeInto(sheet.getView())
             );
+            //if its the second stage and the first sheet of paper, change bubble
             if(i==2 && t==1){
                 AnimationMethods.changeBubble(st,bubble,AES_Controller.getStep_4_final());
             }
@@ -230,7 +261,10 @@ public class AES_Step_4 {
                 200,2));
     }
 
-    //moves a sheet of paper down and through the final round, fading in and out on each sub round
+    /*movePaperFinalRound,moves a sheet of paper through the final round
+    parameters: sheet- paper object to move, st - sequential transition to add animations to
+    returns: null
+     */
     private static void movePaperFinalRound(Paper sheet,SequentialTransition st){
         //move down to the final box
         TranslateTransition moveDown = AnimationMethods.moveNode(sheet.getView(),AES_Controller.getDifference(),300,3);
@@ -251,7 +285,11 @@ public class AES_Step_4 {
 
     }
 
-    //method that moves the next two sheets through the rounds
+    /*next2Sheets, makes the next 2 sheets of paper go through the rounds
+    parameters: sheets - sheets of paper to move, p - pane to add objects to,
+                st - sequential transition to add animations to
+    returns: null
+     */
     private static void next2Sheets(Paper[] sheets, Pane p, SequentialTransition st){
         //move paper sheet 2 through the rounds then remove
         movePaperRound1(sheets[1],st);

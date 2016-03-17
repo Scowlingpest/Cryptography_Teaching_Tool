@@ -8,9 +8,14 @@ import javafx.scene.canvas.GraphicsContext;
  * Student Number: 0900772r
  * Creation: 13/10/2015.
  */
+//Arrow graphic object class
 public class Arrow {
-    Canvas c;
+    private final Canvas c;
 
+    /*arrow constructor, makes an arrow
+    parameters: x,y - first coordinates, z,a - second coordinates
+    returns: null
+     */
     public Arrow(int x,int y, int z, int a) {
         this.c=canvasSetUp(x,y,z,a);
         drawArrow(x,y,z,a);
@@ -18,7 +23,11 @@ public class Arrow {
 
     }
 
-    public void drawArrow(int x,int y, int z, int a){
+    /*drawArrow, draws the arrow on screen
+    parameters: x,y - first coordinates, z,a - second coordinates
+    returns: null
+     */
+    private void drawArrow(int x, int y, int z, int a){
         GraphicsContext gc = c.getGraphicsContext2D();
         gc.setLineWidth(3);
         gc.strokeLine(x,y,z,a);
@@ -53,11 +62,16 @@ public class Arrow {
 
     }
 
+    //getter
     public Canvas getC() {
         return c;
     }
 
-    public Canvas canvasSetUp(int x,int y,int z,int a){
+    /*canvasSetUp, makes the canvas a set size based on coordinates
+    parameters: x,y - first coordinates, z,a - second coordinates
+    returns: the setup canvas
+     */
+    private Canvas canvasSetUp(int x, int y, int z, int a){
         if (z==x){
             return new Canvas(z*2,a);
         }

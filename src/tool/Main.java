@@ -26,30 +26,42 @@ import java.io.*;
  * Student Number: 0900772r
  * Created: 06/10/2015
  */
+
+//Main class, launches everything else and creates csv file
 public class Main extends Application {
     // monitoring map for recording what users click
-    MonitoringMap monitor=new MonitoringMap();
+    private MonitoringMap monitor=new MonitoringMap();
 
+    /*start, initial javafx start method, begins program
+    parameters: primaryStage- application window
+    returns: null
+     */
     @Override
     public void start(Stage primaryStage) {
+        // if updating in future, text objects & self created graphics will not auto -resize
         primaryStage.setResizable(false);
         primaryStage.setTitle("Cryptography Teaching Tool");
 
+        //setups borderpane, background colour, and style sheet
         BorderPane borderPane =setupMenu();
         borderPane.setBackground(new Background(new BackgroundFill(Color.web("#ebebeb"),CornerRadii.EMPTY,Insets.EMPTY)));
         Scene scene = new Scene(borderPane, 1200, 700);
         scene.getStylesheets().add("Files/Style.css");
 
+        //load welcome
         Instructions.start(borderPane,false);
 
-
+        //show screen to user
         primaryStage.setScene(scene);
         primaryStage.show();
 
     }
 
-    //this setups the borderpane and the main menu
-    public BorderPane setupMenu(){
+    /*setupMenu, this setups the borderpane and the main menu
+    parameters: null
+    returns: borderpane with menus added
+     */
+    private BorderPane setupMenu(){
         final BorderPane root = new BorderPane();
         VBox topContainer = new VBox();
         MenuBar menuBar = new MenuBar();
@@ -59,6 +71,7 @@ public class Main extends Application {
 
         root.setTop(topContainer);
 
+        //first menu
         Menu menuFile = new Menu("File");
         MenuItem exitMenuItem = new MenuItem("Exit");
         exitMenuItem.setAccelerator(KeyCombination.keyCombination("Ctrl+X"));
@@ -74,11 +87,11 @@ public class Main extends Application {
 
         menuFile.getItems().addAll(instructions,exitMenuItem);
 
+        //second menu
         Menu menuBuildingBlocks = new Menu("Building Blocks");
         setUpBuildingBlocks(menuBuildingBlocks,root);
 
-
-
+        //third menu
         Menu menuMethods = new Menu("Cryptography methods");
         setUpCryptographyMenu(menuMethods,root);
 
@@ -88,15 +101,24 @@ public class Main extends Application {
 
     }
 
-
-    public void clearBorderPane(BorderPane bp){
+    /*clearBorderPane, clears and resets the given borderpane
+    parameters: bp - borderpane to reset
+    returns: null
+     */
+    private void clearBorderPane(BorderPane bp){
         bp.setLeft(null);
         bp.setRight(null);
         bp.setCenter(null);
         bp.setBottom(null);
     }
 
-    public void setUpBuildingBlocks(Menu blocks, final BorderPane root){
+    /*setUpBuildingBlocks, setups the building block menu
+    parameters: blocks- menu to add to, root - borderpane to clear at beginning
+    returns: null
+     */
+    private void setUpBuildingBlocks(Menu blocks, final BorderPane root){
+        //setups each building block, links to class and increments monitoring upon click
+
         MenuItem primeNo = new MenuItem("Prime Numbers");
         primeNo.setAccelerator(KeyCombination.keyCombination("Ctrl+P"));
         primeNo.setOnAction(e -> {
@@ -166,7 +188,11 @@ public class Main extends Application {
         blocks.getItems().addAll(maths,asymmetricVsSymmetric,encryptDecrypt,streamBlock,vigenèreCipher,diffTrans);
     }
 
-    public void setUpCryptographyMenu(Menu methods, final BorderPane root){
+    /*setUpCryptographyMenu, setups the cryptography methods menu
+    parameters: methods- menu to add to, root - borderpane to clear at beginning
+    returns: null
+     */
+    private void setUpCryptographyMenu(Menu methods, final BorderPane root){
         MenuItem rsa = new MenuItem("RSA");
         rsa.setAccelerator(KeyCombination.keyCombination("Ctrl+R"));
         rsa.setOnAction(e -> {
@@ -196,10 +222,18 @@ public class Main extends Application {
         methods.getItems().addAll(rsa,dh,eg,aes);
     }
 
+    /*main, launches the application
+    parameters: args- passed parameters at launch
+    returns: null
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /*stop, overrides stop to print monitoring to a csv file, if you don't want monitoring then comment out this method
+    parameters: null
+    returns: null
+     */
     @Override
     public void stop() {
         try {
@@ -208,6 +242,7 @@ public class Main extends Application {
             File customDir = new File(path);
             path += File.separator + "Monitoring.csv";
 
+            //if monitoring already exists then add to it, otherwise create from template
             if (customDir.exists()) {
                 BufferedWriter output = new BufferedWriter(new FileWriter(new File(path), true));
                 output.write(monitor.lineGenerate() + "\n");

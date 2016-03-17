@@ -5,20 +5,26 @@ package tool.Models;
  * Student Number: 0900772r
  * Creation: 14/10/2015.
  */
-//class to hold prime numbers
+//Prime_Num object, class to hold prime numbers
 public class Prime_Num {
-    String number;
-    Boolean prime;
+    private String number;
+    private Boolean prime;
 
-    //takes in a number and sets the boolean to see if it is prime or not
+    /*Prime_Num constructor, takes in a number and sets the boolean to see if it is prime or not
+    parameters : n- number to store and check
+    returns : null
+     */
     public Prime_Num(int n) {
         this.number=Integer.toString(n);
         prime=isPrime(n);
 
     }
 
-    //checks to see if a number is prime or not
-    public boolean isPrime(int n){
+    /*isPrime,checks to see if a number is prime or not
+    parameter : n- number to check
+    returns: boolean, true if n is prime
+     */
+    private boolean isPrime(int n){
         for (int i =2;i<n;i++){
             if(n%i==0){
                 return false;
@@ -27,6 +33,7 @@ public class Prime_Num {
         return true;
     }
 
+    //getters and setters
     public String getNumber() {
         return number;
     }

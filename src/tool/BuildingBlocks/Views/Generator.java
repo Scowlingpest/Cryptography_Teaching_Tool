@@ -20,7 +20,7 @@ import tool.Models.Paragraph;
 //Generator building block view
 public class Generator {
     //variables needed later on
-    static StackPane decryptStack = new StackPane();
+    private static StackPane decryptStack = new StackPane();
 
     /*start method, setups the borderpane
     parameters : bp- borderpane to setup

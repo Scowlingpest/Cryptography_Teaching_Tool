@@ -12,12 +12,12 @@ import tool.Models.Paragraph;
 public class Vigenère_Cipher_Controller extends BuildingBlockController {
 
     //variables needed
-    static String key = "cookie";
-    static String message ="Cryptography is Fun";
-    static String noSpaces =message.replaceAll("\\s", "");
-    static String keyword = generateKeyWord(key, noSpaces.length());
-    static String encrypted =encrypt(noSpaces,key);
-    static int TEXTWIDTH=410;
+    private static String key = "cookie";
+    private static String message ="Cryptography is Fun";
+    private static String noSpaces =message.replaceAll("\\s", "");
+    private static String keyword = generateKeyWord(key, noSpaces.length());
+    private static String encrypted =encrypt(noSpaces,key);
+    private static int TEXTWIDTH=410;
 
     /*generateKeyWord
     parameters: key-key for cipher, limit - length of word to repeat to
@@ -33,21 +33,21 @@ public class Vigenère_Cipher_Controller extends BuildingBlockController {
     }
 
     //more variables needed
-    static Paragraph information = new Paragraph("The Vigenère Cipher is another way of encryption and decryption. "+
+    private static Paragraph information = new Paragraph("The Vigenère Cipher is another way of encryption and decryption. "+
             "This method uses a graph like the one on screen now. The X and Y axis are both the alphabet. Looking at the X axis you can see that each line is the alphabet starting at that letter. "+
     " So for the third line, C, the alphabet has been shifted twice and now starts at C, with A & B being moved to the end. "+
     "The way this cipher method works is that there is a keyword(a word used as a key) and a message. ");
 
-    static Paragraph howItWorks = new Paragraph("In this example we will use the word 'cookie' as the keyword."+
+    private static Paragraph howItWorks = new Paragraph("In this example we will use the word 'cookie' as the keyword."+
             "You can see our message at the bottom of the screen, 'Cryptography is Fun'. First we repeat the keyword so that we have the same number " + "" +
             "of letters as the message (we remove the spaces),so 'CryptographyisFun' has 17 letters, meaning 'cookie' becomes 'cookiecookiecooki'."+
     "To encrypt we compare the letters to the graph. The letter of the keyword is the X axis, the letter of the message is the Y axis, so "+
     "for the first letter we look at square (c,c), meaning we replace it with E (the letter at square (c,c)). We do this for the entire message to get the encrypted message. "+
     "For decrypting we look at the X axis for the letter (c in this case) and move along until we reach the letter from the encrypted message, then we get the y axis value to get the original letter.");
 
-    static Paragraph notice = new Paragraph("Math whizzes will notice something here. If A=0, then C+C =2+2=4(mod 26) = E for encryption, and E-C=4-2=2(mod 26)=C for decryption. Try this out for the above example.");
+    private static Paragraph notice = new Paragraph("Math whizzes will notice something here. If A=0, then C+C =2+2=4(mod 26) = E for encryption, and E-C=4-2=2(mod 26)=C for decryption. Try this out for the above example.");
 
-    static Header graph =new Header("Vigenère Graph");
+    private static Header graph =new Header("Vigenère Graph");
 
     //getters
     public static String getKey() {
@@ -97,7 +97,7 @@ public class Vigenère_Cipher_Controller extends BuildingBlockController {
     Goes through the word to encrypt and encrypts it using the keyword
     Uses the maths specified in variable 'notice'
     */
-    public static String encrypt(String text, String key)
+    private static String encrypt(String text, String key)
     {
         String res = "";
         text = text.toUpperCase();

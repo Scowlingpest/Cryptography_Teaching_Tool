@@ -42,7 +42,7 @@ public class Inv_Mod {
 
         //setups animation
         StackPane sp = new StackPane();
-        drawBackground(500,650,sp,"rectangle-neither");
+        drawBackground(500, sp,"rectangle-neither");
 
         Text title =new Text("Inverse Modulus of Number 16");
         title.getStyleClass().add("text-title");
@@ -83,7 +83,7 @@ public class Inv_Mod {
 
 
         StackPane sp = new StackPane();
-        drawBackground(325,650,sp,encrypt.getStyle());
+        drawBackground(325, sp,encrypt.getStyle());
 
         sp.getChildren().add(vb);
         bp.setRight(sp);
@@ -103,7 +103,7 @@ public class Inv_Mod {
         vb.getChildren().add(decrypt.getView());
 
         StackPane sp = new StackPane();
-        drawBackground(325,650,sp,decrypt.getStyle());
+        drawBackground(325, sp,decrypt.getStyle());
         sp.getChildren().add(vb);
 
         bp.setLeft(sp);
@@ -115,11 +115,11 @@ public class Inv_Mod {
     parameters: x- width, y- height, sp- stackpane to add to, style- style of rectangle
     returns: null
      */
-    private static void drawBackground(int x, int y,StackPane sp, String style){
+    private static void drawBackground(int x, StackPane sp, String style){
         Rectangle r=new Rectangle();
         r.setY(10);
         r.setWidth(x);
-        r.setHeight(y);
+        r.setHeight(650);
         r.getStyleClass().add(style);
         sp.getChildren().add(r);
 

@@ -17,10 +17,10 @@ public class Diffusion_vs_Transformation_Controller extends BuildingBlockControl
     private static final Paragraph transformation = new Paragraph("Transformation is the art of transforming the contents of a message, such as changing the letters. For example changing Hi to Km is transformation. Below is an example "+
     "of transformation using colours to help you understand why transformation is so effective. Press play to see it go.");
 
-    final static int rectWidth =550;
-    final static int rectHeight =600;
+    private final static int rectWidth =550;
+    private final static int rectHeight =600;
 
-    final static int textWidth = 500;
+    private final static int textWidth = 500;
 
     //getters
     public static Paragraph getDiffusion() {

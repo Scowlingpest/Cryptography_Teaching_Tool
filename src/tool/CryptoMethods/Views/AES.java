@@ -19,14 +19,19 @@ import tool.Models.MonitoringMap;
  * Student Number: 0900772r
  * Creation: 16/12/2015.
  */
+//aes start class, launches steps
 public class AES {
 
-    static Duration paused=Duration.seconds(0);
-    static Pane p = new Pane();
-    static SequentialTransition st =new SequentialTransition();
-    static int step=0;
+    //variables needed, are reset upon load
+    private static Duration paused=Duration.seconds(0);
+    private static Pane p = new Pane();
+    private static SequentialTransition st =new SequentialTransition();
+    private static int step=0;
 
-    //starts the aes, wipes the screen and sequential transition and resets the paused setting
+    /*start, wipes screen,resets values and adds controls for AES
+    parameters: bp - borderpane to add to, monitor -monitoring hashmap for counting
+    returns: null
+     */
     public static void start(BorderPane bp,MonitoringMap monitor){
         p=new Pane();
         st=new SequentialTransition();
@@ -36,8 +41,11 @@ public class AES {
     }
 
 
-    //creates the controls for the animations along the bottom of the screen
-    public static void bottomControls(BorderPane bp,MonitoringMap monitor){
+    /*bottomControls, creates the controls for the animations along the bottom of the screen
+    parameters: bp - borderpane to add to, monitor -monitoring hashmap for counting
+    returns: null
+     */
+    private static void bottomControls(BorderPane bp, MonitoringMap monitor){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
         bbUsed.getStyleClass().add("button");
 
@@ -103,6 +111,7 @@ public class AES {
             monitor.incrementValue("AES4");
         });
 
+        //speed buttons
         Button speed1 = new Button("Play speed 1x");
         speed1.setOnAction(event -> AnimationMethods.speedChanged(st,1,currentSpeed));
 
@@ -119,10 +128,8 @@ public class AES {
         speed10.setOnAction(event -> AnimationMethods.speedChanged(st, 10, currentSpeed));
 
 
-
-
+        //adds buttons to screen
         HBox buttonBar = new HBox();
-        //buttonBar.setSpacing(3);
         buttonBar.getChildren().addAll(first, second, third, fourth, play, pause);
         buttonBar.getChildren().addAll(speed1, speed2, speed3, speed6, speed10);
 
@@ -133,7 +140,10 @@ public class AES {
 
     }
 
-    //setups the pane and creates the animation for each step
+    /*setupPane,setups the pane and creates the animation for each step
+    parameters: i -step to create, bp - borderpane to add stuff to
+    returns: null
+     */
     private static void setupPane(int i,BorderPane bp){
         st.stop();
         p.getChildren().clear();
@@ -141,19 +151,19 @@ public class AES {
         switch (i){
             case 1:
                 AES_Step_1.createPane(p);
-                st=AES_Step_1.createTimeLine(p);
+                st=AES_Step_1.createTransition(p);
                 break;
             case 2:
                 AES_Step_2.createPane(p);
-                st=AES_Step_2.createTimeLine(p);
+                st=AES_Step_2.createTransition(p);
                 break;
             case 3:
                 AES_Step_3.createPane(p);
-                st=AES_Step_3.createTimeLine(p);
+                st=AES_Step_3.createTransition(p);
                 break;
             case 4:
                 AES_Step_4.createPane(p);
-                st=AES_Step_4.createTimeLine(p);
+                st=AES_Step_4.createTransition(p);
         }
         bp.setCenter(p);
 

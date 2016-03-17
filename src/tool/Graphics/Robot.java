@@ -16,19 +16,22 @@ import tool.Models.Header;
 // been written so that additional robots can be added later if needed
 public class Robot {
 
-    Image image;
-    Image image1;
-    Image image2;
-    ImageView view = new ImageView();
-    String style;
-    int X;
-    int Y;
-    toolTipSpecial toolTip;
-    Header title;
-    Timeline tl;
+    private Image image;
+    private Image image1;
+    private Image image2;
+    private ImageView view = new ImageView();
+    private String style;
+    private int X;
+    private int Y;
+    private toolTipSpecial toolTip;
+    private Header title;
+    private Timeline tl;
 
-    //constructor for the robot
-    public Robot(String file,String s,String[] tool,Header h, int x, int y) {
+    /*Robot constructor, constructor for the robot
+    parameters: file - image file to use, s - style to use, tool - tooltips to install, h - robots header
+    returns: null
+     */
+    public Robot(String file, String s, String[] tool, Header h) {
 
         //three images needed for the waving animation
         this.image=new Image("Files/Images/robots/" +file+"1.png");
@@ -51,8 +54,8 @@ public class Robot {
 
         this.setImageWidth(175);
 
-        this.X=x;
-        this.Y=y;
+        this.X= 0;
+        this.Y= 0;
 
         //adds the animation to the robot
         animate();
@@ -61,18 +64,14 @@ public class Robot {
 
     }
 
+    //getters
     public Header getTitle() {
         return title;
     }
 
-    public Image getImage() {
+    private Image getImage() {
         return image;
 
-    }
-
-
-    public void setImageWidth(int x){
-        this.view.setFitWidth(x);
     }
     public ImageView getView() {
         return view;
@@ -86,11 +85,32 @@ public class Robot {
         return X;
     }
 
+    private Timeline getTl() {
+        return tl;
+    }
+
+    private Image getImage1() {
+        return image1;
+    }
+
+    private Image getImage2() {
+        return image2;
+    }
+
+    //setters
+    public void setImageWidth(int x){
+        this.view.setFitWidth(x);
+    }
+
     public void setX(int x) {
         X = x;
     }
 
-    public void animate() {
+    /*animate, creates the waving animation using a timeline
+    parameters:null
+    returns:null
+     */
+    private void animate() {
         //animation created used a timeline since it's a small simple animation
         //four keyframes that change between the images and makes it pause
         KeyFrame kf1 = new KeyFrame(Duration.millis(400), event -> {
@@ -118,15 +138,4 @@ public class Robot {
         this.tl.playFromStart();
     }
 
-    public Timeline getTl() {
-        return tl;
-    }
-
-    public Image getImage1() {
-        return image1;
-    }
-
-    public Image getImage2() {
-        return image2;
-    }
 }

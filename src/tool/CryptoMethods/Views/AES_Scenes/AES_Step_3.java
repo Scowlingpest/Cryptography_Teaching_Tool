@@ -20,12 +20,17 @@ import tool.Graphics.Speechbubble;
  * Student Number: 0900772r
  * Creation: 19/12/2015.
  */
+//AES Step 3 class, sending the key and message
 public class AES_Step_3 {
-    static Speechbubble bubble;
-    static Robot encrypt;
-    static Robot decrypt;
-    static Monitor[] screens= new Monitor[3];
+    private static Speechbubble bubble;
+    private static Robot encrypt;
+    private static Robot decrypt;
+    private static final Monitor[] screens= new Monitor[3];
 
+    /*createPane,creates the pane needed for the animation and variables needed
+    parameters: root - pane to add items to
+    returns: null
+    */
     public static void createPane(Pane root){
         encrypt = RSA_Controller.getEncrypt();
         decrypt = AES_Controller.getDecrypt();
@@ -47,10 +52,13 @@ public class AES_Step_3 {
         root.getChildren().addAll(bubble.getSp(),screens[0].getImage(),
                 screens[1].getImage(),screens[2].getImage());
         root.setPadding(new Insets(0,100,0,100));
-        //return root;
 
     }
 
+    /*background, setups the background of the animation
+    parameters: p -pane to add backgrounds too
+    returns: null
+    */
     private static void background(Pane p){
         Rectangle left = new Rectangle(25,25,550,600);
         left.getStyleClass().add("rectangle-encrypt");
@@ -61,7 +69,11 @@ public class AES_Step_3 {
 
     }
 
-    public static SequentialTransition createTimeLine(Pane root) {
+    /*createTransition, creates the animation, calls other methods to create each bit
+    parameters: root- pane to add elements to
+    returns: sequential transition with all the animations
+    */
+    public static SequentialTransition createTransition(Pane root) {
         SequentialTransition st = new SequentialTransition();
         AnimationMethods.changeBubble(st,bubble,AES_Controller.getStep_3_key_encrypt());
 
@@ -75,6 +87,10 @@ public class AES_Step_3 {
 
     }
 
+    /*encryptKey, shows how the key is encrypted
+    parameters: st - sequential transition to add animations to, p - pane to add objects to
+    returns: the key image object
+    */
     private static ImageView encryptKey(SequentialTransition st, Pane p){
         Text key = AnimationMethods.textSetup("Key",230,305,"This is the key before encryption");
         p.getChildren().add(key);
@@ -94,6 +110,11 @@ public class AES_Step_3 {
 
     }
 
+    /*moveKey, moves the key across to decrypt and the 'evil listener'
+    parameters: st - sequential transition to add animations to, p - pane to add objects to,
+                key - key image object
+    returns: null
+    */
     private static void moveKey(SequentialTransition st, Pane p, ImageView key){
         AnimationMethods.changeBubble(st,bubble,AES_Controller.getStep_3_send_key());
 
@@ -102,7 +123,7 @@ public class AES_Step_3 {
         PauseTransition briefPause = AnimationMethods.pauseSeconds(1);
         briefPause.setOnFinished(event->p.getChildren().add(copy));
 
-
+        //moves the key across and makes a copy of it go to the listener
         TranslateTransition moveKey = AnimationMethods.moveNode(key,650,0,8);
 
         SequentialTransition evilCopy = AnimationMethods.createSequential(new Transition[]{
@@ -132,6 +153,10 @@ public class AES_Step_3 {
 
     }
 
+    /*sendMessage, moves the message across to decrypt and the 'evil listener'
+    parameters: st - sequential transition to add animations to, p - pane to add objects to
+    returns: null
+    */
     private static void sendMessage(SequentialTransition st, Pane p){
         AnimationMethods.changeBubble(st,bubble,AES_Controller.getStep_3_send_message());
         Paper stack = new Paper("encrypt",100,210,250);
@@ -150,6 +175,7 @@ public class AES_Step_3 {
         });
         st.getChildren().add(stackAppear);
 
+        //send each block of the message across to decrypt and also to the evil listener
         for(Paper paper:sheets){
             st.getChildren().addAll(
                     AnimationMethods.moveNode(paper.getView(),650,0,7),

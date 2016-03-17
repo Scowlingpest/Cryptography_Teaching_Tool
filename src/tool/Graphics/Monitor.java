@@ -9,9 +9,14 @@ import javafx.scene.image.ImageView;
  * Student Number: 0900772r
  * Creation: 02/11/2015.
  */
+//Monitor graphical object
 public class Monitor {
-    ImageView image = new ImageView();
+    private ImageView image = new ImageView();
 
+    /*Monitor constructor, makes a monitor object on screen
+    parameters : width - width of monitor, x,y-coordinates
+    returns: null
+     */
     public Monitor(int width, int x, int y) {
         this.image.setImage(new Image("Files/Images/monitor.png"));
         this.image.setFitWidth(width);
@@ -22,6 +27,7 @@ public class Monitor {
 
     }
 
+    //getter
     public ImageView getImage() {
         return image;
     }

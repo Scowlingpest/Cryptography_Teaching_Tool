@@ -20,13 +20,19 @@ import tool.Graphics.Speechbubble;
  * Student Number: 0900772r
  * Creation: 07/12/2015.
  */
+//El Gamal step class, used to sort out which step to load
 public class EG_Step {
-    static HBox combos = new HBox();
-    static ComboBox<Integer> pSelect = new ComboBox<>();
-    static ComboBox<Integer> qSelect = new ComboBox<>();
-    static ComboBox<Integer> aSelect = new ComboBox<>();
-    static ComboBox<Integer> bSelect = new ComboBox<>();
+    //combo box needed for step 2
+    private static HBox combos = new HBox();
+    private static ComboBox<Integer> pSelect = new ComboBox<>();
+    private static ComboBox<Integer> qSelect = new ComboBox<>();
+    private static ComboBox<Integer> aSelect = new ComboBox<>();
+    private static ComboBox<Integer> bSelect = new ComboBox<>();
 
+    /*createPane,creates the pane needed for the animation
+    parameters: root - pane to add items to
+    returns: null
+    */
     public static void createPane(Pane root){
         Robot encrypt = RSA_Controller.getEncrypt();
         Robot decrypt = RSA_Controller.getDecrypt();
@@ -42,11 +48,19 @@ public class EG_Step {
 
     }
 
+    /*placeRobotsFirst, places the robots in their first location
+    parameters: e,d - robots to place, p - pane to add robots to
+    returns: null
+    */
     private static void placeRobotsFirst(Robot e, Robot d, Pane p){
         AnimationMethods.placeRobots(d, p, 50, 175);
         AnimationMethods.placeRobots(e, p, 1030, 175);
     }
 
+    /*background, setups the background of the animation
+    parameters: p -pane to add backgrounds too
+    returns: null
+    */
     private static void background(Pane p){
         int start =20;
         Rectangle left = new Rectangle(start,50,400,550);
@@ -64,7 +78,11 @@ public class EG_Step {
 
     }
 
-    public static SequentialTransition createTimeLine(Pane root,int step) {
+    /*createTransition, creates the animation, call DH_Animation to create the animation
+    parameters: root- pane to add elements to
+    returns: sequential transition with all the animations
+    */
+    public static SequentialTransition createTransition(Pane root, int step) {
         SequentialTransition st = new SequentialTransition();
         Speechbubble bubble;
         if(step==2) {
@@ -80,6 +98,10 @@ public class EG_Step {
         return st;
     }
 
+    /*comboBoxSetup, setups the values for the combo boxes for step 2
+    parameters: root - pane to add the comboboxes to
+    returns: null
+     */
     private static void comboBoxSetup(Pane root){
         pSelect = new ComboBox<>();
         pSelect.getItems().addAll(EG_Controller.getGenerators().keySet());
@@ -119,16 +141,28 @@ public class EG_Step {
         root.getChildren().add(combos);
     }
 
+    /*clearCombos, removes the combo boxes from the screen
+    parameters: root- pane to remove combo boxes from
+    returns: null
+     */
     public static void clearCombos(Pane root){
         root.getChildren().remove(combos);
 
     }
 
+    /*getValues, gets the combobox values and setups the animation with the new values
+    parameters: null
+    returns: null
+     */
     public static void getValues(){
         int[] temp =comboBoxValues();
         EG_Controller.setUpAnimation(temp[0],temp[1],temp[2],temp[3]);
     }
 
+    /*comboBoxValues, gets the values for all comboboxes
+    parameters: null
+    returns: array of ints from comboboxes
+     */
     private static int[] comboBoxValues(){
         return new int[]{pSelect.getValue(),qSelect.getValue(),
                 aSelect.getValue(),bSelect.getValue()};

@@ -5,9 +5,10 @@ package tool.CryptoMethods.Controllers;
  * Student Number: 0900772r
  * Creation: 16/12/2015.
  */
+//AES controller class
 public class AES_Controller extends CryptoMethodsController {
 
-    static int BOXWIDTH = 475;
+    private static final int BOXWIDTH = 475;
 
     public static int getBOXWIDTH(){return BOXWIDTH;}
     //Step 1 variables used
@@ -20,7 +21,7 @@ public class AES_Controller extends CryptoMethodsController {
     private static final String stages          = "To begin the first key is applied to the 128 bit message using XOR. Now the rounds start, each round has 4 stages: SubBytes, ShiftRows, Mix columns, Apply Key. For each round the message is passed through these 4 stages. The result from the end of the first round is passed onto the second round and so on.";
     private static final String nextStep1       = "The final round only has three stages, the Mix Column stage is removed. The result from the final round is the encrypted message which can then be sent. And that's the overview of AES finished! Click Step 2 and i'll give you a demonstration. ";
 
-
+    //step 1 getters
     public static String getStep_1_welcome() {
         return step_1_welcome;
     }
@@ -64,6 +65,7 @@ public class AES_Controller extends CryptoMethodsController {
     private static final String step_2_encrypt  = "We do this for each 128 bit block of the message we have, until the entire message is encrypted. And that's how you encrypt using AES. For the larger key sizes you simply increase the number of rounds as I said in the last step.";
     private static final String step_2_next     = "Next we will show you how the message gets sent to Decrypt. Click Step 3 to see that, or Step 2 to see this step again. ";
 
+    //step 2 getters
     public static String getStep_2_welcome() {
         return step_2_welcome;
     }
@@ -104,7 +106,7 @@ public class AES_Controller extends CryptoMethodsController {
     private static final int difference =getEndLocX()-getStartLocX();
     private static final int halfway = (difference)/2;
 
-
+    //step 2 and 4 getters
     public static int getBoxX() {
         return boxX;
     }
@@ -152,6 +154,7 @@ public class AES_Controller extends CryptoMethodsController {
     private static final String step_3_send_message = "Encrypt will now send the message over to me. Based on the size of the message it could be sent over all at once, or in 128 bit sized chunks. Here we will show you the blocks method, I'm going to receive the message blocks Encrypt encrypted in the last step. Anyone listening will get these as well but won't be able to do anything with them.";
     private static final String step_3_finish = "And that's it! I have everything I need to start decrypting, I have the key and the message. Now I put the key through the scheduler the same as Encrypt in step 1 and get the same 10 generated keys. I'll show you how I decrypt the message in step 4.";
 
+    //step 3 getters
     public static String getStep_3_welcome() {
         return step_3_welcome;
     }
@@ -180,6 +183,7 @@ public class AES_Controller extends CryptoMethodsController {
     private static final String step_4_intermediary = "The intermediary rounds are the reverse of the encryption rounds, so we have XOR, Inv Mix Column, Inv Shift Row then Inv Sub Byte. Remember the encryption order is sub byte,shift row, mix column and then XOR. Inv Mix column is the same idea as the first mix column only it uses an inverse matrix multiplication table. The last round is simply an XOr with the key";
     private static final String step_4_final        = "Once all the blocks have been through the rounds, I will have the completely decrypted message, which will be Encrypt's original message. Now AES is complete, for more detailed information on the round stages you can look online but hopefully this has given you a good overview of AES.";
 
+    //step 4 getters
     public static String getStep_4_welcome() {
         return step_4_welcome;
     }
@@ -204,11 +208,13 @@ public class AES_Controller extends CryptoMethodsController {
         return step_4_final;
     }
 
+    //steps used lists
     private static final String[] step1Used = new String[]{"Stream vs Block","Asymmetric vs Symmetric"};
     private static final String[] step2Used = new String[]{"Stream vs Block","Encryption & Decryption"};
     private static final String[] step3Used = new String[]{"Encryption & Decryption"};
     private static final String[] step4Used = new String[]{"Stream vs Block","Encryption & Decryption"};
 
+    //steps used getters
     public static String[] getStep1Used() {
         return step1Used;
     }

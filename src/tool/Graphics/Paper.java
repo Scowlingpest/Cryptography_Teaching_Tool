@@ -11,13 +11,17 @@ import javafx.scene.image.ImageView;
 //paper class, used to create paper graphic on screen
 public class Paper {
 
-    Image imageA;
-    Image imageEncrypt;
-    Image imageDecrypt;
-    Image imageSingle;
-    ImageView view = new ImageView();
-    toolTipSpecial ttS;
+    private Image imageA;
+    private Image imageEncrypt;
+    private Image imageDecrypt;
+    private Image imageSingle;
+    private ImageView view = new ImageView();
+    private toolTipSpecial ttS;
 
+    /*Paper constructor, makes the paper object
+    parameters: s- type of paper to display, size - size of paper, x,y - coordinates
+    returns: null
+     */
     public Paper(String s, int size, int x, int y){
         //four images, plain stack of paper, encrypted stack, decrypted stack and a single sheet
         this.imageA=new Image("Files/Images/paper.png");
@@ -33,7 +37,10 @@ public class Paper {
         viewSetup(s,size, x ,y);
     }
 
-    //decide which image should be used and setup view
+    /*viewSetup,decide which image should be used and setups view
+    parameters: s- which image to use, size - size of paper, x,y - coordinates
+    returns: null
+     */
     private void viewSetup(String s,int size, int x, int y){
         switch (s) {
             case "encrypt":
@@ -58,30 +65,44 @@ public class Paper {
         view.setOpacity(0);
     }
 
+    //getter
     public ImageView getView() {
         return view;
     }
 
-    //change image and tooltip to encrypt
+    /*changeToEncrypt,change image and tooltip to encrypt
+    parameters: null
+    returns: null
+     */
     public void changeToEncrypt(){
         this.view.setImage(this.imageEncrypt);
         this.ttS.useTextA();
     }
 
-    //change image and tooltip to decrypt
+    /*changeToDecrypt, change image and tooltip to decrypt
+    parameters: null
+    returns: null
+     */
     public void changeToDecrypt(){
         this.view.setImage(this.imageDecrypt);
         this.ttS.useTextB();
     }
 
-    //change image to a single sheet of paper and change the tooltip
-    public void changeToSingle(){
+    /*changeToSingle, change image to a single sheet of paper and change the tooltip
+    parameters: null
+    returns: null
+     */
+    private void changeToSingle(){
         this.view.setImage(this.imageSingle);
         Tooltip.install(this.view,new Tooltip("A message block of 128 bits"));
     }
 
-    //change to the 'default', a plain stack of paper
-    public void changeToBase(){
+
+    /*changeToBase, change to the 'default', a plain stack of paper
+    parameters: null
+    returns: null
+    */
+    private void changeToBase(){
         this.view.setImage(this.imageA);
         this.ttS.useBaseText();
     }

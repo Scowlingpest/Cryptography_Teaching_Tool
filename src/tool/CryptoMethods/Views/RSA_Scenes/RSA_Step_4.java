@@ -16,11 +16,17 @@ import tool.Graphics.Speechbubble;
  * Student Number: 0900772r
  * Creation: 06/11/2015.
  */
+//RSA step 4 class, message authorisation
 public class RSA_Step_4 {
-    static Monitor m1 = new Monitor(200,750,200);
-    static Monitor m2 = new Monitor(200,175,100);
-    static Monitor m3 = new Monitor(200,500,300);
+    //monitor objects needed
+    private static Monitor m1 = new Monitor(200,750,200);
+    private static Monitor m2 = new Monitor(200,175,100);
+    private static Monitor m3 = new Monitor(200,500,300);
 
+    /*createPane,creates the pane needed for the animation
+    parameters: root - pane to add items to
+    returns: null
+    */
     public static void createPane(Pane root){
         Robot encrypt = RSA_Controller.getEncrypt();
         Robot decrypt = RSA_Controller.getDecrypt();
@@ -37,7 +43,11 @@ public class RSA_Step_4 {
 
     }
 
-    public static void background(Pane p){
+    /*background, setups the background of the animation
+   parameters: p -pane to add backgrounds too
+   returns: null
+   */
+    private static void background(Pane p){
         Rectangle right = new Rectangle(450,50,700,550);
         right.getStyleClass().add("rectangle-decrypt");
 
@@ -48,12 +58,20 @@ public class RSA_Step_4 {
 
     }
 
-    public static void placeRobotsFirst(Robot e, Robot d, Pane p){
+    /*placeRobotsFirst, places the robots in their first location
+    parameters: e,d - robots to place, p - pane to add robots to
+    returns: null
+    */
+    private static void placeRobotsFirst(Robot e, Robot d, Pane p){
         AnimationMethods.placeRobots(d, p, 950, 175);
         AnimationMethods.placeRobots(e, p, 35, 50);
     }
 
-    public static SequentialTransition createTimeLine(Pane p){
+    /*createTransition, creates the animation, calls other methods to create each bit
+    parameters: root- pane to add elements to
+    returns: sequential transition with all the animations
+    */
+    public static SequentialTransition createTransition(Pane p){
         SequentialTransition st = new SequentialTransition();
         Speechbubble bubble =new Speechbubble("tl",RSA_Controller.getWelcomeStep4(),225,125,175);
 
@@ -63,6 +81,11 @@ public class RSA_Step_4 {
         return st;
     }
 
+    /*encryptPaper, makes the paper appear and starts animation
+    parameters:p - pane to add objects to,st - sequential transition to add animations to,
+               bubble- speech bubble so robot can speak
+    returns: null
+     */
     private static void encryptPaper(Pane p, SequentialTransition st, Speechbubble bubble){
         Paper p1 = new Paper("n",100,800,225);
         p1.getView().setOpacity(0);
@@ -82,6 +105,11 @@ public class RSA_Step_4 {
         secretEncryption(p,st,bubble,p1);
     }
 
+    /*secretEncryption, shows decrypt using the secret key to encrypt the information
+    parameters:p - pane to add objects to,st - sequential transition to add animations to,
+               bubble- speech bubble so robot can speak, p1 - paper object
+    returns: null
+     */
     private static void secretEncryption(Pane p,SequentialTransition st, Speechbubble bubble, Paper p1){
         Text equation = AnimationMethods.textSetup(RSA_Controller.getEncryptStep4(),765,400,RSA_Controller.getTooltipStep4Eq());
         p.getChildren().add(equation);
@@ -105,6 +133,11 @@ public class RSA_Step_4 {
 
     }
 
+    /*sendToEncrypt, sends the encrypted message to encrypt and shows how she can decrypt it
+    parameters:p - pane to add objects to,st - sequential transition to add animations to,
+               bubble- speech bubble so robot can speak, p1 - paper object
+    returns:null
+     */
     private static void sendToEncrypt(Pane p,SequentialTransition st, Speechbubble bubble, Paper p1){
         AnimationMethods.changeBubble(st,bubble,RSA_Controller.getSendEncryptStep4());
 
@@ -129,6 +162,11 @@ public class RSA_Step_4 {
 
     }
 
+    /*wrongPerson, animates what happens when a message is sent front the wrong person
+    parameters:p - pane to add objects to,st - sequential transition to add animations to,
+               bubble- speech bubble so robot can speak, p1 - paper object
+    returns: null
+     */
     private static void wrongPerson(Pane p, SequentialTransition st, Speechbubble bubble,Paper p1){
         AnimationMethods.changeBubble(st,bubble,RSA_Controller.getWrongStep4());
         FadeTransition m3Appear = AnimationMethods.fadeInto(m3.getImage(),3);
@@ -152,6 +190,10 @@ public class RSA_Step_4 {
         finishStep4(st, bubble);
     }
 
+    /*finishStep4, finish off the step
+    parameters: st - sequential transition to add animations to, bubble- speech bubble so robot can speak,
+    returns: null
+     */
     private static void finishStep4(SequentialTransition st, Speechbubble bubble){
         AnimationMethods.changeBubble(st,bubble,RSA_Controller.getFinishStep4());
     }

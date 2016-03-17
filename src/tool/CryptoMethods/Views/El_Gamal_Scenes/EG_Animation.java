@@ -21,10 +21,16 @@ import tool.Models.DataRow;
  * Student Number: 0900772r
  * Creation: 19/11/2015.
  */
-public class EG_Animation {
-    static TableView<DataRow> encryptDetails = new TableView<>();
-    static TableView<DataRow> decryptDetails = new TableView<>();
+//El Gamal Animation class, setups the el gamal animation for both steps
+class EG_Animation {
+    private static TableView<DataRow> encryptDetails = new TableView<>();
+    private static TableView<DataRow> decryptDetails = new TableView<>();
 
+    /*animationCreate, start method which calls all other methods
+    parameters: root - pane to add objects to, st - sequential transition to add animations to,
+                step - what step it is (1 or 2), bubble - the speechbubble being used
+    returns: null
+     */
     public static void animationCreate(Pane root, SequentialTransition st, int step, Speechbubble bubble) {
         //setups the tables
         setupTableViews(root, decryptDetails, 50, EG_Controller.getDataD());
@@ -42,6 +48,11 @@ public class EG_Animation {
 
     }
 
+    /*setupTableViews, creates the two tables used to contain values
+        parameters: p - pane to add objects tp, tb - table to add to, x - x coordinate,
+                    data - data to put in the table
+        returns: null
+         */
     private static void setupTableViews(Pane p, TableView<DataRow> tb, int x, ObservableList<DataRow> data) {
         //creates the table size, and clears the table
         tb.setFixedCellSize(25);
@@ -68,6 +79,11 @@ public class EG_Animation {
         p.getChildren().add(vb);
     }
 
+    /*pandQDiscussion, moves p and q back and forth between the two robots, sets value and adds to table
+    parameters: st - sequential transition to add animations to, bubble - speechbubble to change,
+                root- pane to add objects to
+    returns: array of text objects
+     */
     private static Text[] pandQDiscussion(SequentialTransition st, Speechbubble bubble, Pane root) {
         //displays bubble explaining p and q
         AnimationMethods.changeBubble(st, bubble, EG_Controller.getPandQ());
@@ -141,17 +157,24 @@ public class EG_Animation {
 
     }
 
+    /*secretNumberCalc, animation for picking the secret numbers
+    parameters: st -sequential transition to add animations to, bubble - speechbubble to change,
+                texts - text objects needed
+    returns: null
+     */
     private static void secretNumberCalc(SequentialTransition st, Speechbubble bubble, Text[] texts) {
         AnimationMethods.changeBubble(st, bubble, EG_Controller.getPrime());
         ParallelTransition changeText = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeAway(texts[0]), AnimationMethods.fadeAway(texts[1])
         });
+        //change text to a and b
         changeText.setOnFinished(event -> {
             texts[0].setText("a");
             Tooltip.install(texts[0], new Tooltip(EG_Controller.getaTooltip()));
             texts[1].setText("b");
             Tooltip.install(texts[1], new Tooltip(EG_Controller.getbTooltip()));
         });
+        //make the secret values appear then fade and change to actual values
         ParallelTransition secretAppear = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeInto(texts[0]), AnimationMethods.fadeInto(texts[1])
         });
@@ -175,11 +198,17 @@ public class EG_Animation {
 
     }
 
+    /*calculateAB, animation for calculating A and B
+    parameters: st -sequential transition to add animations to, bubble - speechbubble to change,
+                texts - text objects needed
+    returns: null
+     */
     private static void calculateAB(SequentialTransition st, Speechbubble bubble, Text[] texts) {
         AnimationMethods.changeBubble(st, bubble, EG_Controller.getWorkingAandB());
         ParallelTransition textChange = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeAway(texts[0]), AnimationMethods.fadeAway(texts[1])
         });
+        //display equations
         textChange.setOnFinished(event -> {
             texts[0].setText(EG_Controller.getEqA());
             Tooltip.install(texts[0],new Tooltip(EG_Controller.getEqATooltip()));
@@ -196,6 +225,7 @@ public class EG_Animation {
         ParallelTransition equationChange = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeAway(texts[0]), AnimationMethods.fadeAway(texts[1])
         });
+        //results of equations
         equationChange.setOnFinished(event -> {
             texts[0].setText(EG_Controller.getEqANo());
             texts[1].setText(EG_Controller.getEqBNo());
@@ -208,6 +238,7 @@ public class EG_Animation {
         ParallelTransition changeAB =AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeAway(texts[0]), AnimationMethods.fadeAway(texts[1])
         });
+        //show A and B values
         changeAB.setOnFinished(event -> {
             texts[0].setText(String.valueOf(EG_Controller.getA()));
             Tooltip.install(texts[0],new Tooltip(EG_Controller.getAtooltip()));
@@ -225,6 +256,11 @@ public class EG_Animation {
                 equationChange, equationAppear,AnimationMethods.pauseSeconds(4),changeAB,ABReappear);
     }
 
+    /*exchangeAB, animation for exchanging A and B
+    parameters: st -sequential transition to add animations to, p - pane to add objects to
+                bubble - speechbubble to change, texts - text objects needed
+    returns: null
+     */
     private static void exchangeAB(SequentialTransition st,Pane p, Speechbubble bubble, Text[] texts) {
         Text evilA = AnimationMethods.textSetup("A=" + String.valueOf(EG_Controller.getA()), 560, 250, EG_Controller.getAtooltip());
         Text evilB = AnimationMethods.textSetup("B=" + String.valueOf(EG_Controller.getB()), 560, 295, EG_Controller.getBtooltip());
@@ -271,10 +307,16 @@ public class EG_Animation {
 
     }
 
+    /*secretK, animation for calculating the key on both sides
+   parameters:st-sequential transition to add animations to, bubble - speechbubble to change,
+               texts - text objects needed
+   returns: null
+    */
     private static void secretK(SequentialTransition st,Speechbubble bubble,Text[] texts){
         ParallelTransition secretChange = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeAway(texts[0]), AnimationMethods.fadeAway(texts[1])
         });
+        //change displayed text to the equations for the key
         secretChange.setOnFinished(event -> {
             texts[0].setText(EG_Controller.getEqKa());
             Tooltip.install(texts[0], new Tooltip(EG_Controller.getEqKaTooltip()));
@@ -292,6 +334,7 @@ public class EG_Animation {
 
         AnimationMethods.changeBubble(st,bubble,EG_Controller.getFinalKCalc());
 
+        //change equation to equation with values
         ParallelTransition eqChange = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeAway(texts[0]), AnimationMethods.fadeAway(texts[1])
         });
@@ -303,6 +346,8 @@ public class EG_Animation {
         ParallelTransition appearEq = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeInto(texts[0]), AnimationMethods.fadeInto(texts[1])
         });
+
+        //change equation with values to result of equation and add to table
         ParallelTransition noChange = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeAway(texts[0]), AnimationMethods.fadeAway(texts[1])
         });
@@ -327,11 +372,17 @@ public class EG_Animation {
 
     }
 
+    /*encryption, shows how enceyption happens using el Gamal
+    parameters:st -sequential transition to add animations to, bubble - speechbubble to change,
+                texts - text objects to change
+    returns: null
+     */
     private static void encryption(SequentialTransition st, Speechbubble bubble, Text[] texts){
         AnimationMethods.changeBubble(st,bubble,EG_Controller.getEncryption());
         ParallelTransition removeKs = AnimationMethods.createParallel(new Transition[]{
                 AnimationMethods.fadeAway(texts[0]), AnimationMethods.fadeAway(texts[1])
         });
+        //add message to screen (m=3)
         removeKs.setOnFinished(event->{
             texts[1].setText("m=3");
             EG_Controller.addToTable("M", EG_Controller.getM(),EG_Controller.getDataE());
@@ -345,6 +396,7 @@ public class EG_Animation {
         st.getChildren().addAll(removeKs,mAppear,AnimationMethods.pauseSeconds(3));
         AnimationMethods.changeBubble(st,bubble, EG_Controller.getEncryptM());
 
+        //change to the encryption equation
         FadeTransition changeM =AnimationMethods.fadeAway(texts[1]);
         changeM.setOnFinished(event->{
             texts[1].setText(EG_Controller.getEqC());
@@ -355,6 +407,7 @@ public class EG_Animation {
         FadeTransition cEqDisappear = AnimationMethods.fadeAway(texts[1]);
         cEqDisappear.setOnFinished(event-> texts[1].setText(EG_Controller.getEqCNo()));
 
+        //change to numbered equation
         FadeTransition numEqAppear = AnimationMethods.fadeInto(texts[1]);
         FadeTransition numEqDisappear = AnimationMethods.fadeAway(texts[1]);
         numEqDisappear.setOnFinished(event->{
@@ -371,6 +424,11 @@ public class EG_Animation {
                 cEqDisappear,numEqAppear, AnimationMethods.pauseSeconds(3),numEqDisappear,cAppear);
     }
 
+    /*sendCandDecrypt, send the ciphertext and decrypt it
+    parameters: st - sequential transition to add animations to, p - pane to add objects to,
+                bubble - speechbubble to change, texts - text objects to change
+    returns: null
+     */
     private static void sendCandDecrypt(SequentialTransition st,Pane p, Speechbubble bubble, Text[] texts){
         Text evilC = AnimationMethods.textSetup("C=" + String.valueOf(EG_Controller.getC()), 560, 250, EG_Controller.getcTooltip());
         p.getChildren().add(evilC);
@@ -426,7 +484,11 @@ public class EG_Animation {
         AnimationMethods.changeBubble(st,bubble,EG_Controller.getFinished());
     }
 
-    //method to display the final bubble depending on what step it is
+    /*finishedStep, changes the bubble to the final bubble based on which step it is
+    parameters:st -sequential transition to add animations to, bubble - speechbubble to change,
+                step - indicator for which step it is
+    returns:null
+    */
     private static void finishedStep(SequentialTransition st, Speechbubble bubble, int step){
         st.getChildren().addAll(AnimationMethods.pauseSeconds(5));
         if (step==2){

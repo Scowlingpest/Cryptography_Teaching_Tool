@@ -37,7 +37,7 @@ public class Asymmetric_vs_Symmetric{
     parameters: bp - borderpane to add to
     returns: null
      */
-    public static void setUpLeft(BorderPane bp) {
+    private static void setUpLeft(BorderPane bp) {
         VBox vb = new VBox();
         vb.getStyleClass().add("vbox");
 
@@ -58,7 +58,7 @@ public class Asymmetric_vs_Symmetric{
       parameters: robot - robot to add to screen, text- text to display
       returns: stackpane with robot and information with background and header
      */
-    public static StackPane setUpInformation(Robot robot, Paragraph text){
+    private static StackPane setUpInformation(Robot robot, Paragraph text){
         StackPane sp =new StackPane();
         Asymmetric_vs_Symmetric_Controller.backgroundSetup(600,300,sp,robot.getStyle());
 
@@ -79,7 +79,7 @@ public class Asymmetric_vs_Symmetric{
     parameter: bp- bp to add to
     returns: null
      */
-    public static void setUpRight(BorderPane bp) {
+    private static void setUpRight(BorderPane bp) {
         StackPane sp = new StackPane();
         VBox finished = new VBox();
         finished.getStyleClass().add("vbox");
@@ -124,7 +124,7 @@ public class Asymmetric_vs_Symmetric{
                 vb - vbox to change information in
     returns: null
      */
-    public static void changeVB(ToggleGroup first, ToggleGroup second, VBox vb){
+    private static void changeVB(ToggleGroup first, ToggleGroup second, VBox vb){
         String expected1 =(String)first.getSelectedToggle().getUserData();
         String expected2 =(String)second.getSelectedToggle().getUserData();
         vb.getChildren().remove(2);
@@ -136,7 +136,7 @@ public class Asymmetric_vs_Symmetric{
     parameters: title- title to put at top of vbox, vb- vbox to setup
     returns - radiobuttons
      */
-    public static ToggleGroup setUpVBox(Header title, VBox vb){
+    private static ToggleGroup setUpVBox(Header title, VBox vb){
         vb.getStyleClass().add("vbox");
         return radioButtonSetup(vb,title.getTitle());
     }
@@ -145,7 +145,7 @@ public class Asymmetric_vs_Symmetric{
     parameters: radio- vbox to add radio buttons too,title - title of radio buttons
     returns - the radio buttons
      */
-    public static ToggleGroup radioButtonSetup(VBox radio, String title){
+    private static ToggleGroup radioButtonSetup(VBox radio, String title){
         ToggleGroup group = new ToggleGroup();
 
         RadioButton rb1 = new RadioButton("Key A");
@@ -168,7 +168,7 @@ public class Asymmetric_vs_Symmetric{
     parameters: b- boolean for whether radio button=radio button, if true then display symmetric
     returns: vbox with displayed information
      */
-    public static VBox changeBottom(Boolean b) {
+    private static VBox changeBottom(Boolean b) {
         if (b) {
             //if same keys selected, show symmetric
             return(Asymmetric_vs_Symmetric_Controller.organiseText(

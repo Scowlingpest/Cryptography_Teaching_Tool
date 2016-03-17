@@ -12,14 +12,19 @@ import java.util.HashMap;
  * Student Number: 0900772r
  * Creation: 09/11/2015.
  */
+//El Gamal controller class
 public class EG_Controller extends CryptoMethodsController {
 
-    //Step 1 variables needed
-    static ObservableList<DataRow> dataE = FXCollections.observableArrayList();
-    static ObservableList<DataRow> dataD =FXCollections.observableArrayList();
+    //variables needed
+    private static ObservableList<DataRow> dataE = FXCollections.observableArrayList();
+    private static ObservableList<DataRow> dataD =FXCollections.observableArrayList();
 
-    static HashMap<Integer,Integer[]> generators = setupMap();
+    private static HashMap<Integer,Integer[]> generators = setupMap();
 
+    /* setupMap, setups the map for the combo boxes
+    parameters:null
+    returns: hashmap with integer and list of numbers
+     */
     private static HashMap<Integer,Integer[]> setupMap(){
         HashMap<Integer,Integer[]> primes = new HashMap<>();
         primes.put(7,new Integer[]{3,5});
@@ -28,12 +33,9 @@ public class EG_Controller extends CryptoMethodsController {
         primes.put(13,new Integer[]{2,7,11});
         primes.put(17,new Integer[]{3,5,7,11});
         primes.put(19,new Integer[]{3,13});
-        //primes.put(23,new Integer[]{5,7,11,17,19});
-        //primes.put(29,new Integer[]{2,3,11,19});
-        //primes.put(31,new Integer[]{3,11,13,17});
-        //primes.put(37,new Integer[]{2,5,13,17,19});
         return primes;
     }
+
     public static HashMap<Integer, Integer[]> getGenerators() {
         return generators;
     }
@@ -97,6 +99,10 @@ public class EG_Controller extends CryptoMethodsController {
     private static final String dTooltip = "This is the encrypted message decrypted";
     private static final String invTooltip =" This is the invert modulus of the key";
 
+    /*setUpAnimation, used in second step, changes the animation to match the selected values
+    parameters: p,q,a,b- values selected in combo boxes
+    returns: null
+     */
     public static void setUpAnimation(int p, int q, int a, int b){
         setP(p); setQ (q);
         seta(a); setb(b);
@@ -110,7 +116,11 @@ public class EG_Controller extends CryptoMethodsController {
         stringSetup();
     }
 
-    public static void stringSetup(){
+    /*stringSetup, changes strings based on user selected values
+    parameters: null
+    returns: null
+     */
+    private static void stringSetup(){
         prime = "We've decided on p="+getP()+" and q="+getQ()+". Now we both need to do some maths. The third party at the bottom knows about them as well but it doesn't matter. We're both going to pick another number, a and b. These can be any number but again we'll keep them small.";
         secretNum = "We've chosen secret a="+geta()+" and secret b ="+getb()+". These can be any number but we have to keep them secret, even from each other. We'll use these with p and q to work out some numbers";
         workingAandB ="We calculate A and B. A="+getEqA()+" and B="+getEqB()+". This turns out as A="+getEqANo()+" and B="+getEqBNo()+" so A="+getA()+"and B="+getB();
@@ -122,6 +132,10 @@ public class EG_Controller extends CryptoMethodsController {
 
     }
 
+    /*findInverse, finds the inverse modulus for a number
+    parameters: null
+    returns: the inverse modulus for the key
+     */
     private static double findInverse(){
         double d;
 
@@ -136,6 +150,7 @@ public class EG_Controller extends CryptoMethodsController {
         }
         return 0;
     }
+
     //getters for everything above, setters for non-final values
 
     public static ObservableList<DataRow> getDataE() {
@@ -218,51 +233,51 @@ public class EG_Controller extends CryptoMethodsController {
         return eqKbNo;
     }
 
-    public static void setP(int p) {
+    private static void setP(int p) {
         EG_Controller.p = p;
     }
 
-    public static void setQ(int q) {
+    private static void setQ(int q) {
         EG_Controller.q = q;
     }
 
-    public static void seta(int a) {
+    private static void seta(int a) {
         EG_Controller.a = a;
     }
 
-    public static void setb(int b) {
+    private static void setb(int b) {
         EG_Controller.b = b;
     }
 
-    public static void setA() {
+    private static void setA() {
         EG_Controller.A = (Math.pow(getQ(),geta())%getP());
     }
 
-    public static void setB() {
+    private static void setB() {
         EG_Controller.B = (Math.pow(getQ(),getb())%getP());
     }
 
-    public static void setKa() {
+    private static void setKa() {
         EG_Controller.Ka = (Math.pow(getB(),geta()))%getP();
     }
 
-    public static void setKb() {
+    private static void setKb() {
         EG_Controller.Kb = (Math.pow(getA(),getb()))%getP();
     }
 
-    public static void setEqANo() {
+    private static void setEqANo() {
         EG_Controller.eqANo="("+ getQ() +"^"+ geta() +")"+"mod "+ getP();
     }
 
-    public static void setEqBNo() {
+    private static void setEqBNo() {
         EG_Controller.eqBNo="("+ getQ() +"^"+ getb() +")"+"mod "+ getP();
     }
 
-    public static void setEqKaNo() {
+    private static void setEqKaNo() {
         EG_Controller.eqKaNo = "("+ getB()+"^"+ geta() +")"+"mod "+ getP();
     }
 
-    public static void setEqKbNo() {
+    private static void setEqKbNo() {
         EG_Controller.eqKbNo = "("+ getA()+"^"+ getb() +")"+"mod "+ getP();
     }
 
@@ -442,15 +457,15 @@ public class EG_Controller extends CryptoMethodsController {
         B = b;
     }
 
-    public static void setC() {
+    private static void setC() {
         EG_Controller.c = (getKa()*getM())% getP();
     }
 
-    public static void setInv() {
+    private static void setInv() {
         EG_Controller.inv = findInverse();
     }
 
-    public static void setD() {
+    private static void setD() {
         EG_Controller.d = (getInv()*getC())%getP();
     }
 

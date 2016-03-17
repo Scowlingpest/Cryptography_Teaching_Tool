@@ -11,20 +11,31 @@ import tool.Graphics.Robot;
 /** Author : Phillipa Russell
  *  Created: 08/10/2015
  */
-
+//prime numbers building block view
 public class Prime_Numbers {
 
 
-    //start method used by menu button, sets up the left,right and center
+    /*start method, setups the borderpane
+    parameters : bp- borderpane to setup
+    returns: null
+     */
     public static void start(BorderPane bp) {
+        //sets up the left and right of the borderpane
+        setUpLeft(bp);
+        setUpRight(bp);
+        setUpCenter(bp);
 
+    }
+
+    /*setUpCenter, setups the prime number box in the center of the screen
+    parameters: bp- borderpane to add to
+    returns: null
+     */
+    private static void setUpCenter(BorderPane bp){
         GridPane gridPane = new GridPane();
         VBox vb=new VBox();
         vb.getStyleClass().add("vbox");
 
-        //sets up the left and right of the borderpane
-        setUpLeft(bp);
-        setUpRight(bp);
 
         //setups the center sections background
         StackPane sp = new StackPane();
@@ -62,8 +73,11 @@ public class Prime_Numbers {
 
     }
 
-    //sets up the left side of the screen where Encrypt is
-    public static void setUpLeft(BorderPane bp){
+    /*setUpLeft, creates the left hand side of the screen with the Encrypt
+    parameters: bp- borderpane to add to
+    returns: null
+     */
+    private static void setUpLeft(BorderPane bp){
         Robot encrypt= Prime_Numbers_Controller.getEncrypt();
 
         //gets the left text from the controller and adds to a VBox with the robot
@@ -80,8 +94,11 @@ public class Prime_Numbers {
 
     }
 
-    //sets up the right side of the screen where Decrypt is
-    public static void setUpRight(BorderPane bp){
+    /*setUpRight,sets up the right side of the screen where Decrypt is
+    parameters: np - borderpane to add things too
+    returns :null
+     */
+    private static void setUpRight(BorderPane bp){
         Robot decrypt= Prime_Numbers_Controller.getDecrypt();
 
         //gets the text for th right hand side form the controller, adds to VBox with robot

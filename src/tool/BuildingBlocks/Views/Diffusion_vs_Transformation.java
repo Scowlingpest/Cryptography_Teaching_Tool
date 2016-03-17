@@ -38,7 +38,7 @@ public class Diffusion_vs_Transformation {
         Pane left = new Pane();
 
         //create column cipher
-        Column_Cipher column_cipher = new Column_Cipher(65);
+        Column_Cipher column_cipher = new Column_Cipher();
         column_cipher.getP().setLayoutX(250);
         column_cipher.getP().setLayoutY(250);
 

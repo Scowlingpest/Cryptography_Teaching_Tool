@@ -18,12 +18,19 @@ import tool.Models.MonitoringMap;
 /** Author : Phillipa Russell
  *  Created: 21/10/2015
  */
+//rsa start class, launches steps
 public class RSA {
-    static Duration paused=Duration.seconds(0);
-    static Pane p = new Pane();
-    static SequentialTransition st =new SequentialTransition();
-    static int step=0;
 
+    //variables needed, are reset upon load
+    private static Duration paused=Duration.seconds(0);
+    private static Pane p = new Pane();
+    private static SequentialTransition st =new SequentialTransition();
+    private static int step=0;
+
+    /*start, wipes screen,resets values and adds controls for RSA
+    parameters: bp - borderpane to add to, monitor -monitoring hashmap for counting
+    returns: null
+     */
     public static void start(BorderPane bp,MonitoringMap monitor){
         p=new Pane();
         st=new SequentialTransition();
@@ -36,8 +43,11 @@ public class RSA {
     }
 
 
-
-    public static void bottomControls(BorderPane bp,MonitoringMap monitor){
+    /*bottomControls, creates the controls for the animations along the bottom of the screen
+    parameters: bp - borderpane to add to, monitor -monitoring hashmap for counting
+    returns: null
+     */
+    private static void bottomControls(BorderPane bp, MonitoringMap monitor){
         MenuButton bbUsed = new MenuButton("Building Blocks Used");
         bbUsed.getStyleClass().add("button");
         Button currentSpeed = new Button("Current speed:1 ");
@@ -98,6 +108,7 @@ public class RSA {
             monitor.incrementValue("RSA4");
         });
 
+        //speed buttons
         Button speed1 = new Button("Play speed 1x");
         speed1.setOnAction(event -> AnimationMethods.speedChanged(st,1,currentSpeed));
 
@@ -114,10 +125,8 @@ public class RSA {
         speed10.setOnAction(event -> AnimationMethods.speedChanged(st, 10, currentSpeed));
 
 
-
-
+        //adds buttons to screen
         HBox buttonBar = new HBox();
-        //buttonBar.setSpacing(3);
         buttonBar.getChildren().addAll(first, second, third, fourth, play, pause);
         buttonBar.getChildren().addAll(speed1, speed2, speed3, speed6, speed10);
 
@@ -128,6 +137,10 @@ public class RSA {
         bp.setCenter(p);
     }
 
+    /*setupPane,setups the pane and creates the animation for each step
+    parameters: i -step to create, bp - borderpane to add stuff to
+    returns: null
+     */
     private static void setupPane(int i,BorderPane bp){
         st.stop();
         p.getChildren().clear();
@@ -135,19 +148,19 @@ public class RSA {
         switch (i){
             case 1:
                 RSA_Step_1.createPane(p);
-                st=RSA_Step_1.createTimeLine(p);
+                st=RSA_Step_1.createTransition(p);
                 break;
             case 2:
                 RSA_Step_2.createPane(p);
-                st=RSA_Step_2.createTimeLine(p);
+                st=RSA_Step_2.createTransition(p);
                 break;
             case 3:
                 RSA_Step_3.createPane(p);
-                st=RSA_Step_3.createTimeLine(p);
+                st=RSA_Step_3.createTransition(p);
                 break;
             case 4:
                 RSA_Step_4.createPane(p);
-                st=RSA_Step_4.createTimeLine(p);
+                st=RSA_Step_4.createTransition(p);
                 break;
         }
         bp.setCenter(p);

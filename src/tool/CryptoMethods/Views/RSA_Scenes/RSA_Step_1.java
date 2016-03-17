@@ -13,10 +13,14 @@ import tool.Graphics.Speechbubble;
 /** Author : Phillipa Russell
  *  Created: 31/10/2015
  */
+//RSA step 1 class: maths of RSA
 public class RSA_Step_1 {
-    static Speechbubble welcome;
+    private static Speechbubble welcome;
 
-    //creates the pane needed for the animation
+    /*createPane,creates the pane needed for the animation
+    parameters: root - pane to add items to
+    returns: null
+    */
     public static void createPane(Pane root){
         Robot encrypt = RSA_Controller.getEncrypt();
         Robot decrypt = RSA_Controller.getDecrypt();
@@ -34,12 +38,14 @@ public class RSA_Step_1 {
 
         root.getChildren().add(welcome.getSp());
         root.setPadding(new Insets(0,100,0,100));
-        //return root;
 
     }
 
-    //setups the background of the animation
-    public static void background(Pane p){
+    /*background, setups the background of the animation
+    parameters: p -pane to add backgrounds too
+    returns: null
+    */
+    private static void background(Pane p){
         Rectangle left = new Rectangle(30,50,260,550);
         left.getStyleClass().add("rectangle-encrypt");
 
@@ -54,21 +60,27 @@ public class RSA_Step_1 {
     }
 
 
-    //places the robots in their first location
-    public static void placeRobotsFirst(Robot e, Robot d, Pane p){
+
+    /*placeRobotsFirst, places the robots in their first location
+    parameters: e,d - robots to place, p - pane to add robots to
+    returns: null
+    */
+    private static void placeRobotsFirst(Robot e, Robot d, Pane p){
         AnimationMethods.placeRobots(d, p, 950, 175);
         AnimationMethods.placeRobots(e, p, 35, 50);
     }
 
 
-
-    //creates the animation, creates all text and then animates it
-    public static SequentialTransition createTimeLine(Pane root){
+    /*createTransition, creates the animation, creates all text and then animates it
+    parameters: root- pane to add elements to
+    returns: sequential transition with all the animations
+    */
+    public static SequentialTransition createTransition(Pane root){
         SequentialTransition st = new SequentialTransition();
         int x=375;
         int y=150;
 
-
+        //all the text objects used in this step
         Text p = AnimationMethods.textSetup(RSA_Controller.getPrimeP(), x, y, RSA_Controller.getTooltipP());
         Text q =AnimationMethods.textSetup(RSA_Controller.getPrimeQ(), x, (y += 35), RSA_Controller.getTooltipQ());
         Text nEq = AnimationMethods.textSetup(RSA_Controller.getEquationN(), x, (y += 35), RSA_Controller.getTooltipNEq());
@@ -80,12 +92,14 @@ public class RSA_Step_1 {
         Text jNo = AnimationMethods.textSetup(RSA_Controller.getSecretJNo(), x, (y += 35), RSA_Controller.getTooltipJNo());
         Text j = AnimationMethods.textSetup(RSA_Controller.getSecretJ(), x, (y+35), RSA_Controller.getTooltipJ());
 
+        //setup the speechbubble
         Speechbubble encrypts = AnimationMethods.invisSpeechbubble(RSA_Controller.geteInfo(), 100, 180, "tl", 200);
         root.getChildren().add(encrypts.getSp());
 
         FadeTransition encryptsAppear = AnimationMethods.fadeInto(encrypts.getSp());
         st.getChildren().add(encryptsAppear);
 
+        //all the animation methods, makes the text appear in order and changes bubble
         bubbleAnd2Text(RSA_Controller.getPqExpn(), st, root, p, q);
         bubbleAnd2Text(RSA_Controller.getnExp(), st, root, nEq, n);
         bubbleAnd2Text(RSA_Controller.getTotientExp(), st, root, zEq, z);
@@ -99,8 +113,12 @@ public class RSA_Step_1 {
     }
 
 
-    //animation for changing the speech bubble and making 2 pieces of text appear
-    public static void bubbleAnd2Text(String bubble, SequentialTransition st, Pane p, Text a, Text b){
+    /*bubbleAnd2Text, animation for changing the speech bubble and making 2 pieces of text appear
+    parameters: bubble- text to put in bubble, st - sequential transition to add to, p - pane to add to
+                a,b - the two pieces of text to add to the screen
+    returns: null
+     */
+    private static void bubbleAnd2Text(String bubble, SequentialTransition st, Pane p, Text a, Text b){
         AnimationMethods.changeBubble(st,welcome,bubble);
 
         FadeTransition textAAppear = AnimationMethods.fadeInto(a);
@@ -114,7 +132,11 @@ public class RSA_Step_1 {
                 AnimationMethods.pauseSeconds(7));
     }
 
-    //animation for changing the speech bubble and making 1 piece of text appear
+    /*bubbleAnd1Text, animation for changing the speech bubble and making 1 piece of text appear
+     parameters: bubble- text to put in bubble, st - sequential transition to add to, p - pane to add to
+                 a - the piece of text to add to the screen
+     returns: null
+      */
     private static void bubbleAnd1Text(String bubble, SequentialTransition st, Pane p, Text a){
         AnimationMethods.changeBubble(st,welcome,bubble);
 

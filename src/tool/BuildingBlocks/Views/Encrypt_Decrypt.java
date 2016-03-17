@@ -23,7 +23,9 @@ import tool.Models.Paragraph;
 //encrypt decrypt building block view class
 public class Encrypt_Decrypt {
     //variables needed
-    static TextField name,encrypted,decrypted;
+    private static TextField name;
+    private static TextField encrypted;
+    private static TextField decrypted;
 
     /*start method, setups the borderpane
     parameters : bp- borderpane to setup

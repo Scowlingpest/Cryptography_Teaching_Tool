@@ -12,18 +12,24 @@ import javafx.util.Duration;
  * Student Number: 0900772r
  * Creation: 12/11/2015.
  */
+//Stream_cipher animation object
 public class Stream_Cipher {
-    Pane stream = new Pane();
-    Rectangle[] boxes = new Rectangle[9];
-    Text[] numbers = new Text[9];
-    int size;
-    int gap ;
-    SequentialTransition animate= new SequentialTransition();
+    private Pane stream = new Pane();
+    private Rectangle[] boxes = new Rectangle[9];
+    private Text[] numbers = new Text[9];
+    private int size;
+    private int gap ;
+    private SequentialTransition animate= new SequentialTransition();
 
-    public Stream_Cipher(int s){
+    /*Stream_cipher constructor, makes the stream cipher animation
+    parameters:null
+    returns: null
+     */
+    public Stream_Cipher(){
         int binary = 1;
-        this.size=s;
+        this.size= 75;
         this.gap = size+ 20;
+        //make the boxes that make up the stream cipher, puts them in a grid
             for (int i = 0; i<9;i++){
                 this.boxes[i]=new Rectangle((i%3 * gap),((i<3)? 0:(i<6)? gap:gap*2),
                         size,size);
@@ -42,17 +48,18 @@ public class Stream_Cipher {
         animateStream();
     }
 
-    public Pane getStream() {
-        return stream;
-    }
-
-
-    public SequentialTransition animateStream(){
+    /*animateStream, creates the stream animation which makes each block change value and colour
+    parameters: null
+    returns: sequential transition with stream animation
+     */
+    private SequentialTransition animateStream(){
         animate = new SequentialTransition();
         Color temp = null;
         for(int j=0;j<2;j++) {
+            //if colour is green make it purple, otherwise make it green
             temp=(temp==Color.GREEN)? Color.PURPLE:Color.GREEN;
             for (int i = 0; i < 9; i++) {
+                //for each box, change colour and change value to encrypted/decrypted
                 StrokeTransition colour = new StrokeTransition(Duration.seconds(2), this.boxes[i], Color.BLACK, temp);
                 final int finalI = i;
                 colour.setOnFinished(event -> numbers[finalI].setText((numbers[finalI].getText().equals("1")) ? "0" : "1"));
@@ -67,8 +74,13 @@ public class Stream_Cipher {
         return animate;
     }
 
+    //getters
     public SequentialTransition getStreamAnimation() {
         return animate;
+    }
+
+    public Pane getStream() {
+        return stream;
     }
 
 

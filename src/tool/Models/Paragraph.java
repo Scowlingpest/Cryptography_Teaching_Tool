@@ -5,14 +5,19 @@ package tool.Models;
  * Student Number: 0900772r
  * Creation: 13/10/2015.
  */
-//object used for a paragraph of text, helps with text settings
+//Paragraph object, object used for a paragraph of text, helps with text settings
 public class Paragraph {
-    String text;
+    private String text;
 
+    /*Paragraph constructor, takes in text and stores in a paragraph
+    parameters: t - text to store
+    returns - null
+     */
     public Paragraph(String t) {
         this.text=t;
     }
 
+    //getter and setter
     public String getText() {
         return text;
     }

@@ -16,12 +16,18 @@ import tool.Graphics.Speechbubble;
  * Student Number: 0900772r
  * Creation: 04/11/2015.
  */
+//RSA step 3 class, sending the message and decryption
 public class RSA_Step_3 {
-    static Monitor m1 = new Monitor(100,850,200);
-    static Monitor m2 = new Monitor(100,175,100);
-    static Monitor m3 = new Monitor(100,175,425);
-    static Monitor m4 = new Monitor(200,500,300);
+    //monitor objects needed
+    private static Monitor m1 = new Monitor(100,850,200);
+    private static Monitor m2 = new Monitor(100,175,100);
+    private static Monitor m3 = new Monitor(100,175,425);
+    private static Monitor m4 = new Monitor(200,500,300);
 
+    /*createPane,creates the pane needed for the animation
+    parameters: root - pane to add items to
+    returns: null
+    */
     public static void createPane(Pane root){
         Robot encrypt = RSA_Controller.getEncrypt();
         Robot encrypt2 = RSA_Controller.getEncrypt2();
@@ -37,7 +43,11 @@ public class RSA_Step_3 {
 
     }
 
-    public static void background(Pane p){
+    /*background, setups the background of the animation
+   parameters: p -pane to add backgrounds too
+   returns: null
+   */
+    private static void background(Pane p){
         Rectangle right = new Rectangle(450,50,700,550);
         right.getStyleClass().add("rectangle-decrypt");
 
@@ -48,16 +58,22 @@ public class RSA_Step_3 {
 
     }
 
-    public static void placeRobotsFirst(Robot e,Robot e2, Robot d, Pane p){
+    /*placeRobotsFirst, places the robots in their first location
+    parameters: e,e2,d - robots to place, p - pane to add robots to
+    returns: null
+    */
+    private static void placeRobotsFirst(Robot e, Robot e2, Robot d, Pane p){
         AnimationMethods.placeRobots(d, p, 950, 175);
         AnimationMethods.placeRobots(e, p, 35, 50);
         AnimationMethods.placeRobots(e2, p, 35, 350);
     }
 
-    public static SequentialTransition createTimeLine(Pane p){
+    /*createTransition, creates the animation, calls other methods to create each bit
+    parameters: root- pane to add elements to
+    returns: sequential transition with all the animations
+    */
+    public static SequentialTransition createTransition(Pane p){
         SequentialTransition st = new SequentialTransition();
-
-
 
         Speechbubble welcome = new Speechbubble("bl",RSA_Controller.getWelcomeStep3(),215,125,175);
 
@@ -72,6 +88,23 @@ public class RSA_Step_3 {
         return st;
     }
 
+    /*movePaper, moves the encrypted paper, sends 1 successfully, sends 1 unsuccessfully
+    parameters: p - pane to add objects to, st - sequential transition to add animations to,
+                sb- speech bubble so robot can speak, p1,p2 - paper objects
+    returns: null
+     */
+    private static void movePaper(Pane p, SequentialTransition st, Speechbubble sb,Paper p1, Paper p2){
+        createPaper(p, sb, st, p1, p2);
+        successfulSend(st,sb,p1);
+        unsuccessfulSend(st,sb,p2);
+
+    }
+
+    /*createPaper, creates the paper objects and makes bubble appear to explain
+    parameters:p - pane to add objects to, sb- speech bubble so robot can speak,
+               st - sequential transition to add animations to, p1,p2 - paper objects
+    returns: null
+     */
     private static void createPaper(Pane p, Speechbubble sb, SequentialTransition st, Paper p1, Paper p2){
         p1.getView().setOpacity(0);
         p2.getView().setOpacity(0);
@@ -91,14 +124,11 @@ public class RSA_Step_3 {
         st.getChildren().addAll(pt1, AnimationMethods.pauseSeconds(2),bubbleAppear);
     }
 
-    private static void movePaper(Pane p, SequentialTransition st, Speechbubble sb,Paper p1, Paper p2){
-        createPaper(p, sb, st, p1, p2);
-        successfulSend(st,sb,p1);
-        unsuccessfulSend(st,sb,p2);
-
-    }
-
-
+    /*successfulSend, makes the first paper object 'successfully' go to Decrypt
+    parameters: st - sequential transition to add animations to, sb- speech bubble so robot can speak,
+                p1 - paper object
+    returns: null
+     */
     private static void successfulSend(SequentialTransition st, Speechbubble sb, Paper p1){
         FadeTransition bubbleDisappear= AnimationMethods.fadeAway(sb.getSp());
         bubbleDisappear.setOnFinished(event-> sb.setSpeech(RSA_Controller.getTransferStep3()));
@@ -116,6 +146,11 @@ public class RSA_Step_3 {
         st.getChildren().addAll(AnimationMethods.pauseSeconds(5),bubbleDisappear, bubbleAppear, pt1);
     }
 
+    /*unsuccessfulSend, makes the second paper object 'unsuccessfully' go to Decrypt i.e man in middle
+    parameters:st - sequential transition to add animations to, sb- speech bubble so robot can speak,
+                p2 - paper object
+    returns: null
+     */
     private static void unsuccessfulSend(SequentialTransition st, Speechbubble sb,Paper p2){
         FadeTransition m4Appear = AnimationMethods.fadeInto(m4.getImage());
 
@@ -133,6 +168,11 @@ public class RSA_Step_3 {
 
     }
 
+    /*decryption, shows how the key is used to decrypt the message
+    parameters:p - pane to add objects to, sb- speech bubble so robot can speak,
+               st - sequential transition to add animations to, p1,p2 - paper objects
+    returns: null
+     */
     private static void decryption(Pane p, Speechbubble sb, SequentialTransition st, Paper p1, Paper p2){
         Text equation =AnimationMethods.textSetup(RSA_Controller.getEquationStep3(),500,200,RSA_Controller.getTooltipStep3Eq());
         Text secretKey = AnimationMethods.textSetup(RSA_Controller.getSecretKey(),975,125,RSA_Controller.getTooltipStep3SK());
@@ -146,10 +186,13 @@ public class RSA_Step_3 {
         finishStep3(p,st,sb);
 
 
-
-
     }
 
+    /*secretKeyAdded, makes the secret key appear, and show value
+    parameters:sb- speech bubble so robot can speak,st - sequential transition to add animations to,
+                sk - text object that represents secret key
+    returns: null
+     */
     private static void secretKeyAdded(Speechbubble sb,SequentialTransition st,Text sk){
         AnimationMethods.changeBubble(st,sb,RSA_Controller.getSecretKeyStep3());
         FadeTransition keyAppear = AnimationMethods.fadeInto(sk);
@@ -163,6 +206,11 @@ public class RSA_Step_3 {
         st.getChildren().add(key);
     }
 
+    /*equationAdd, makes the decryption equation appear
+    parameters:sb- speech bubble so robot can speak,st - sequential transition to add animations to,
+               eq - equation text object
+    returns: null
+     */
     private static void equationAdd( Speechbubble sb, SequentialTransition st, Text eq){
         FadeTransition bubbleDisappear= AnimationMethods.fadeAway(sb.getSp());
         bubbleDisappear.setOnFinished(event-> sb.setSpeech(RSA_Controller.getDecryptStep3()));
@@ -177,6 +225,11 @@ public class RSA_Step_3 {
 
     }
 
+    /*moveKey, moves secret key into equation and changes equation to compensate
+    parameters:st - sequential transition to add animations to, key - text object for key,
+                eq - text object for equation
+    returns: null
+     */
     private static void moveKey( SequentialTransition st,Text key,Text eq){
         TranslateTransition keyMove = AnimationMethods.moveNode(key,-450,75,5);
         FadeTransition keyDisappear = AnimationMethods.fadeAway(key);
@@ -190,6 +243,11 @@ public class RSA_Step_3 {
         st.getChildren().addAll(keyMove,pt1,eqDisappear,eqAppear);
     }
 
+    /*applyKey, moves the equation onto the paper and decrypts it
+    parameters: st - sequential transition to add animations to, eq - text object for equation,
+                p1 - paper object
+    returns: null
+     */
     private static void applyKey(SequentialTransition st,Text eq, Paper p1){
         TranslateTransition moveEq = AnimationMethods.moveNode(eq,225,50,4);
         FadeTransition paperFade =AnimationMethods.fadeAway(p1.getView());
@@ -199,6 +257,11 @@ public class RSA_Step_3 {
         st.getChildren().addAll(moveEq,paperFade,p1Appear);
     }
 
+    /*emptyKey, shows the 'listener' can't decrypt the page
+    parameters: sb- speech bubble so robot can speak,st - sequential transition to add animations to,
+                eq - text object for the equation, p2 - paper object
+    returns: null
+     */
     private static void emptyKey(Speechbubble sb,SequentialTransition st,Text eq,Paper p2){
         FadeTransition equationChange = AnimationMethods.fadeAway(eq);
         FadeTransition bubbleFade =AnimationMethods.fadeAway(sb.getSp());
@@ -222,6 +285,11 @@ public class RSA_Step_3 {
 
     }
 
+    /*finishStep3, finish off the step
+    parameters:p - pane to add objects to,st - sequential transition to add animations to,
+               sb- speech bubble so robot can speak
+    returns: null
+     */
     private static void finishStep3(Pane p, SequentialTransition st, Speechbubble sb){
         FadeTransition bubbleChange = AnimationMethods.fadeAway(sb.getSp());
         bubbleChange.setOnFinished(event-> sb.setSpeech(RSA_Controller.getResendStep3()));

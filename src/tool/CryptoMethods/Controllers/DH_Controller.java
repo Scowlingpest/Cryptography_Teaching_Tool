@@ -12,14 +12,19 @@ import java.util.HashMap;
  * Student Number: 0900772r
  * Creation: 09/11/2015.
  */
+//Diffie hellman controller class
 public class DH_Controller extends CryptoMethodsController {
 
-    //Step 1 variables needed
-    static ObservableList<DataRow> dataE = FXCollections.observableArrayList();
-    static ObservableList<DataRow> dataD =FXCollections.observableArrayList();
+    //variables needed and methods
+    private static ObservableList<DataRow> dataE = FXCollections.observableArrayList();
+    private static ObservableList<DataRow> dataD =FXCollections.observableArrayList();
 
-    static HashMap<Integer,Integer[]> generators = setupMap();
+    private static HashMap<Integer,Integer[]> generators = setupMap();
 
+    /* setupMap, setups the map for the combo boxes
+    parameters:null
+    returns: hashmap with integer and list of generators
+     */
     private static HashMap<Integer,Integer[]> setupMap(){
         HashMap<Integer,Integer[]> primes = new HashMap<>();
         primes.put(7,new Integer[]{3,5});
@@ -75,6 +80,10 @@ public class DH_Controller extends CryptoMethodsController {
     private static final String KaTooltip = "This is K, calculated from (B^a)mod p";
     private static final String KbTooltip = "This is K, calculated from (A^b)mod p";
 
+    /*setUpAnimation, used in second step, changes the animation to match the selected values
+    parameters: p,q,a,b- values selected in combo boxes
+    returns: null
+     */
     public static void setUpAnimation(int p, int q, int a, int b){
         setP(p); setQ (q);
         seta(a); setb(b);
@@ -86,7 +95,11 @@ public class DH_Controller extends CryptoMethodsController {
         stringSetup();
     }
 
-    public static void stringSetup(){
+    /*stringSetup, changes strings based on user selected values
+    parameters: null
+    returns: null
+     */
+    private static void stringSetup(){
         prime = "We've decided on p="+getP()+" and q="+getQ()+". Now we both need to do some maths. The third party at the bottom knows about them as well but it doesn't matter. We're both going to pick another number, a and b. These can be any number but again we'll keep them small.";
         secretNum = "We've chosen secret a="+geta()+" and secret b ="+getb()+". These can be any number but we have to keep them secret, even from each other. We'll use these with p and q to work out some numbers";
         workingAandB ="We calculate A and B. A="+getEqA()+" and B="+getEqB()+". This turns out as A="+getEqANo()+" and B="+getEqBNo()+" so A="+getA()+"and B="+getB();
@@ -169,51 +182,51 @@ public class DH_Controller extends CryptoMethodsController {
         return eqKbNo;
     }
 
-    public static void setP(int p) {
+    private static void setP(int p) {
         DH_Controller.p = p;
     }
 
-    public static void setQ(int q) {
+    private static void setQ(int q) {
         DH_Controller.q = q;
     }
 
-    public static void seta(int a) {
+    private static void seta(int a) {
         DH_Controller.a = a;
     }
 
-    public static void setb(int b) {
+    private static void setb(int b) {
         DH_Controller.b = b;
     }
 
-    public static void setA() {
+    private static void setA() {
         DH_Controller.A = (int)(Math.pow(getQ(),geta())%getP());
     }
 
-    public static void setB() {
+    private static void setB() {
         DH_Controller.B = (int)(Math.pow(getQ(),getb())%getP());
     }
 
-    public static void setKa() {
+    private static void setKa() {
         DH_Controller.Ka = (int)(Math.pow(getB(),geta()))%getP();
     }
 
-    public static void setKb() {
+    private static void setKb() {
         DH_Controller.Kb = (int)(Math.pow(getA(),getb()))%getP();
     }
 
-    public static void setEqANo() {
+    private static void setEqANo() {
         DH_Controller.eqANo="("+ getQ() +"^"+ geta() +")"+"mod "+ getP();
     }
 
-    public static void setEqBNo() {
+    private static void setEqBNo() {
         DH_Controller.eqBNo="("+ getQ() +"^"+ getb() +")"+"mod "+ getP();
     }
 
-    public static void setEqKaNo() {
+    private static void setEqKaNo() {
         DH_Controller.eqKaNo = "("+ getB()+"^"+ geta() +")"+"mod "+ getP();
     }
 
-    public static void setEqKbNo() {
+    private static void setEqKbNo() {
         DH_Controller.eqKbNo = "("+ getA()+"^"+ getb() +")"+"mod "+ getP();
     }
 

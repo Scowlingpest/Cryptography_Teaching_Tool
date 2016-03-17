@@ -16,18 +16,25 @@ import tool.CryptoMethods.Views.AnimationMethods;
  * Student Number: 0900772r
  * Creation: 13/11/2015
  */
+//block cipher animation object
 public class Block_Cipher {
-    Pane block = new Pane();
-    Rectangle[] boxes = new Rectangle[16];
-    Text[] letters = new Text[16];
-    SequentialTransition animation;
-    int size;
-    int gap ;
+    private final Pane block = new Pane();
+    private final Rectangle[] boxes = new Rectangle[16];
+    private final Text[] letters = new Text[16];
+    private final SequentialTransition animation;
+    private final int size;
+    private final int gap ;
 
-    public Block_Cipher(int s){
-        this.size=s;
+    /*Block_Cipher constructor
+    parameters: null
+    returns: null
+     */
+    public Block_Cipher(){
+        this.size= 60;
         this.gap = this.size+17;
         String message ="Hello EveryoneXX";
+
+        //organises boxes into an equal grid
         for (int i =0;i<16;i++){
             this.boxes[i] = new Rectangle((i%4 * gap),((i<4)? 0:(i<8)? gap:(i<12)? gap*2:gap*3),
                     size,size);
@@ -47,11 +54,16 @@ public class Block_Cipher {
         blockAnimate();
     }
 
+    //getter
     public Pane getBlock() {
         return block;
     }
 
-    public void blockAnimate(){
+    /*blockAnimate, setups the animation
+    parameters: null
+    returns: null
+     */
+    private void blockAnimate(){
         ParallelTransition pt1 = new ParallelTransition();
         this.onSelect(5, Color.GREEN, pt1);
 
@@ -62,7 +74,12 @@ public class Block_Cipher {
 
     }
 
-    public void onSelect(int value,Color c, ParallelTransition p){
+    /*onSelect, animation for changing colours of all boxes at the same time
+    parameters: value - value to change text to, c - colour to make boxes,
+                p - parallel transition to add animation to
+    returns: null
+     */
+    private void onSelect(int value, Color c, ParallelTransition p){
         for (int i =0;i<16;i++){
             StrokeTransition fill1 = new StrokeTransition(Duration.seconds(3),this.boxes[i],Color.BLACK,c);
             final int finalI = i;
@@ -74,7 +91,11 @@ public class Block_Cipher {
         }
     }
 
-    public void changeText(int value, int i){
+    /*changeText, changes the text on the box
+    parameters: value - value to put in box, i - which box to change
+    returns: null
+     */
+    private void changeText(int value, int i){
         this.block.getChildren().remove(this.letters[i]);
         char temp = this.letters[i].getText().charAt(0);
         int next = (int) temp + value;
@@ -82,6 +103,7 @@ public class Block_Cipher {
         this.block.getChildren().add(this.letters[i]);
     }
 
+    //getter
     public SequentialTransition getAnimation() {
         return animation;
     }
