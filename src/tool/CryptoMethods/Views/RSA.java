@@ -108,7 +108,7 @@ public class RSA {
             monitor.incrementValue("RSA4");
         });
 
-        //speed buttons
+        //speed buttons, tried putting these in a method in the controller - didn't work
         Button speed1 = new Button("Play speed 1x");
         speed1.setOnAction(event -> AnimationMethods.speedChanged(st,1,currentSpeed));
 
